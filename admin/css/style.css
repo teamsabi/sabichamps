@@ -3560,10 +3560,9 @@ input[type="button"].btn-block {
 .container-mata-pelajaran {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   justify-content: center;
   padding: 20px;
-  /* background-color: #f8f8f8; */
 }
 
 /* Gaya untuk masing-masing mata pelajaran */

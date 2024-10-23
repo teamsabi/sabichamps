@@ -216,40 +216,195 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Data Guru</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="thead-primary">
-                                        <tr>
-                                            <th scope="col">id</th>
-                                            <th scope="col">Nama Guru</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Alamat</th>
-                                            <th scope="col">Telepon</th>
-                                            <th scope="col">Kategori</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>1</th>
-                                            <td>Mark</td>
-                                            <td>Otto@gmail.com</td>
-                                            <td>Jember</td>
-                                            <td>08193767624</td>
-                                            <td>Matematika</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <!-- SweetAlert2 CSS dan JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">Data Guru</h4>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-success mr-2" data-toggle="modal" data-target="#addGuruModal">
+                    <i class="fas fa-plus"></i> Tambah Data
+                </button>
+                <div class="d-flex" style="max-width: 300px;">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="searchGuruInput" class="form-control" placeholder="Cari...">
                 </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table" id="guruTable">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nama Guru</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Telepon</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Mark</td>
+                            <td>Otto@gmail.com</td>
+                            <td>Jember</td>
+                            <td>08193767624</td>
+                            <td>Matematika</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary editGuruBtn">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger deleteGuruBtn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tambah/Edit Data Guru -->
+<div class="modal fade" id="addGuruModal" tabindex="-1" aria-labelledby="addGuruModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addGuruModalLabel">Tambah/Edit Data Guru</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="guruForm">
+          <div class="form-group">
+            <label for="guruName">Nama Guru</label>
+            <input type="text" class="form-control" id="guruName" required>
+          </div>
+          <div class="form-group">
+            <label for="guruEmail">Email</label>
+            <input type="email" class="form-control" id="guruEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="guruAlamat">Alamat</label>
+            <input type="text" class="form-control" id="guruAlamat" required>
+          </div>
+          <div class="form-group">
+            <label for="guruTelepon">Telepon</label>
+            <input type="text" class="form-control" id="guruTelepon" required>
+          </div>
+          <div class="form-group">
+            <label for="guruKategori">Kategori</label>
+            <input type="text" class="form-control" id="guruKategori" required>
+          </div>
+          <input type="hidden" id="guruId">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript untuk Fungsi Pencarian, Tambah/Edit, dan Hapus -->
+<script>
+    // Fungsi Pencarian
+    document.getElementById('searchGuruInput').addEventListener('keyup', function() {
+        const searchValue = this.value.toLowerCase();
+        const tableRows = document.querySelectorAll('#guruTable tbody tr');
+        
+        tableRows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchValue) ? '' : 'none';
+        });
+    });
+
+    // Tambah/Edit Data Guru
+    let selectedRowGuru = null;
+    document.getElementById('guruForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const guruId = document.getElementById('guruId').value;
+        const guruName = document.getElementById('guruName').value;
+        const guruEmail = document.getElementById('guruEmail').value;
+        const guruAlamat = document.getElementById('guruAlamat').value;
+        const guruTelepon = document.getElementById('guruTelepon').value;
+        const guruKategori = document.getElementById('guruKategori').value;
+
+        if (selectedRowGuru === null) {
+            const table = document.querySelector('#guruTable tbody');
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <th>${table.rows.length}</th>
+                <td>${guruName}</td>
+                <td>${guruEmail}</td>
+                <td>${guruAlamat}</td>
+                <td>${guruTelepon}</td>
+                <td>${guruKategori}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary editGuruBtn">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteGuruBtn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>`;
+        } else {
+            selectedRowGuru.cells[1].innerText = guruName;
+            selectedRowGuru.cells[2].innerText = guruEmail;
+            selectedRowGuru.cells[3].innerText = guruAlamat;
+            selectedRowGuru.cells[4].innerText = guruTelepon;
+            selectedRowGuru.cells[5].innerText = guruKategori;
+            selectedRowGuru = null;
+        }
+        $('#addGuruModal').modal('hide');
+        this.reset();
+    });
+
+    // Fungsi Edit Data
+    document.querySelector('#guruTable').addEventListener('click', function(e) {
+        if (e.target.closest('.editGuruBtn')) {
+            selectedRowGuru = e.target.closest('tr');
+            document.getElementById('guruId').value = selectedRowGuru.cells[0].innerText;
+            document.getElementById('guruName').value = selectedRowGuru.cells[1].innerText;
+            document.getElementById('guruEmail').value = selectedRowGuru.cells[2].innerText;
+            document.getElementById('guruAlamat').value = selectedRowGuru.cells[3].innerText;
+            document.getElementById('guruTelepon').value = selectedRowGuru.cells[4].innerText;
+            document.getElementById('guruKategori').value = selectedRowGuru.cells[5].innerText;
+            $('#addGuruModal').modal('show');
+        }
+    });
+
+    // Fungsi Hapus Data dengan SweetAlert2
+    document.querySelector('#guruTable').addEventListener('click', function(e) {
+        if (e.target.closest('.deleteGuruBtn')) {
+            const row = e.target.closest('tr');
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    row.remove();
+                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
+                }
+            });
+        }
+    });
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
             </div>
         </div>
         <!--**********************************
