@@ -8060,7 +8060,7 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #343957;
+  background-color: #229799;
   transition: all .2s ease;
   z-index: 4; }
   .nav-header .logo-abbr {
@@ -8135,7 +8135,7 @@ a {
   z-index: 999; }
 
 .hamburger .line {
-  background: #593bdb;
+  background: #229799;
   display: block;
   height: 2px;
   margin-top: 6px;
@@ -10648,7 +10648,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     padding-right: 0;
     justify-content: center; }
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .nav-control .hamburger .line {
-    background-color: #593bdb !important; }
+    background-color: #229799 !important; }
 
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .header {
   padding-left: 3.75rem;
@@ -10749,7 +10749,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       [data-sidebar-style="mini"] .nav-header .nav-control .hamburger {
         left: 3.75rem !important; }
         [data-sidebar-style="mini"] .nav-header .nav-control .hamburger .line {
-          background-color: #454545 !important; }
+          background-color: #229799 !important; }
     [data-sidebar-style="mini"] .nav-header .brand-title {
       display: none; }
     [data-sidebar-style="mini"] .nav-header .hamburger {
@@ -11211,7 +11211,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="overlay"] .nav-header .hamburger.is-active {
     left: 0; }
     [data-sidebar-style="overlay"] .nav-header .hamburger.is-active .line {
-      background-color: #593bdb; }
+      background-color: #229799; }
 
 [data-sidebar-style="overlay"] .menu-toggle .nav-header {
   position: absolute;
@@ -11541,7 +11541,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_2"] .nav-control {
-  background-color: #161828;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_3"] .header {
@@ -11568,7 +11568,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_3"] .nav-control {
-  background-color: #4123c0;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_4"] .header {
@@ -11595,7 +11595,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_4"] .nav-control {
-  background-color: #331d77;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_5"] .header {
@@ -11622,7 +11622,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_5"] .nav-control {
-  background-color: #9c1f1f;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_6"] .header {
@@ -11649,7 +11649,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_6"] .nav-control {
-  background-color: #1d276b;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_7"] .header {
@@ -11676,7 +11676,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_7"] .nav-control {
-  background-color: #104d92;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_8"] .header {
@@ -11703,7 +11703,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_8"] .nav-control {
-  background-color: #01578b;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_9"] .header {
@@ -11730,7 +11730,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_9"] .nav-control {
-  background-color: #00545c;
+  background-color: #229799;
   color: #fff; }
 
 [data-headerbg="color_10"] .header {
@@ -11757,7 +11757,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_10"] .nav-control {
-  background-color: #3e6522;
+  background-color: #229799;
   color: #fff; }
 
 [data-sibebarbg="color_2"] .quixnav {
