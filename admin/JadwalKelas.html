@@ -383,7 +383,7 @@
 
                     // Fungsi Hapus Data dengan SweetAlert2
                     document.querySelector('#jadwalTable').addEventListener('click', function(e) {
-                        if (e.target.closest('.jadwalSiswaBtn')) {
+                        if (e.target.closest('.deletejadwalBtn')) {
                             const row = e.target.closest('tr');
                             Swal.fire({
                                 title: 'Yakin ingin menghapus data ini?',

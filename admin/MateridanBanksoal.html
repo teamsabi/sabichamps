@@ -218,70 +218,200 @@
 
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-block">
                             <h4 class="card-title">Materi dan Bank Soal</h4>
+                            <p class="m-0 subtitle">Pilih mata pelajaran untuk melihat Pelajaran</p>
                         </div>
                         <div class="card-body">
-                            <div class="container-mata-pelajaran">
-                                <!-- Tombol untuk masing-masing mata pelajaran -->
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/bahasa indonesia.png" alt="Kimia">
-                                    </button>
-                                    <p>Bahasa Indonesia</p>
+                            <div id="accordion-materi" class="accordion accordion-with-icon">
+                
+                                <!-- Mata Pelajaran 1 -->
+                                <div class="accordion__item">
+                                    <div class="accordion__header" data-toggle="collapse" data-target="#collapsePelajaranOne">
+                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
+                                        <span class="accordion__header--text">Mata Pelajaran 1</span>
+                                        <span class="accordion__header--indicator indicator_bordered"></span>
+                                    </div>
+                                    <div id="collapsePelajaranOne" class="collapse accordion__body show" data-parent="#accordion-materi">
+                                        <div class="accordion__body--text">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Bab 1: Pengenalan
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab1">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab1" onchange="previewFile(event, 'filePreviewBab1')">
+                                                        </div>
+                                                    </form>
+                                                    <!-- Tempat untuk melihat, mengunduh, atau menghapus file yang diupload -->
+                                                    <div id="filePreviewBab1" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 2: Konsep Dasar
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab2">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab2" onchange="previewFile(event, 'filePreviewBab2')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab2" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 3: Penerapan
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab3">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab3" onchange="previewFile(event, 'filePreviewBab3')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab3" class="mt-2"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                        
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/Matematika.png" alt="Matematika">
-                                    </button>
-                                    <p>Matematika</p>
+                
+                                <!-- Mata Pelajaran 2 -->
+                                <div class="accordion__item">
+                                    <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapsePelajaranTwo">
+                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
+                                        <span class="accordion__header--text">Mata Pelajaran 2</span>
+                                        <span class="accordion__header--indicator indicator_bordered"></span>
+                                    </div>
+                                    <div id="collapsePelajaranTwo" class="collapse accordion__body" data-parent="#accordion-materi">
+                                        <div class="accordion__body--text">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Bab 1: Pendahuluan
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab4">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab4" onchange="previewFile(event, 'filePreviewBab4')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab4" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 2: Teori Lanjutan
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab5">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab5" onchange="previewFile(event, 'filePreviewBab5')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab5" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 3: Latihan Soal
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab6">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab6" onchange="previewFile(event, 'filePreviewBab6')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab6" class="mt-2"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                        
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/Biologi.png" alt="Biologi">
-                                    </button>
-                                    <p>Biologi</p>
+                
+                                <!-- Mata Pelajaran 3 -->
+                                <div class="accordion__item">
+                                    <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapsePelajaranThree">
+                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
+                                        <span class="accordion__header--text">Mata Pelajaran 3</span>
+                                        <span class="accordion__header--indicator indicator_bordered"></span>
+                                    </div>
+                                    <div id="collapsePelajaranThree" class="collapse accordion__body" data-parent="#accordion-materi">
+                                        <div class="accordion__body--text">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Bab 1: Dasar-Dasar
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab7">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab7" onchange="previewFile(event, 'filePreviewBab7')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab7" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 2: Contoh Kasus
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab8">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab8" onchange="previewFile(event, 'filePreviewBab8')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab8" class="mt-2"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Bab 3: Uji Pemahaman
+                                                    <form>
+                                                        <div class="form-group mt-2">
+                                                            <label for="uploadBab9">Upload File:</label>
+                                                            <input type="file" class="form-control-file" id="uploadBab9" onchange="previewFile(event, 'filePreviewBab9')">
+                                                        </div>
+                                                    </form>
+                                                    <div id="filePreviewBab9" class="mt-2"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/Kimia.png" alt="Kimia">
-                                    </button>
-                                    <p>Kimia</p>
-                                </div>
-
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/sejarah.png" alt="sejarah">
-                                    </button>
-                                    <p>Kimia</p>
-                                </div>
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/sosiologi.png" alt="sosiologi">
-                                    </button>
-                                    <p>Sosiologi</p>
-                                </div>
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/geografi.png" alt="geografi">
-                                    </button>
-                                    <p>Geografi</p>
-                                </div>
-                                <div class="mata-pelajaran">
-                                    <button>
-                                        <img src="images/MataPelajaran/sejarah.png" alt="sejarah">
-                                    </button>
-                                    <p>Kimia</p>
-                                </div>
-                        
-                                <!-- Tambahkan lebih banyak mata pelajaran dengan cara yang sama -->
+                
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Tambahkan JavaScript untuk Preview, Hapus, dan Download File -->
+                <script>
+                function previewFile(event, previewId) {
+                    var file = event.target.files[0];
+                    var previewDiv = document.getElementById(previewId);
+                
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            // Hapus konten sebelumnya
+                            previewDiv.innerHTML = '';
+                
+                            // Tambahkan tautan file untuk unduh dan lihat
+                            var link = document.createElement('a');
+                            link.href = e.target.result;
+                            link.target = '_blank';
+                            link.textContent = 'Lihat ' + file.name;
+                            previewDiv.appendChild(link);
+                
+                            // Tambahkan tombol untuk unduh
+                            var downloadButton = document.createElement('a');
+                            downloadButton.href = e.target.result;
+                            downloadButton.download = file.name;
+                            downloadButton.className = 'btn btn-primary btn-sm ml-2';
+                            downloadButton.textContent = 'Download';
+                            previewDiv.appendChild(downloadButton);
+                
+                            // Tambahkan tombol hapus
+                            var deleteButton = document.createElement('button');
+                            deleteButton.className = 'btn btn-danger btn-sm ml-2';
+                            deleteButton.textContent = 'Hapus';
+                            deleteButton.onclick = function() {
+                                previewDiv.innerHTML = ''; // Hapus preview jika tombol hapus ditekan
+                                event.target.value = ''; // Reset input file
+                            };
+                            previewDiv.appendChild(deleteButton);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+                </script>
+                
+                
+                
+                
+
             </div>
         </div>
         <!--**********************************
