@@ -210,6 +210,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Manajemen Konten</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Jadwal</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">11 MIPA</a></li>
                         </ol>
                     </div>
                 </div>
@@ -218,63 +219,40 @@
                 <div class="col-lg-12">
                     <div class="card" style="margin-left: -15px; width: 1015px;">
                         <div class="card-header">
-                            <h4 class="card-title" style="font-size: 1.3rem;">Jadwal Mengajar </h4>
+                            <h4 class="card-title" style="font-size: 1.3rem;">Daftar Siswa </h4>
                         </div>
                         <div class="card-header">
-                            <h6 class="card-title" style="font-size: 0.88rem; opacity: 0.5;">Pilih Jenjang</h6>
+                            <h6 class="card-title" style="font-size: 1rem; opacity: 0.5;">1 Siswa</h6>
                         </div>
 
-                        <!-- select Pilih Jenjang -->
-                        <div class="row">
-                            <div class="col-xl-6">
-                                    <div class="card-body" style="margin-top: -50px; margin-left: 100px; opacity: 0.8;">
-                                        <select id="single-select" style="border: 1px solid #ccc; padding: 5px; border-radius: 4px;">
-                                            <option value="11mipa">11 MIPA</option>
-                                            <option value="12mipa">12 MIPA</option>
-                                            <option value="11ips">11 IPS</option>
-                                            <option value="12ips">12 IPS</option>
-                                            <option value="Kedinasan">Kedinasan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         <!-- Button tambah jadwal -->
                             <div class="col-lg-12">
-                                    <div class="card-header d-flex justify-content-between align-items-center" 
-                                            style="margin-left: 800px; margin-top: -73px;">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-success mr-auto" data-toggle="modal" data-target="#addJadwalMengajar">
-                                                <i class="fa fa-plus"></i> Tambah Jadwal
-                                            </button>
-                                        </div>
-                                    </div>
                         <div class="card-body" style="margin-left: -20px; width: 1024px;">
                             <div class="table-responsive">
-                                <table class="table" id="jadwalTable">
+                                <table class="table" id="siswaTable">
                                     <thead class="thead-primary">
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Hari</th>
-                                            <th scope="col">Nama Kelas</th>
-                                            <th scope="col">Mata Pelajaran</th>
-                                            <th scope="col">Rentang Waktu</th>
-                                            <th scope="col">Nama Guru</th>
+                                            <th scope="col">Nama Siswa</th>
+                                            <th scope="col">Nomor WhatsApp</th>
+                                            <th scope="col">Alamat</th>
+                                            <th scope="col">Asal Sekolah</th>
+                                            <th scope="col">Nama OrangTua/Wali</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th>1</th>
-                                            <td>Senin</td>
-                                            <td>11 MIPA</td>
-                                            <td>Fisika</td>
-                                            <td>14.00-18.00</td>
                                             <td>Syaiful Amin</td>
-                                            <td><button class="btn btn-sm btn-primary editJadwalBtn">Edit
+                                            <td>081234567890</td>
+                                            <td>Tawangmangu</td>
+                                            <td>SMK Mastrip</td>
+                                            <td>Bachtiar</td>
+                                            <td><button class="btn btn-sm btn-primary editSiswaBtn">Edit
                                                 <i class="fa fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-danger deleteJadwalBtn">Hapus
+                                            <button class="btn btn-sm btn-danger deleteSiswaBtn">Hapus
                                                 <i class="fa fa-trash"></i>
                                             </td>
                                         </tr>
@@ -285,39 +263,39 @@
                     </div>
                 </div>
 
-<!-- Modal untuk Tambah/Edit Jadwal -->
-<div class="modal fade" id="addJadwalMengajar" tabindex="-1" aria-labelledby="addJadwalLabel" aria-hidden="true">
+<!-- Modal untuk Edit Data Siswa -->
+<div class="modal fade" id="addDataSiswa" tabindex="-1" aria-labelledby="addSiswaLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addJadwalLabel">Tambah/Edit Jadwal</h5>
+                <h5 class="modal-title" id="addSiswaLabel">Edit Data Siswa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="JadwalForm">
+                <form id="SiswaForm">
                     <div class="form-group">
-                        <label for="Hari">Hari</label>
-                        <input type="text" class="form-control" id="Hari" required>
+                        <label for="NamaSiswa">Nama Siswa</label>
+                        <input type="text" class="form-control" id="NamaSiswa" required>
                     </div>
                     <div class="form-group">
-                        <label for="NamaKelas">Nama Kelas</label>
-                        <input type="text" class="form-control" id="NamaKelas" required>
+                        <label for="NoWA">Nomor WhatsApp</label>
+                        <input type="text" class="form-control" id="NoWA" required>
                     </div>
                     <div class="form-group">
-                        <label for="MataPelajaran">Mata Pelajaran</label>
-                        <input type="text" class="form-control" id="MataPelajaran" required>
+                        <label for="Alamat">Alamat</label>
+                        <input type="text" class="form-control" id="Alamat" required>
                     </div>
                     <div class="form-group">
-                        <label for="RentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="RentangWaktu" required>
+                        <label for="AsalSekolah">Asal Sekolah</label>
+                        <input type="text" class="form-control" id="AsalSekolah" required>
                     </div>
                     <div class="form-group">
-                        <label for="NamaGuru">Nama Guru</label>
-                        <input type="text" class="form-control" id="NamaGuru" required>
+                        <label for="NamaOrtu">Nama OrangTua/Wali</label>
+                        <input type="text" class="form-control" id="NamaOrtu" required>
                     </div>
-                    <input type="hidden" id="JadwalId">
+                    <input type="hidden" id="SiswaId">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>
@@ -329,62 +307,62 @@
 <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
 <script>
 
-// Fungsi Tambah Jadwal
+// Fungsi Edit Data Siswa 
 let selectedRow = null;
-document.getElementById('JadwalForm').addEventListener('submit', function(event) {
+document.getElementById('SiswaForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const Hari = document.getElementById('Hari').value;
-    const NamaKelas = document.getElementById('NamaKelas').value;
-    const MataPelajaran = document.getElementById('MataPelajaran').value;
-    const RentangWaktu = document.getElementById('RentangWaktu').value;
-    const NamaGuru = document.getElementById('NamaGuru').value;
+    const NamaSiswa = document.getElementById('NamaSiswa').value;
+    const NoWA = document.getElementById('NoWA').value;
+    const Alamat = document.getElementById('Alamat').value;
+    const AsalSekolah = document.getElementById('AsalSekolah').value;
+    const NamaOrtu = document.getElementById('NamaOrtu').value;
 
     if (selectedRow === null) {
-        const table = document.querySelector('#jadwalTable tbody');
+        const table = document.querySelector('#siswaTable tbody');
         const newRow = table.insertRow();
         newRow.innerHTML = `
             <th>${table.rows.length}</th>
-            <td>${Hari}</td>
-            <td>${NamaKelas}</td>
-            <td>${MataPelajaran}</td>
-            <td>${RentangWaktu}</td>
-            <td>${NamaGuru}</td>
+            <td>${NamaSiswa}</td>
+            <td>${NoWA}</td>
+            <td>${Alamat}</td>
+            <td>${AsalSekolah}</td>
+            <td>${NamaOrtu}</td>
             <td>
-                <button class="btn btn-sm btn-primary editJadwalBtn">
+                <button class="btn btn-sm btn-primary editSiswaBtn">
                     <i class="fa fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger deleteJadwalBtn">
+                <button class="btn btn-sm btn-danger deleteSiswaBtn">
                     <i class="fa fa-trash"></i>
                 </button>
             </td>`;
     } else {
-        selectedRow.cells[1].innerText = Hari;
-        selectedRow.cells[2].innerText = NamaKelas;
-        selectedRow.cells[3].innerText = MataPelajaran;
-        selectedRow.cells[4].innerText = RentangWaktu;
-        selectedRow.cells[5].innerText = NamaGuru;
+        selectedRow.cells[1].innerText = NamaSiswa;
+        selectedRow.cells[2].innerText = NoWA;
+        selectedRow.cells[3].innerText = Alamat;
+        selectedRow.cells[4].innerText = AsalSekolah;
+        selectedRow.cells[5].innerText = NamaOrtu;
         selectedRow = null;
     }
-    $('#addJadwalMengajar').modal('hide');
+    $('#addDataSiswa').modal('hide');
     this.reset();
 });
 
 // Fungsi Edit Data
-document.querySelector('#jadwalTable').addEventListener('click', function(e) {
-        if (e.target.closest('.editJadwalBtn')) {
+document.querySelector('#siswaTable').addEventListener('click', function(e) {
+        if (e.target.closest('.editSiswaBtn')) {
             selectedRow = e.target.closest('tr');
-            document.getElementById('Hari').value = selectedRow.cells[1].innerText;
-            document.getElementById('NamaKelas').value = selectedRow.cells[2].innerText;
-            document.getElementById('MataPelajaran').value = selectedRow.cells[3].innerText;
-            document.getElementById('RentangWaktu').value = selectedRow.cells[4].innerText;
-            document.getElementById('NamaGuru').value = selectedRow.cells[5].innerText;
-            $('#addJadwalMengajar').modal('show');
+            document.getElementById('NamaSiswa').value = selectedRow.cells[1].innerText;
+            document.getElementById('NoWA').value = selectedRow.cells[2].innerText;
+            document.getElementById('Alamat').value = selectedRow.cells[3].innerText;
+            document.getElementById('AsalSekolah').value = selectedRow.cells[4].innerText;
+            document.getElementById('NamaOrtu').value = selectedRow.cells[5].innerText;
+            $('#addDataSiswa').modal('show');
         }
     });
 
 // Fungsi Hapus Data dengan SweetAlert2
-document.querySelector('#jadwalTable').addEventListener('click', function(e) {
-        if (e.target.closest('.deleteJadwalBtn')) {
+document.querySelector('#siswaTable').addEventListener('click', function(e) {
+        if (e.target.closest('.deleteSiswaBtn')) {
             const row = e.target.closest('tr');
             Swal.fire({
                 title: 'Yakin ingin menghapus jadwal ini?',
