@@ -221,192 +221,104 @@
                         <div class="card-header d-block">
                             <h4 class="card-title">Materi dan Bank Soal</h4>
                             <p class="m-0 subtitle">Pilih mata pelajaran untuk melihat Pelajaran</p>
+                
+                            <!-- Button Tambah Mata Pelajaran -->
+                            <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalTambahPelajaran">
+                                + Tambah Mata Pelajaran
+                            </button>
                         </div>
+                
                         <div class="card-body">
                             <div id="accordion-materi" class="accordion accordion-with-icon">
-                
-                                <!-- Mata Pelajaran 1 -->
-                                <div class="accordion__item">
-                                    <div class="accordion__header" data-toggle="collapse" data-target="#collapsePelajaranOne">
-                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
-                                        <span class="accordion__header--text">Mata Pelajaran 1</span>
-                                        <span class="accordion__header--indicator indicator_bordered"></span>
-                                    </div>
-                                    <div id="collapsePelajaranOne" class="collapse accordion__body show" data-parent="#accordion-materi">
-                                        <div class="accordion__body--text">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    Bab 1: Pengenalan
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab1">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab1" onchange="previewFile(event, 'filePreviewBab1')">
-                                                        </div>
-                                                    </form>
-                                                    <!-- Tempat untuk melihat, mengunduh, atau menghapus file yang diupload -->
-                                                    <div id="filePreviewBab1" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 2: Konsep Dasar
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab2">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab2" onchange="previewFile(event, 'filePreviewBab2')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab2" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 3: Penerapan
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab3">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab3" onchange="previewFile(event, 'filePreviewBab3')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab3" class="mt-2"></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <!-- Mata Pelajaran 2 -->
-                                <div class="accordion__item">
-                                    <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapsePelajaranTwo">
-                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
-                                        <span class="accordion__header--text">Mata Pelajaran 2</span>
-                                        <span class="accordion__header--indicator indicator_bordered"></span>
-                                    </div>
-                                    <div id="collapsePelajaranTwo" class="collapse accordion__body" data-parent="#accordion-materi">
-                                        <div class="accordion__body--text">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    Bab 1: Pendahuluan
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab4">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab4" onchange="previewFile(event, 'filePreviewBab4')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab4" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 2: Teori Lanjutan
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab5">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab5" onchange="previewFile(event, 'filePreviewBab5')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab5" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 3: Latihan Soal
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab6">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab6" onchange="previewFile(event, 'filePreviewBab6')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab6" class="mt-2"></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <!-- Mata Pelajaran 3 -->
-                                <div class="accordion__item">
-                                    <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapsePelajaranThree">
-                                        <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
-                                        <span class="accordion__header--text">Mata Pelajaran 3</span>
-                                        <span class="accordion__header--indicator indicator_bordered"></span>
-                                    </div>
-                                    <div id="collapsePelajaranThree" class="collapse accordion__body" data-parent="#accordion-materi">
-                                        <div class="accordion__body--text">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    Bab 1: Dasar-Dasar
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab7">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab7" onchange="previewFile(event, 'filePreviewBab7')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab7" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 2: Contoh Kasus
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab8">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab8" onchange="previewFile(event, 'filePreviewBab8')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab8" class="mt-2"></div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Bab 3: Uji Pemahaman
-                                                    <form>
-                                                        <div class="form-group mt-2">
-                                                            <label for="uploadBab9">Upload File:</label>
-                                                            <input type="file" class="form-control-file" id="uploadBab9" onchange="previewFile(event, 'filePreviewBab9')">
-                                                        </div>
-                                                    </form>
-                                                    <div id="filePreviewBab9" class="mt-2"></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                
+                                <!-- (Your existing accordion code goes here) -->
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Tambahkan JavaScript untuk Preview, Hapus, dan Download File -->
+                <!-- Modal Tambah Mata Pelajaran -->
+                <div class="modal fade" id="modalTambahPelajaran" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Tambah Mata Pelajaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formTambahPelajaran">
+                                    <div class="form-group">
+                                        <label for="namaPelajaran">Nama Mata Pelajaran</label>
+                                        <input type="text" class="form-control" id="namaPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlahBab">Jumlah Bab</label>
+                                        <input type="number" class="form-control" id="jumlahBab" placeholder="Masukkan Jumlah Bab" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-primary" onclick="tambahPelajaran()">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- JavaScript untuk Menambah Pelajaran ke Accordion -->
                 <script>
-                function previewFile(event, previewId) {
-                    var file = event.target.files[0];
-                    var previewDiv = document.getElementById(previewId);
+                function tambahPelajaran() {
+                    const namaPelajaran = document.getElementById('namaPelajaran').value;
+                    const jumlahBab = document.getElementById('jumlahBab').value;
                 
-                    if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            // Hapus konten sebelumnya
-                            previewDiv.innerHTML = '';
+                    if (namaPelajaran && jumlahBab) {
+                        // Buat item accordion baru
+                        const accordion = document.getElementById('accordion-materi');
+                        const newItem = document.createElement('div');
+                        newItem.className = 'accordion__item';
                 
-                            // Tambahkan tautan file untuk unduh dan lihat
-                            var link = document.createElement('a');
-                            link.href = e.target.result;
-                            link.target = '_blank';
-                            link.textContent = 'Lihat ' + file.name;
-                            previewDiv.appendChild(link);
+                        let content = `
+                            <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapse${namaPelajaran.replace(/\s/g, '')}">
+                                <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
+                                <span class="accordion__header--text">${namaPelajaran}</span>
+                                <span class="accordion__header--indicator indicator_bordered"></span>
+                            </div>
+                            <div id="collapse${namaPelajaran.replace(/\s/g, '')}" class="collapse accordion__body" data-parent="#accordion-materi">
+                                <div class="accordion__body--text">
+                                    <ul class="list-group">`;
                 
-                            // Tambahkan tombol untuk unduh
-                            var downloadButton = document.createElement('a');
-                            downloadButton.href = e.target.result;
-                            downloadButton.download = file.name;
-                            downloadButton.className = 'btn btn-primary btn-sm ml-2';
-                            downloadButton.textContent = 'Download';
-                            previewDiv.appendChild(downloadButton);
+                        for (let i = 1; i <= jumlahBab; i++) {
+                            content += `
+                                <li class="list-group-item">
+                                    Bab ${i}: Judul Bab ${i}
+                                    <form>
+                                        <div class="form-group mt-2">
+                                            <label for="uploadBab${i}">Upload File:</label>
+                                            <input type="file" class="form-control-file" id="uploadBab${i}" onchange="previewFile(event, 'filePreviewBab${i}')">
+                                        </div>
+                                    </form>
+                                    <div id="filePreviewBab${i}" class="mt-2"></div>
+                                </li>`;
+                        }
                 
-                            // Tambahkan tombol hapus
-                            var deleteButton = document.createElement('button');
-                            deleteButton.className = 'btn btn-danger btn-sm ml-2';
-                            deleteButton.textContent = 'Hapus';
-                            deleteButton.onclick = function() {
-                                previewDiv.innerHTML = ''; // Hapus preview jika tombol hapus ditekan
-                                event.target.value = ''; // Reset input file
-                            };
-                            previewDiv.appendChild(deleteButton);
-                        };
-                        reader.readAsDataURL(file);
+                        content += `
+                                    </ul>
+                                </div>
+                            </div>`;
+                
+                        newItem.innerHTML = content;
+                        accordion.appendChild(newItem);
+                
+                        // Tutup modal dan reset form
+                        $('#modalTambahPelajaran').modal('hide');
+                        document.getElementById('formTambahPelajaran').reset();
+                    } else {
+                        alert('Mohon isi semua kolom!');
                     }
                 }
                 </script>
+                
                 
                 
                 
