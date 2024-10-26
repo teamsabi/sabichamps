@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SABI - Jadwal Mengajar</title>
+    <title>SABI - Materi</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
     <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+</head>
+
 
 </head>
 
@@ -41,8 +42,8 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
+            <a href="index2.html" class="brand-logo">
+                <img class="logo-abbr" src="./images/sabiiu.png" alt="">
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo-text.png" alt="">
             </a>
@@ -200,215 +201,223 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            <!-- container-fluid starts -->
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, nadhiuu!</h4>
-                            <span class="ml-0">Guru</span>
+                            <p class="mb-0">Guru</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Manajemen Konten</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Jadwal</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Pembelajaran</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Materi</a></li>
                         </ol>
                     </div>
                 </div>
 
-                <!-- table jadwal -->
                 <div class="col-lg-12">
-                    <div class="card" style="margin-left: -15px; width: 1015px;">
-                        <div class="card-header">
-                            <h4 class="card-title" style="font-size: 1.3rem;">Jadwal Mengajar </h4>
+                    <div class="card">
+                        <div class="card-header d-block">
+                            <h4 class="card-title">Materi</h4>
+                            <p class="m-0 subtitle">Pilih mata pelajaran untuk melihat materi</p>
+                
+                            <!-- Button Tambah Mata Pelajaran -->
+                            <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalTambahPelajaran">
+                                <i class="fas fa-plus"></i> Tambah Mata Pelajaran
+                            </button>
                         </div>
-                        <div class="card-header">
-                            <h6 class="card-title" style="font-size: 0.88rem; opacity: 0.5;">Pilih Jenjang</h6>
-                        </div>
-
-                        <!-- select Pilih Jenjang -->
-                        <div class="row">
-                            <div class="col-xl-6">
-                                    <div class="card-body" style="margin-top: -50px; margin-left: 100px; opacity: 0.8;">
-                                        <select id="single-select" style="border: 1px solid #ccc; padding: 5px; border-radius: 4px;">
-                                            <option value="11mipa">11 MIPA</option>
-                                            <option value="12mipa">12 MIPA</option>
-                                            <option value="11ips">11 IPS</option>
-                                            <option value="12ips">12 IPS</option>
-                                            <option value="Kedinasan">Kedinasan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        <!-- Button tambah jadwal -->
-                            <div class="col-lg-12">
-                                    <div class="card-header d-flex justify-content-between align-items-center" 
-                                            style="margin-left: 800px; margin-top: -73px;">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-success mr-auto" data-toggle="modal" data-target="#addJadwalMengajar">
-                                                <i class="fa fa-plus"></i> Tambah Jadwal
-                                            </button>
-                                        </div>
-                                    </div>
-                        <div class="card-body" style="margin-left: -20px; width: 1024px;">
-                            <div class="table-responsive">
-                                <table class="table" id="jadwalTable">
-                                    <thead class="thead-primary">
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Hari</th>
-                                            <th scope="col">Nama Kelas</th>
-                                            <th scope="col">Mata Pelajaran</th>
-                                            <th scope="col">Rentang Waktu</th>
-                                            <th scope="col">Nama Guru</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>1</th>
-                                            <td>Senin</td>
-                                            <td>11 MIPA</td>
-                                            <td>Fisika</td>
-                                            <td>14.00-18.00</td>
-                                            <td>Syaiful Amin</td>
-                                            <td><button class="btn btn-sm btn-primary editJadwalBtn">Edit
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger deleteJadwalBtn">Hapus
-                                                <i class="fa fa-trash"></i>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                
+                        <div class="card-body">
+                            <div id="accordion-materi" class="accordion accordion-with-icon">
+                                <!-- (Your dynamically generated accordion goes here) -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-<!-- Modal untuk Tambah/Edit Jadwal -->
-<div class="modal fade" id="addJadwalMengajar" tabindex="-1" aria-labelledby="addJadwalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addJadwalLabel">Tambah/Edit Jadwal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="JadwalForm">
-                    <div class="form-group">
-                        <label for="Hari">Hari</label>
-                        <input type="text" class="form-control" id="Hari" required>
+                
+                <!-- Modal Tambah Mata Pelajaran -->
+                <div class="modal fade" id="modalTambahPelajaran" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Tambah Mata Pelajaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formTambahPelajaran">
+                                    <div class="form-group">
+                                        <label for="namaPelajaran">Nama Mata Pelajaran</label>
+                                        <input type="text" class="form-control" id="namaPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlahBab">Jumlah Bab</label>
+                                        <input type="number" class="form-control" id="jumlahBab" placeholder="Masukkan Jumlah Bab" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-primary" onclick="tambahPelajaran()">Simpan</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="NamaKelas">Nama Kelas</label>
-                        <input type="text" class="form-control" id="NamaKelas" required>
+                </div>
+                
+                <!-- Modal Edit Bab -->
+                <div class="modal fade" id="modalEditBab" tabindex="-1" role="dialog" aria-labelledby="editBabLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editBabLabel">Edit Bab</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formEditBab">
+                                    <div class="form-group">
+                                        <label for="editBabTitle">Judul Bab</label>
+                                        <input type="text" class="form-control" id="editBabTitle" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editBabFile">Ganti File</label>
+                                        <input type="file" class="form-control-file" id="editBabFile">
+                                    </div>
+                                    <div id="editFilePreview" class="mt-2"></div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-primary" onclick="saveBabEdit()">Simpan Perubahan</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="MataPelajaran">Mata Pelajaran</label>
-                        <input type="text" class="form-control" id="MataPelajaran" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="RentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="RentangWaktu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="NamaGuru">Nama Guru</label>
-                        <input type="text" class="form-control" id="NamaGuru" required>
-                    </div>
-                    <input type="hidden" id="JadwalId">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
+                </div>
+                
+                <!-- JavaScript -->
+                <script>
+                let selectedBabElement = null;
+                
+                function tambahPelajaran() {
+                    const namaPelajaran = document.getElementById('namaPelajaran').value;
+                    const jumlahBab = document.getElementById('jumlahBab').value;
+                
+                    if (namaPelajaran && jumlahBab) {
+                        const accordion = document.getElementById('accordion-materi');
+                        const newItem = document.createElement('div');
+                        newItem.className = 'accordion__item';
+                
+                        let content = `
+                            <div class="accordion__header collapsed" data-toggle="collapse" data-target="#collapse${namaPelajaran.replace(/\s/g, '')}">
+                                <span class="accordion__header--icon"><i class="bi bi-book"></i></span>
+                                <span class="accordion__header--text">${namaPelajaran}</span>
+                                <span class="accordion__header--indicator indicator_bordered"></span>
+                            </div>
+                            <div id="collapse${namaPelajaran.replace(/\s/g, '')}" class="collapse accordion__body" data-parent="#accordion-materi">
+                                <div class="accordion__body--text">
+                                    <ul class="list-group">`;
+                
+                        for (let i = 1; i <= jumlahBab; i++) {
+                            content += `
+                                <li class="list-group-item" id="bab${i}">
+                                    <span class="bab-title">Bab ${i}: Judul Bab ${i}</span>
+                                    <button class="btn btn-warning btn-sm float-right ml-2" onclick="editBab(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <form class="mt-2">
+                                        <div class="form-group">
+                                            <label for="uploadBab${i}">Upload File:</label>
+                                            <input type="file" class="form-control-file" id="uploadBab${i}" onchange="previewFile(event, 'filePreviewBab${i}')">
+                                        </div>
+                                    </form>
+                                    <div id="filePreviewBab${i}" class="mt-2"></div>
+                                </li>`;
+                        }
+                
+                        content += `
+                                    </ul>
+                                </div>
+                            </div>`;
+                
+                        newItem.innerHTML = content;
+                        accordion.appendChild(newItem);
+                
+                        $('#modalTambahPelajaran').modal('hide');
+                        document.getElementById('formTambahPelajaran').reset();
+                    } else {
+                        alert('Mohon isi semua kolom!');
+                    }
+                }
+                
+                function editBab(button) {
+                    selectedBabElement = button.closest('li');
+                    const babTitle = selectedBabElement.querySelector('.bab-title').textContent;
+                    document.getElementById('editBabTitle').value = babTitle;
+                
+                    const filePreview = selectedBabElement.querySelector('div[id^="filePreviewBab"]').innerHTML;
+                    document.getElementById('editFilePreview').innerHTML = filePreview;
+                
+                    $('#modalEditBab').modal('show');
+                }
+                
+                function saveBabEdit() {
+                    const newBabTitle = document.getElementById('editBabTitle').value;
+                    if (newBabTitle) {
+                        selectedBabElement.querySelector('.bab-title').textContent = newBabTitle;
+                        const newFileInput = document.getElementById('editBabFile');
+                
+                        if (newFileInput.files.length > 0) {
+                            const filePreviewId = selectedBabElement.querySelector('div[id^="filePreviewBab"]').id;
+                            previewFile({ target: newFileInput }, filePreviewId);
+                        }
+                
+                        $('#modalEditBab').modal('hide');
+                    } else {
+                        alert('Nama Bab tidak boleh kosong!');
+                    }
+                }
+                
+                function previewFile(event, previewId) {
+                    const file = event.target.files[0];
+                    const previewDiv = document.getElementById(previewId);
+                
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            previewDiv.innerHTML = `
+                                <a href="${e.target.result}" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
+                                <a href="${e.target.result}" download="${file.name}" class="btn btn-primary btn-sm ml-2">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                <button class="btn btn-danger btn-sm ml-2" onclick="deleteFile('${previewId}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>`;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+                
+                function deleteFile(previewId) {
+                    document.getElementById(previewId).innerHTML = '';
+                }
+                </script>
+             <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+                
+                
+                
+                
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
-<script>
-
-// Fungsi Tambah Jadwal
-let selectedRow = null;
-document.getElementById('JadwalForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const Hari = document.getElementById('Hari').value;
-    const NamaKelas = document.getElementById('NamaKelas').value;
-    const MataPelajaran = document.getElementById('MataPelajaran').value;
-    const RentangWaktu = document.getElementById('RentangWaktu').value;
-    const NamaGuru = document.getElementById('NamaGuru').value;
-
-    if (selectedRow === null) {
-        const table = document.querySelector('#jadwalTable tbody');
-        const newRow = table.insertRow();
-        newRow.innerHTML = `
-            <th>${table.rows.length}</th>
-            <td>${Hari}</td>
-            <td>${NamaKelas}</td>
-            <td>${MataPelajaran}</td>
-            <td>${RentangWaktu}</td>
-            <td>${NamaGuru}</td>
-            <td>
-                <button class="btn btn-sm btn-primary editJadwalBtn">
-                    <i class="fa fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-danger deleteJadwalBtn">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </td>`;
-    } else {
-        selectedRow.cells[1].innerText = Hari;
-        selectedRow.cells[2].innerText = NamaKelas;
-        selectedRow.cells[3].innerText = MataPelajaran;
-        selectedRow.cells[4].innerText = RentangWaktu;
-        selectedRow.cells[5].innerText = NamaGuru;
-        selectedRow = null;
-    }
-    $('#addJadwalMengajar').modal('hide');
-    this.reset();
-});
-
-// Fungsi Edit Data
-document.querySelector('#jadwalTable').addEventListener('click', function(e) {
-        if (e.target.closest('.editJadwalBtn')) {
-            selectedRow = e.target.closest('tr');
-            document.getElementById('Hari').value = selectedRow.cells[1].innerText;
-            document.getElementById('NamaKelas').value = selectedRow.cells[2].innerText;
-            document.getElementById('MataPelajaran').value = selectedRow.cells[3].innerText;
-            document.getElementById('RentangWaktu').value = selectedRow.cells[4].innerText;
-            document.getElementById('NamaGuru').value = selectedRow.cells[5].innerText;
-            $('#addJadwalMengajar').modal('show');
-        }
-    });
-
-// Fungsi Hapus Data dengan SweetAlert2
-document.querySelector('#jadwalTable').addEventListener('click', function(e) {
-        if (e.target.closest('.deleteJadwalBtn')) {
-            const row = e.target.closest('tr');
-            Swal.fire({
-                title: 'Yakin ingin menghapus jadwal ini?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    row.remove();
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
-                }
-            });
-        }
-    });
-</script>
         <!--**********************************
-                Content body end
-            ***********************************-->
+            Content body end
+        ***********************************-->
 
 
         <!--**********************************
@@ -419,7 +428,6 @@ document.querySelector('#jadwalTable').addEventListener('click', function(e) {
                 <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
             </div>
         </div>
-
         <!--**********************************
             Footer end
         ***********************************-->
