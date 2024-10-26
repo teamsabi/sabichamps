@@ -214,144 +214,170 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-user text-success border-success"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Guru</div>
-                                    <div class="stat-digit">15</div>
-                                </div>
+<!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<div class="container">
+    <!-- Jumlah Guru, Siswa, Kelas -->
+    <div class="row mb-3">
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-user text-success border-success"></i>
+                    </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Guru</div>
+                        <div class="stat-digit">15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-book text-primary border-primary"></i>
+                    </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Siswa</div>
+                        <div class="stat-digit">19</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-clipboard text-pink border-pink"></i>
+                    </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Kelas</div>
+                        <div class="stat-digit">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Jadwal Mengajar and Siswa Ter-Ambis -->
+    <div class="row">
+        <!-- Table Jadwal Mengajar -->
+        <div class="col-lg-8 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Jadwal Mengajar</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Hari</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Rentang Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Hari</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Rentang Waktu</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Siswa Ter-Ambis Card -->
+        <div class="col-lg-4 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Siswa Ter-Ambis</h4>
+                </div>
+                <div class="card-body">
+                    <div class="recent-comment m-t-15">
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-primary">John Doe</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">10 min ago</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-book text-primary border-primary"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Siswa</div>
-                                    <div class="stat-digit">19</div>
-                                </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-success">Mr. John</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">1 hour ago</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-clipboard text-pink border-pink"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Kelas</div>
-                                    <div class="stat-digit">3</div>
-                                </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-danger">Mr. John</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">Yesterday</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-primary">John Doe</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">10 min ago</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12" style="width: 780px; margin-left: -13px;">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Heading With Background</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="thead-primary">
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Kelas</th>
-                                            <th scope="col">Mata Pelajaran</th>
-                                            <th scope="col">Jadwal</th>
-                                            <th scope="col">Keterangan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>1</th>
-                                            <td>11 MIPA</td>
-                                            <td>Matematika</td>
-                                            <td>Senin, 14.00-16.00</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>11 MIPA</td>
-                                            <td>Matematika</td>
-                                            <td>Senin, 14.00-16.00</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th>3</th>
-                                            <td>11 MIPA</td>
-                                            <td>Matematika</td>
-                                            <td>Senin, 14.00-16.00</td>
-                                            <td>-</td>
-                                        </tr>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="col-xl-4 col-lg-6 col-md-12">
-                        <div class="card" style="width: 250px; margin-left: 760px; margin-top: -449px;">
-                            <div class="card-header">
-                                <h4 class="card-title">Siswa Ter-Ambis</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="recent-comment m-t-15">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-success">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">1 hour ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-danger">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <div class="comment-date">Yesterday</div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
         
         <!--**********************************
             Content body end
@@ -400,6 +426,11 @@
 
 
     <script src="./js/dashboard/dashboard-2.js"></script>
+
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
+
     <!-- Circle progress -->
 
 </body>
