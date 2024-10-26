@@ -234,10 +234,7 @@
                     <i class="fas fa-plus"></i> Tambah Data
                 </button>
                 <div class="d-flex" style="max-width: 300px;">
-                    <span class="input-group-text">
-                        <i class="fas fa-search"></i>
-                    </span>
-                    <input type="text" id="searchSiswaInput" class="form-control" placeholder="Cari...">
+                    <input type="text" id="searchSiswaInput"  class="form-control" placeholder="Cari...">
                 </div>
             </div>
         </div>
@@ -249,6 +246,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nama Siswa</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Password</th>
                             <th scope="col">Telepon</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">Tanggal Lahir</th>
@@ -261,6 +259,7 @@
                             <th>1</th>
                             <td>Mark</td>
                             <td>Otto@gmail.com</td>
+                            <td>11223344</td>
                             <td>087654321</td>
                             <td>Banyuwangi</td>
                             <td>11 Mei 2005</td>
@@ -300,6 +299,10 @@
                     <div class="form-group">
                         <label for="siswaEmail">Email</label>
                         <input type="email" class="form-control" id="siswaEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="siswapassword">Password</label>
+                        <input type="text" class="form-control" id="siswapassword" required>
                     </div>
                     <div class="form-group">
                         <label for="siswaTelepon">Telepon</label>
@@ -344,6 +347,7 @@
         event.preventDefault();
         const siswaName = document.getElementById('siswaName').value;
         const siswaEmail = document.getElementById('siswaEmail').value;
+        const siswapassword = document.getElementById('siswapassword').value;
         const siswaTelepon = document.getElementById('siswaTelepon').value;
         const siswaAlamat = document.getElementById('siswaAlamat').value;
         const siswaTglLahir = document.getElementById('siswaTglLahir').value;
@@ -356,6 +360,7 @@
                 <th>${table.rows.length}</th>
                 <td>${siswaName}</td>
                 <td>${siswaEmail}</td>
+                <td>${siswapassword}</td>
                 <td>${siswaTelepon}</td>
                 <td>${siswaAlamat}</td>
                 <td>${siswaTglLahir}</td>
@@ -371,10 +376,11 @@
         } else {
             selectedRow.cells[1].innerText = siswaName;
             selectedRow.cells[2].innerText = siswaEmail;
-            selectedRow.cells[3].innerText = siswaTelepon;
-            selectedRow.cells[4].innerText = siswaAlamat;
-            selectedRow.cells[5].innerText = siswaTglLahir;
-            selectedRow.cells[6].innerText = siswaKelas;
+            selectedRow.cells[3].innerText = siswapassword;
+            selectedRow.cells[4].innerText = siswaTelepon;
+            selectedRow.cells[5].innerText = siswaAlamat;
+            selectedRow.cells[6].innerText = siswaTglLahir;
+            selectedRow.cells[7].innerText = siswaKelas;
             selectedRow = null;
         }
         $('#addSiswaModal').modal('hide');
@@ -387,10 +393,11 @@
             selectedRow = e.target.closest('tr');
             document.getElementById('siswaName').value = selectedRow.cells[1].innerText;
             document.getElementById('siswaEmail').value = selectedRow.cells[2].innerText;
-            document.getElementById('siswaTelepon').value = selectedRow.cells[3].innerText;
-            document.getElementById('siswaAlamat').value = selectedRow.cells[4].innerText;
-            document.getElementById('siswaTglLahir').value = selectedRow.cells[5].innerText;
-            document.getElementById('siswaKelas').value = selectedRow.cells[6].innerText;
+            document.getElementById('siswapassword').value = selectedRow.cells[3].innerText;
+            document.getElementById('siswaTelepon').value = selectedRow.cells[4].innerText;
+            document.getElementById('siswaAlamat').value = selectedRow.cells[5].innerText;
+            document.getElementById('siswaTglLahir').value = selectedRow.cells[6].innerText;
+            document.getElementById('siswaKelas').value = selectedRow.cells[7].innerText;
             $('#addSiswaModal').modal('show');
         }
     });
