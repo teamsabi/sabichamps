@@ -8094,11 +8094,11 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #343957;
+  background-color: #146E70;
   transition: all .2s ease;
   z-index: 4; }
   .nav-header .logo-abbr {
-    max-width: 30px; }
+    max-width: 50px; }
   .nav-header .logo-compact {
     display: none; }
   @media only screen and (min-width: 1800px) {
@@ -8129,8 +8129,9 @@ a {
         padding-right: 0;
         justify-content: center; } }
   .nav-header .brand-title {
-    margin-left: 15px;
-    max-width: 75px; }
+    margin-left: 5px;
+    margin-top: 15px;
+    max-width: 140px; }
     [data-theme-version="dark"] .nav-header .brand-title {
       background-position: 0 120%; }
 
@@ -10349,7 +10350,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 5rem;
   padding-top: 0;
   z-index: 2;
-  background-color: #343957;
+  background-color: #146E70;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: all .2s ease; }
   .quixnav .quixnav-scroll {
@@ -10384,7 +10385,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       .quixnav .metismenu > li > a {
         color: #bdbdc7; }
       .quixnav .metismenu > li:hover > a, .quixnav .metismenu > li:focus > a, .quixnav .metismenu > li.mm-active > a {
-        background-color: #6b51df;
+        background-color: rgba(66, 66, 66, 50%);
+
         color: #fff; }
       .quixnav .metismenu > li.mm-active ul {
         background-color: rgba(88, 115, 254, 0.04); }
