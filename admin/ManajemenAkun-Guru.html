@@ -249,6 +249,7 @@
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Nama Guru</th>
                                                 <th scope="col">Email</th>
+                                                <th scope="col">Password</th>
                                                 <th scope="col">Alamat</th>
                                                 <th scope="col">Telepon</th>
                                                 <th scope="col">Kategori</th>
@@ -260,6 +261,7 @@
                                                 <th>1</th>
                                                 <td>Mark</td>
                                                 <td>Otto@gmail.com</td>
+                                                <td>11223344</td>
                                                 <td>Jember</td>
                                                 <td>08193767624</td>
                                                 <td>Matematika</td>
@@ -298,6 +300,10 @@
                             <div class="form-group">
                                 <label for="guruEmail">Email</label>
                                 <input type="email" class="form-control" id="guruEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gurupassword">Password</label>
+                                <input type="text" class="form-control" id="gurupassword" required>
                             </div>
                             <div class="form-group">
                                 <label for="guruAlamat">Alamat</label>
@@ -339,6 +345,7 @@
                             const guruId = document.getElementById('guruId').value;
                             const guruName = document.getElementById('guruName').value;
                             const guruEmail = document.getElementById('guruEmail').value;
+                            const gurupassword = document.getElementById('gurupassword').value;
                             const guruAlamat = document.getElementById('guruAlamat').value;
                             const guruTelepon = document.getElementById('guruTelepon').value;
                             const guruKategori = document.getElementById('guruKategori').value;
@@ -350,6 +357,7 @@
                                     <th>${table.rows.length}</th>
                                     <td>${guruName}</td>
                                     <td>${guruEmail}</td>
+                                    <td>${gurupassword}</td>
                                     <td>${guruAlamat}</td>
                                     <td>${guruTelepon}</td>
                                     <td>${guruKategori}</td>
@@ -363,10 +371,11 @@
                                     </td>`;
                             } else {
                                 selectedRowGuru.cells[1].innerText = guruName;
-                                selectedRowGuru.cells[2].innerText = guruEmail;
-                                selectedRowGuru.cells[3].innerText = guruAlamat;
-                                selectedRowGuru.cells[4].innerText = guruTelepon;
-                                selectedRowGuru.cells[5].innerText = guruKategori;
+                                seldRecteowGuru.cells[2].innerText = guruEmail;
+                                seldRecteowGuru.cells[3].innerText = gurupassword;
+                                selectedRowGuru.cells[4].innerText = guruAlamat;
+                                selectedRowGuru.cells[5].innerText = guruTelepon;
+                                selectedRowGuru.cells[6].innerText = guruKategori;
                                 selectedRowGuru = null;
                             }
                             $('#addGuruModal').modal('hide');
@@ -380,9 +389,10 @@
                                 document.getElementById('guruId').value = selectedRowGuru.cells[0].innerText;
                                 document.getElementById('guruName').value = selectedRowGuru.cells[1].innerText;
                                 document.getElementById('guruEmail').value = selectedRowGuru.cells[2].innerText;
-                                document.getElementById('guruAlamat').value = selectedRowGuru.cells[3].innerText;
-                                document.getElementById('guruTelepon').value = selectedRowGuru.cells[4].innerText;
-                                document.getElementById('guruKategori').value = selectedRowGuru.cells[5].innerText;
+                                document.getElementById('gurupassword').value = selectedRowGuru.cells[3].innerText;
+                                document.getElementById('guruAlamat').value = selectedRowGuru.cells[4].innerText;
+                                document.getElementById('guruTelepon').value = selectedRowGuru.cells[5].innerText;
+                                document.getElementById('guruKategori').value = selectedRowGuru.cells[6].innerText;
                                 $('#addGuruModal').modal('show');
                             }
                         });
