@@ -222,83 +222,72 @@
                     </div>
                 </div>
                 <!-- row -->
-                                    <!-- SweetAlert2 CSS dan JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                    <!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="card-title">Data Kelas</h4>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-success mr-2" data-toggle="modal" data-target="#addkelasModal">
-                    <i class="fas fa-plus"></i> Tambah Data
-                </button>
-                <div class="d-flex" style="max-width: 300px;">
-                    <span class="input-group-text">
-                        <i class="fas fa-search"></i>
-                    </span>
-                    <input type="text" id="searchkelasInput" class="form-control" placeholder="Cari...">
+<div class="container">
+    <!-- Table Kelas -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Data Kelas</h4>
+                </div>
+
+                <!-- Button tambah kelas -->
+                <div class="row mb-3">
+                    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#addDataKelas">
+                            <i class="fa fa-plus"></i> Tambah Kelas
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="kelasTable" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Jumlah Siswa</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data kelas akan dimuat di sini secara dinamis -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="kelasTable">
-                    <thead class="thead-primary">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Jumlah Siswa</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>XI MIPA 5</td>
-                            <td>20</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary editkelasBtn">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger deletekelasBtn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                                <button class="btn btn-sm btn-info viewKelasBtn" data-kelas="XI MIPA 5">
-                                    <i class="fas fa-eye"></i> Lihat Kelas
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
-</div>
 
-<!-- Modal Tambah/Edit Data Kelas -->
-<div class="modal fade" id="addkelasModal" tabindex="-1" aria-labelledby="addkelasModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+
+<!-- Modal untuk Tambah Kelas -->
+<div class="modal fade" id="addDataKelas" tabindex="-1" role="dialog" aria-labelledby="addDataKelasLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addkelasModalLabel">Tambah/Edit Data Kelas</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+                <h5 class="modal-title" id="addDataKelasLabel">Tambah Kelas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="kelasForm">
+                <form id="formAddKelas">
                     <div class="form-group">
-                        <label for="kelasName">Kelas</label>
-                        <input type="text" class="form-control" id="kelasName" required>
+                        <label for="kelasNama">Nama Kelas</label>
+                        <input type="text" class="form-control" id="kelasNama" required>
                     </div>
                     <div class="form-group">
-                        <label for="kelasjumlah">Jumlah Siswa</label>
-                        <input type="text" class="form-control" id="kelasjumlah" required>
+                        <label for="jumlahSiswa">Jumlah Siswa</label>
+                        <input type="number" class="form-control" id="jumlahSiswa" required>
                     </div>
-                    <input type="hidden" id="kelasId">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
             </div>
         </div>
@@ -334,125 +323,92 @@
     </div>
 </div>
 
-<!-- JavaScript untuk Fungsi Pencarian, Tambah/Edit, Hapus, dan Lihat Kelas -->
-<script>
-    // Fungsi Pencarian
-    document.getElementById('searchkelasInput').addEventListener('keyup', function() {
-        const searchValue = this.value.toLowerCase();
-        const tableRows = document.querySelectorAll('#kelasTable tbody tr');
-        
-        tableRows.forEach(row => {
-            const rowText = row.textContent.toLowerCase();
-            row.style.display = rowText.includes(searchValue) ? '' : 'none';
+ <!-- JavaScript untuk Fungsi Pencarian, Tambah/Edit, Hapus, dan Lihat Kelas -->
+ <script>
+    $(document).ready(function () {
+        // Inisialisasi DataTable
+        const table = $('#kelasTable').DataTable();
+
+        // Fungsi Tambah Kelas
+        $('#formAddKelas').on('submit', function (event) {
+            event.preventDefault();
+            const kelasNama = $('#kelasNama').val();
+            const jumlahSiswa = $('#jumlahSiswa').val();
+
+            table.row.add([
+                table.rows().count() + 1,
+                kelasNama,
+                jumlahSiswa,
+                `<button class="btn btn-sm btn-primary editKelasBtn"><i class="fa fa-edit"></i> Edit</button>
+                 <button class="btn btn-sm btn-danger deleteKelasBtn"><i class="fa fa-trash"></i> Hapus</button>
+                 <button class="btn btn-sm btn-info viewKelasBtn" data-kelas="${kelasNama}"><i class="fa fa-eye"></i> Lihat Kelas</button>`
+            ]).draw();
+
+            $('#addDataKelas').modal('hide');
+            this.reset();
         });
-    });
 
-    // Tambah/Edit Data Kelas
-    let selectedRowKelas = null;
-    document.getElementById('kelasForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const kelasId = document.getElementById('kelasId').value;
-        const kelasName = document.getElementById('kelasName').value;
-        const kelasjumlah = document.getElementById('kelasjumlah').value;
+        // Fungsi Edit Data Kelas
+        $('#kelasTable tbody').on('click', '.editKelasBtn', function () {
+            const row = table.row($(this).parents('tr')).data();
+            $('#kelasNama').val(row[1]);
+            $('#jumlahSiswa').val(row[2]);
+            $('#addDataKelas').modal('show');
 
-        if (selectedRowKelas === null) {
-            const table = document.querySelector('#kelasTable tbody');
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <th>${table.rows.length}</th>
-                <td>${kelasName}</td>
-                <td>${kelasjumlah}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary editkelasBtn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger deletekelasBtn">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                    <button class="btn btn-sm btn-info viewKelasBtn" data-kelas="${kelasName}">
-                        <i class="fas fa-eye"></i> Lihat Kelas
-                    </button>
-                </td>`;
-        } else {
-            selectedRowKelas.cells[1].innerText = kelasName;
-            selectedRowKelas.cells[2].innerText = kelasjumlah;
-            selectedRowKelas = null;
-        }
-        $('#addkelasModal').modal('hide');
-        this.reset();
-    });
-
-    // Fungsi Edit Data
-    document.querySelector('#kelasTable').addEventListener('click', function(e) {
-        if (e.target.closest('.editkelasBtn')) {
-            selectedRowKelas = e.target.closest('tr');
-            document.getElementById('kelasId').value = selectedRowKelas.cells[0].innerText;
-            document.getElementById('kelasName').value = selectedRowKelas.cells[1].innerText;
-            document.getElementById('kelasjumlah').value = selectedRowKelas.cells[2].innerText;
-            $('#addkelasModal').modal('show');
-        }
-    });
-
-    // Fungsi Hapus Data dengan SweetAlert2
-    document.querySelector('#kelasTable').addEventListener('click', function(e) {
-        if (e.target.closest('.deletekelasBtn')) {
-            const row = e.target.closest('tr');
-            Swal.fire({
-                title: 'Apakah Anda yakin ingin menghapus data ini?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    row.remove();
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
-                }
+            // Hapus baris sebelum menambahkan kembali
+            $('#formAddKelas').off('submit').on('submit', function (event) {
+                event.preventDefault();
+                row[1] = $('#kelasNama').val();
+                row[2] = $('#jumlahSiswa').val();
+                table.row($(this).parents('tr')).data(row).draw();
+                $('#addDataKelas').modal('hide');
             });
-        }
-    });
+        });
 
-    // Fungsi Lihat Data Siswa di Kelas
-    document.querySelector('#kelasTable').addEventListener('click', function(e) {
-        if (e.target.closest('.viewKelasBtn')) {
-            const kelas = e.target.closest('.viewKelasBtn').getAttribute('data-kelas');
-            document.getElementById('viewKelasModalLabel').textContent = `Data Siswa Kelas ${kelas}`;
+        // Fungsi Hapus Data
+        $('#kelasTable tbody').on('click', '.deleteKelasBtn', function () {
+            const row = table.row($(this).parents('tr'));
+            row.remove().draw();
+        });
 
-            // Misalnya, kita menambahkan data siswa secara dinamis berdasarkan kelas
+        // Fungsi Lihat Data Siswa di Kelas
+        $('#kelasTable tbody').on('click', '.viewKelasBtn', function () {
+            const kelas = $(this).data('kelas');
+            $('#viewKelasModalLabel').text(`Data Siswa Kelas ${kelas}`);
+
+            // Contoh data siswa berdasarkan kelas
             const siswaData = {
-                'XI MIPA 5': [
+                '11 MIPA': [
                     { id: 1, nama: 'Ahmad', umur: 17, alamat: 'Jl. Merdeka' },
                     { id: 2, nama: 'Budi', umur: 16, alamat: 'Jl. Karya' }
                 ],
-                'XII IPA 3': [
+                '12 MIPA': [
                     { id: 1, nama: 'Siti', umur: 18, alamat: 'Jl. Lestari' }
                 ]
             };
 
-            const siswaTableBody = document.querySelector('#siswaTable tbody');
-            siswaTableBody.innerHTML = ''; // Kosongkan tabel sebelum memuat data baru
+            const siswaTableBody = $('#siswaTable tbody');
+            siswaTableBody.empty(); // Kosongkan tabel sebelum memuat data baru
 
             if (siswaData[kelas]) {
                 siswaData[kelas].forEach(siswa => {
-                    const row = siswaTableBody.insertRow();
-                    row.innerHTML = `
-                        <td>${siswa.id}</td>
-                        <td>${siswa.nama}</td>
-                        <td>${siswa.umur}</td>
-                        <td>${siswa.alamat}</td>
-                    `;
+                    siswaTableBody.append(`
+                        <tr>
+                            <td>${siswa.id}</td>
+                            <td>${siswa.nama}</td>
+                            <td>${siswa.umur}</td>
+                            <td>${siswa.alamat}</td>
+                        </tr>
+                    `);
                 });
             } else {
-                const row = siswaTableBody.insertRow();
-                row.innerHTML = `<td colspan="4" class="text-center">Tidak ada data siswa</td>`;
+                siswaTableBody.append(`<tr><td colspan="4" class="text-center">Tidak ada data siswa</td></tr>`);
             }
 
             $('#viewKelasModal').modal('show');
-        }
+        });
     });
-</script>
+    </script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -496,6 +452,8 @@
     <script src="./vendor/global/global.min.js"></script>
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
 
 </body>
 
