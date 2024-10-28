@@ -242,6 +242,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
+/* CSS untuk mengubah warna ikon menjadi putih */
+.lihatSoalBtn i,
+.editSoalBtn i,
+.deleteSoalBtn i {
+    color: white !important;
+}
+  
 *,
 *::before,
 *::after {
@@ -2084,8 +2091,8 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #212529;
-  background-color: #50E3C2;
-  border-color: #50E3C2; }
+  background-color: #229799;
+  border-color: #229799; }
   .btn-info:hover {
     color: #212529;
     background-color: #2fdeb7;

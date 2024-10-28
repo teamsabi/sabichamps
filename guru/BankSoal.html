@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -11,9 +12,6 @@
     <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-</head>
-
-
 </head>
 
 <body>
@@ -218,34 +216,125 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header d-block">
-                            <h4 class="card-title">Bank Soal</h4>
-                            <p class="m-0 subtitle">Pilih mata pelajaran untuk melihat soal</p>
-                
-                            <!-- Button Tambah Mata Pelajaran -->
-                            <div class="card-header d-flex justify-content-between align-items-center" 
-                            style="margin-left: 710px; margin-top: -60px;">
-                            <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalTambahPelajaran">
-                                <i class="fas fa-plus"></i> Tambah Mata Pelajaran
-                            </button>
-                        </div>
+<!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container">
+    <!-- Table Soal/Ujian -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Bank Soal</h4>
+                </div>
+
+    <!-- Button tambah jadwal -->
+    <div class="row mb-3">
+        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 110px;">
+            <button class="btn btn-success" data-toggle="modal" data-target="#addSoal">
+                <i class="fa fa-plus"></i> Tambah Soal/Ujian
+            </button>
+        </div>
+    </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="SoalTable" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Soal Ujian</th>
+                                    <th>Keterangan</th>
+                                    <th>Lihat Soal</th>
+                                    <th>Telah Ujian</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Latihan Soal Aljabar</td>
+                                    <td><ol>
+                                        <li>Pelajaran: Matematika</li>
+                                        <li>Kelas: 11 MIPA</li>
+                                        <li>Waktu Pengerjaan: 60 menit</li>
+                                        <li>Info Soal Ujian: Latihan Soal 1</li>
+                                    </ol>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning lihatSoalBtn">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info lihatSoalBtn">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary editSoalBtn">
+                                            <i class="fa fa-edit"></i> 
+                                        </button>
+                                        <button class="btn btn-sm btn-danger deleteSoalBtn">
+                                            <i class="fa fa-trash"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Latihan Soal Aljabar</td>
+                                    <td><ol>
+                                        <li>Pelajaran: Matematika</li>
+                                        <li>Kelas: 11 MIPA</li>
+                                        <li>Waktu Pengerjaan: 60 menit</li>
+                                        <li>Info Soal Ujian: Latihan Soal 1</li>
+                                    </ol>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning lihatSoalBtn">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info lihatSoalBtn">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary editSoalBtn">
+                                            <i class="fa fa-edit"></i> 
+                                        </button>
+                                        <button class="btn btn-sm btn-danger deleteSoalBtn">
+                                            <i class="fa fa-trash"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             
-                <!-- Modal Tambah Mata Pelajaran -->
-                <div class="modal fade" id="modalTambahPelajaran" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <!-- Modal Tambah Soal/Ujian -->
+                <div class="modal fade" id="addSoal" tabindex="-1" role="dialog" aria-labelledby="modalSoalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel">Tambah Mata Pelajaran</h5>
+                                <h5 class="modal-title" id="modalLabel">Tambah Soal/Ujian</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="formTambahPelajaran">
+                                <form id="formTambahSoal">
                                     <div class="form-group">
-                                        <label for="namaUjian">Judul/Nama Ujian</label>
+                                        <label for="namaUjian">Nama Soal Ujian</label>
                                         <input type="text" class="form-control" id="namaUjian" placeholder="Masukkan Judul/Nama Ujian" required>
                                     </div>
                                     <div class="form-group">
@@ -254,35 +343,167 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="namaPelajaran">Kelas</label>
-                                        <input type="text" class="form-control" id="namaPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+                                        <input type="text" class="form-control" id="kelas" placeholder="Masukkan Kelas" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="namaPelajaran">Waktu Pengerjaan</label>
-                                        <input type="text" class="form-control" id="namaPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+                                        <input type="text" class="form-control" id="waktuPengerjaan" placeholder="Masukkan Waktu Pengerjaan" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="namaPelajaran">Info Ujian</label>
-                                        <input type="text" class="form-control" id="namaPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+                                        <label for="namaPelajaran">Info Soal Ujian</label>
+                                        <input type="text" class="form-control" id="infoUjian" placeholder="Masukkan Info Ujian" required>
                                     </div>
                                 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-primary" onclick="tambahPelajaran()">Simpan</button>
+                                <button type="button" class="btn btn-primary" onclick="tambahSoal()">Simpan</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                
-             <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   
-                
-                
-                
-                
+
+<!-- Modal Edit Soal/Ujian -->
+<div class="modal fade" id="editSoal" tabindex="-1" role="dialog" aria-labelledby="editSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="editSoalLabel">Edit Soal/Ujian</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Edit Soal/Ujian -->
+                <form id="formEditSoal">
+                    <div class="form-group">
+                        <label for="editNamaSoal">Nama Soal Ujian</label>
+                        <input type="text" class="form-control" id="editNamaSoal" placeholder="Masukkan Nama Soal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMapel">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="editMapel" placeholder="Masukkan Mata Pelajaran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editKelas">Kelas</label>
+                        <input type="text" class="form-control" id="editKelas" placeholder="Masukkan Kelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWaktu">Waktu Pengerjaan</label>
+                        <input type="text" class="form-control" id="editWaktu" placeholder="Masukkan Waktu Pengerjaan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editInfo">Info Soal Ujian</label>
+                        <input type="text" class="form-control" id="editInfo" placeholder="Masukkan Info Soal Ujian" required>
+                    </div>
+                    <input type="hidden" id="editRowIndex">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
+<script>
+    $(document).ready(function () {
+    var table = $('#SoalTable').DataTable();
+
+    // Tambah Soal
+    $('#formTambahSoal').on('submit', function (e) {
+        e.preventDefault();
+
+        var namaUjian = $('#namaUjian').val();
+        var mataPelajaran = $('#mataPelajaran').val();
+        var kelas = $('#kelas').val();
+        var waktuPengerjaan = $('#waktuPengerjaan').val();
+        var infoUjian = $('#infoUjian').val();
+
+        table.row.add([
+            table.rows().count() + 1,
+            namaUjian,
+            `<ol>
+                <li>Pelajaran: ${mataPelajaran}</li>
+                <li>Kelas: ${kelas}</li>
+                <li>Waktu Pengerjaan: ${waktuPengerjaan}</li>
+                <li>Info Soal Ujian: ${infoUjian}</li>
+             </ol>`,
+            `<button class="btn btn-sm btn-warning lihatSoalBtn"><i class="fa fa-search"></i></button>`,
+            `<button class="btn btn-sm btn-info lihatSoalBtn"><i class="fa fa-graduation-cap"></i></button>`,
+            `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
+             <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
+        ]).draw(false);
+
+        $('#addSoal').modal('hide');
+        $('#formTambahSoal')[0].reset();
+    });
+
+    // Edit Soal
+    $('#SoalTable tbody').on('click', '.editSoalBtn', function () {
+    console.log("Tombol Edit ditekan"); // Debugging
+    var data = table.row($(this).parents('tr')).data();
+
+    // Parsing keterangan dari kolom
+    var keterangan = $(data[2]).text().split('\n');
+    var mataPelajaran = keterangan[0].replace('Pelajaran: ', '').trim();
+    var kelas = keterangan[1].replace('Kelas: ', '').trim();
+    var waktuPengerjaan = keterangan[2].replace('Waktu Pengerjaan: ', '').trim();
+    var infoUjian = keterangan[3].replace('Info Soal Ujian: ', '').trim();
+
+    // Isi modal edit dengan nilai saat ini
+    $('#editNamaSoal').val(data[1]);
+    $('#editMapel').val(mataPelajaran);
+    $('#editKelas').val(kelas);
+    $('#editWaktu').val(waktuPengerjaan);
+    $('#editInfo').val(infoUjian);
+    $('#editRowIndex').val(table.row($(this).parents('tr')).index());
+
+    // Tampilkan modal edit
+    $('#editSoal').modal('show'); // Pastikan ini dipanggil dengan benar
+});
+
+    // Update Soal
+    $('#formEditSoal').on('submit', function (e) {
+        e.preventDefault();
+
+        var rowIndex = $('#editRowIndex').val();
+        var namaUjian = $('#editNamaSoal').val();
+        var mataPelajaran = $('#editMapel').val();
+        var kelas = $('#editKelas').val();
+        var waktuPengerjaan = $('#editWaktuPengerjaan').val();
+        var infoUjian = $('#editInfo').val();
+
+        table.row(rowIndex).data([
+            rowIndex + 1,
+            namaUjian,
+            `<ol>
+                <li>Pelajaran: ${mataPelajaran}</li>
+                <li>Kelas: ${kelas}</li>
+                <li>Waktu Pengerjaan: ${waktuPengerjaan}</li>
+                <li>Info Soal Ujian: ${infoUjian}</li>
+             </ol>`,
+            `<button class="btn btn-sm btn-warning lihatSoalBtn"><i class="fa fa-search"></i></button>`,
+            `<button class="btn btn-sm btn-info lihatSoalBtn"><i class="fa fa-graduation-cap"></i></button>`,
+            `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
+             <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
+        ]).draw();
+
+        $('#editSoal').modal('hide');
+        $('#formEditSoal')[0].reset();
+    });
+
+    // Hapus Soal
+    $('#SoalTable tbody').on('click', '.deleteSoalBtn', function () {
+        table.row($(this).parents('tr')).remove().draw();
+    });
+});
+
+</script>
+
+
+                
         <!--**********************************
             Content body end
         ***********************************-->
@@ -322,8 +543,9 @@
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
     
-
-
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
 
 </body>
 
