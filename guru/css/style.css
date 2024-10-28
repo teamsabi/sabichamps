@@ -245,8 +245,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 /* CSS untuk mengubah warna ikon menjadi putih */
 .lihatSoalBtn i,
 .editSoalBtn i,
-.deleteSoalBtn i {
-    color: white !important;
+.deleteSoalBtn i,
+.lihatTelahUjianBtn i {
+    color: white !important;  
 }
   
 *,
