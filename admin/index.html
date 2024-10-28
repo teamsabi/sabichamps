@@ -6,13 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SABI - Sahabat Bimbel </title>
+    <title>SABI - Dashboard</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
     <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -41,7 +40,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="index2.html" class="brand-logo">
                 <img class="logo-abbr" src="./images/logo4.png" alt="">
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo text3.png" alt="">
@@ -71,7 +70,7 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Mau Mengajar Apa?" aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -80,7 +79,7 @@
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-wechat"></i>
+                                    <i class="mdi mdi-bell"></i>
                                     <div class="pulse-css"></div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -173,15 +172,7 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
-                    <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                    </li> 
-                    <li class="nav-label">Akun</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-users-mm"></i><span class="nav-text">Manajemen Akun</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ManajemenAkun-Guru.html">Guru</a></li>
-                            <li><a href="./ManajemenAkun-Siswa.html">Siswa</a></li>
-                        </ul>
+                    <li><a href="index2.html"><i class="fa fa-home"></i><span class="nav-text">Dashboard</span></a>
                     </li>
                     <li class="nav-label">Konten</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -195,12 +186,11 @@
                                 </ul>
                             </li>
                             <li><a href="./Kelas.html">Kelas</a></li>
-                            <li><a href="./ui-button.html">Raport Siswa</a></li>
+                            <li><a href="./RaportSiswa.html">Raport Siswa</a></li>
                         </ul>
                     </li>
-                </ul>
+                </div>
             </div>
-        </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -214,6 +204,7 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, Syaiful!</h4>
+                            <p class="mb-0">Admin</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -223,115 +214,171 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-user text-success border-success"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Guru</div>
-                                    <div class="stat-digit">10</div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<div class="container">
+    <!-- Jumlah Guru, Siswa, Kelas -->
+    <div class="row mb-3">
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-user text-success border-success"></i>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="fa fa-users text-primary border-primary"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Siswa</div>
-                                    <div class="stat-digit">50</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Guru</div>
+                        <div class="stat-digit">15</div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-desktop text-pink border-pink"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Admin</div>
-                                    <div class="stat-digit">1</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-xxl-6 col-md-6">
-                        <div class="card" style="width: 250px; margin-left: 730px; margin-top: -135px;">
-                            <div class="card-header">
-                                <h4 class="card-title">Login Pegguna Terakhir</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="recent-comment m-t-15">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-success">Mr. John</h4>
-                
-                                            <p class="comment-date">1 hour ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-danger">Mr. John</h4>
-                                            <div class="comment-date">Yesterday</div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-success">Mr. John</h4>
-                                            <p class="comment-date">1 Jam Lalu</p>
-                                        </div>
-                                    </div>
-                                    <div class="media no-border">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-info">Mr. John</h4>
-                                            <div class="comment-date">Yesterday</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-book text-primary border-primary"></i>
+                    </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Siswa</div>
+                        <div class="stat-digit">19</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card">
+                <div class="stat-widget-one card-body">
+                    <div class="stat-icon d-inline-block">
+                        <i class="ti-clipboard text-pink border-pink"></i>
+                    </div>
+                    <div class="stat-content d-inline-block">
+                        <div class="stat-text">Kelas</div>
+                        <div class="stat-digit">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Jadwal Mengajar and Siswa Ter-Ambis -->
+    <div class="row">
+        <!-- Table Jadwal Mengajar -->
+        <div class="col-lg-8 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Jadwal Mengajar</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Hari</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Rentang Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Senin</td>
+                                    <td>11 MIPA</td>
+                                    <td>Fisika</td>
+                                    <td>14.00-15.00</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Hari</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Rentang Waktu</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Siswa Ter-Ambis Card -->
+        <div class="col-lg-4 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Riwayat Login</h4>
+                </div>
+                <div class="card-body">
+                    <div class="recent-comment m-t-15">
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-primary">John Doe</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">10 min ago</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-success">Mr. John</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">1 hour ago</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-danger">Mr. John</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">Yesterday</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-primary">John Doe</h4>
+                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                <p class="comment-date">10 min ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        
         <!--**********************************
             Content body end
         ***********************************-->
@@ -342,7 +389,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Team Sabi</a> 2024</p>
+                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
                 <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
             </div>
         </div>
@@ -379,6 +426,11 @@
 
 
     <script src="./js/dashboard/dashboard-2.js"></script>
+
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
+
     <!-- Circle progress -->
 
 </body>
