@@ -243,7 +243,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 /* CSS untuk mengubah warna ikon menjadi putih */
-.lihatSoalBtn i,
+.buatSoalBtn i,
 .editSoalBtn i,
 .deleteSoalBtn i,
 .lihatTelahUjianBtn i {
@@ -8070,11 +8070,11 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #229799;
+  background-color: #146E70;
   transition: all .2s ease;
   z-index: 4; }
   .nav-header .logo-abbr {
-    max-width: 30px; }
+    max-width: 50px; }
   .nav-header .logo-compact {
     display: none; }
   @media only screen and (min-width: 1800px) {
@@ -8105,8 +8105,9 @@ a {
         padding-right: 0;
         justify-content: center; } }
   .nav-header .brand-title {
-    margin-left: 15px;
-    max-width: 75px; }
+    margin-left: 5px;
+    margin-top: 15px;
+    max-width: 140px; }
     [data-theme-version="dark"] .nav-header .brand-title {
       background-position: 0 120%; }
 
@@ -8145,7 +8146,7 @@ a {
   z-index: 999; }
 
 .hamburger .line {
-  background: #229799;
+  background: #593bdb;
   display: block;
   height: 2px;
   margin-top: 6px;
@@ -10325,7 +10326,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 5rem;
   padding-top: 0;
   z-index: 2;
-  background-color: #229799;
+  background-color: #146E70;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: all .2s ease; }
   .quixnav .quixnav-scroll {
@@ -10658,7 +10659,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     padding-right: 0;
     justify-content: center; }
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .nav-control .hamburger .line {
-    background-color: #229799 !important; }
+    background-color: #593bdb !important; }
 
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .header {
   padding-left: 3.75rem;
@@ -10759,7 +10760,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       [data-sidebar-style="mini"] .nav-header .nav-control .hamburger {
         left: 3.75rem !important; }
         [data-sidebar-style="mini"] .nav-header .nav-control .hamburger .line {
-          background-color: #229799 !important; }
+          background-color: #454545 !important; }
     [data-sidebar-style="mini"] .nav-header .brand-title {
       display: none; }
     [data-sidebar-style="mini"] .nav-header .hamburger {
@@ -11221,7 +11222,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="overlay"] .nav-header .hamburger.is-active {
     left: 0; }
     [data-sidebar-style="overlay"] .nav-header .hamburger.is-active .line {
-      background-color: #229799; }
+      background-color: #593bdb; }
 
 [data-sidebar-style="overlay"] .menu-toggle .nav-header {
   position: absolute;

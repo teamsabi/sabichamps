@@ -1,18 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard </title>
+    <title>SABI - Bank Soal</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <!-- Summernote -->
-    <link href="./vendor/summernote/summernote.css" rel="stylesheet">
-    <!-- Custom Stylesheet -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
+    <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -41,8 +40,8 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
+            <a href="index2.html" class="brand-logo">
+                <img class="logo-abbr" src="./images/sabiiu.png" alt="">
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo-text.png" alt="">
             </a>
@@ -71,7 +70,7 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Mau Mengajar Apa?" aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -173,120 +172,25 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
-                    <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                    </li> -->
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./index.html">Dashboard 1</a></li>
-                            <li><a href="./index2.html">Dashboard 2</a></li></ul>
+                    <li><a href="index2.html"><i class="fa fa-home"></i><span class="nav-text">Dashboard</span></a>
                     </li>
-                    
-                    <li class="nav-label">Apps</li>
+                    <li class="nav-label">Konten</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
+                                class="icon icon-app-store"></i><span class="nav-text">Manajemen Konten</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Profile</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                            <li><a href="./Jadwal.html">Jadwal</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Pembelajaran</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./email-compose.html">Compose</a></li>
-                                    <li><a href="./email-inbox.html">Inbox</a></li>
-                                    <li><a href="./email-read.html">Read</a></li>
+                                    <li><a href="./Materi.html">Materi</a></li>
+                                    <li><a href="./BankSoal.html">Bank Soal</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./app-calender.html">Calendar</a></li>
+                            <li><a href="./Kelas.html">Kelas</a></li>
+                            <li><a href="./RaportSiswa.html">Raport Siswa</a></li>
                         </ul>
                     </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-chart-bar-33"></i><span class="nav-text">Charts</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Flot</a></li>
-                            <li><a href="./chart-morris.html">Morris</a></li>
-                            <li><a href="./chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="./chart-chartist.html">Chartist</a></li>
-                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="./chart-peity.html">Peity</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Components</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Accordion</a></li>
-                            <li><a href="./ui-alert.html">Alert</a></li>
-                            <li><a href="./ui-badge.html">Badge</a></li>
-                            <li><a href="./ui-button.html">Button</a></li>
-                            <li><a href="./ui-modal.html">Modal</a></li>
-                            <li><a href="./ui-button-group.html">Button Group</a></li>
-                            <li><a href="./ui-list-group.html">List Group</a></li>
-                            <li><a href="./ui-media-object.html">Media Object</a></li>
-                            <li><a href="./ui-card.html">Cards</a></li>
-                            <li><a href="./ui-carousel.html">Carousel</a></li>
-                            <li><a href="./ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="./ui-popover.html">Popover</a></li>
-                            <li><a href="./ui-progressbar.html">Progressbar</a></li>
-                            <li><a href="./ui-tab.html">Tab</a></li>
-                            <li><a href="./ui-typography.html">Typography</a></li>
-                            <li><a href="./ui-pagination.html">Pagination</a></li>
-                            <li><a href="./ui-grid.html">Grid</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">Select 2</a></li>
-                            <li><a href="./uc-nestable.html">Nestedable</a></li>
-                            <li><a href="./uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="./uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="./uc-toastr.html">Toastr</a></li>
-                            <li><a href="./map-jqvmap.html">Jqv Map</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="widget-basic.html" aria-expanded="false"><i class="icon icon-globe-2"></i><span
-                                class="nav-text">Widget</span></a></li>
-                    <li class="nav-label">Forms</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-form"></i><span class="nav-text">Forms</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-element.html">Form Elements</a></li>
-                            <li><a href="./form-wizard.html">Wizard</a></li>
-                            <li><a href="./form-editor-summernote.html">Summernote</a></li>
-                            <li><a href="form-pickers.html">Pickers</a></li>
-                            <li><a href="form-validation-jquery.html">Jquery Validate</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Table</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                            <li><a href="table-datatable-basic.html">Datatable</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-label">Extra</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./page-register.html">Register</a></li>
-                            <li><a href="./page-login.html">Login</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./page-error-400.html">Error 400</a></li>
-                                    <li><a href="./page-error-403.html">Error 403</a></li>
-                                    <li><a href="./page-error-404.html">Error 404</a></li>
-                                    <li><a href="./page-error-500.html">Error 500</a></li>
-                                    <li><a href="./page-error-503.html">Error 503</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./page-lock-screen.html">Lock Screen</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                </div>
             </div>
-        </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -299,32 +203,210 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Your business dashboard template</p>
+                            <h4>Hi, nadhiuu!</h4>
+                            <p class="mb-0">Guru</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Summernote</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Manajemen Konten</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Pembelajaran</a></li>
+                            <li class="breadcrumb-item active"><a href="BankSoal.html">Bank Soal</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Buat Soal</a></li>
                         </ol>
                     </div>
                 </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-xl-12 col-xxl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Summernote Editor</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="summernote"></div>
-                            </div>
-                        </div>
+
+        <!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Bank Soal Pilihan Ganda</h4>
+                </div>
+
+                <!-- Button Tambah Soal -->
+                <div class="row mb-3">
+                    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 220px;">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#addSoal">
+                            <i class="fa fa-plus"></i> Tambah Soal Pilihan Ganda
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="SoalTable" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Soal</th>
+                                    <th>Pil A</th>
+                                    <th>Pil B</th>
+                                    <th>Pil C</th>
+                                    <th>Pil D</th>
+                                    <th>Pil E</th>
+                                    <th>Kunci</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data Dummy -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal Tambah Soal Pilihan Ganda -->
+<div class="modal fade" id="addSoal" tabindex="-1" role="dialog" aria-labelledby="modalSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tambah Soal Pilihan Ganda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formTambahSoal">
+                    <div class="form-group">
+                        <label for="soal">Soal</label>
+                        <input type="text" class="form-control" id="soal" placeholder="Masukkan Soal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pilA">Pilihan A</label>
+                        <input type="text" class="form-control" id="pilA" placeholder="Masukkan Pilihan A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pilB">Pilihan B</label>
+                        <input type="text" class="form-control" id="pilB" placeholder="Masukkan Pilihan B" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pilC">Pilihan C</label>
+                        <input type="text" class="form-control" id="pilC" placeholder="Masukkan Pilihan C" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pilD">Pilihan D</label>
+                        <input type="text" class="form-control" id="pilD" placeholder="Masukkan Pilihan D" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pilE">Pilihan E</label>
+                        <input type="text" class="form-control" id="pilE" placeholder="Masukkan Pilihan E" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kunci">Kunci Jawaban</label>
+                        <select class="form-control" id="kunci" required>
+                            <option value="">Pilih Kunci Jawaban</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
+<script>
+    $(document).ready(function () {
+        // Inisialisasi DataTable
+        var table = $('#SoalTable').DataTable();
+        var currentRow; // Menyimpan baris yang sedang diedit
+
+        // Tambah Soal Pilihan Ganda
+        $('#formTambahSoal').on('submit', function (e) {
+            e.preventDefault();
+
+            // Ambil nilai dari inputan
+            var soal = $('#soal').val();
+            var pilA = $('#pilA').val();
+            var pilB = $('#pilB').val();
+            var pilC = $('#pilC').val();
+            var pilD = $('#pilD').val();
+            var pilE = $('#pilE').val();
+            var kunci = $('#kunci').val();
+
+            // Cek jika ada baris yang sedang diedit
+            if (currentRow) {
+                // Update DataTable jika sedang mengedit
+                table.row(currentRow).data([
+                    table.rows().count(), // No (otomatis dihitung)
+                    soal, // Soal
+                    pilA, // Pilihan A
+                    pilB, // Pilihan B
+                    pilC, // Pilihan C
+                    pilD, // Pilihan D
+                    pilE, // Pilihan E
+                    kunci, // Kunci Jawaban
+                    `<button class="btn btn-sm btn-primary editBtn"><i class="fa fa-edit"></i></button>
+                     <button class="btn btn-sm btn-danger deleteBtn"><i class="fa fa-trash"></i></button>`
+                ]).draw();
+
+                currentRow = null; // Reset currentRow setelah edit
+            } else {
+                // Tambahkan data baru ke DataTable
+                table.row.add([
+                    table.rows().count() + 1, // No
+                    soal, // Soal
+                    pilA, // Pilihan A
+                    pilB, // Pilihan B
+                    pilC, // Pilihan C
+                    pilD, // Pilihan D
+                    pilE, // Pilihan E
+                    kunci, // Kunci Jawaban
+                    `<button class="btn btn-sm btn-primary editBtn"><i class="fa fa-edit"></i></button>
+                     <button class="btn btn-sm btn-danger deleteBtn"><i class="fa fa-trash"></i></button>`
+                ]).draw();
+            }
+
+            // Tutup modal dan reset form
+            $('#addSoal').modal('hide');
+            $('#formTambahSoal')[0].reset();
+        });
+
+        // Hapus Soal
+        $('#SoalTable tbody').on('click', '.deleteBtn', function () {
+            table.row($(this).parents('tr')).remove().draw();
+        });
+
+        // Edit Soal
+        $('#SoalTable tbody').on('click', '.editBtn', function () {
+            currentRow = $(this).parents('tr'); // Simpan baris yang sedang diedit
+
+            var data = table.row(currentRow).data(); // Ambil data dari baris
+            $('#soal').val(data[1]); // Soal
+            $('#pilA').val(data[2]); // Pilihan A
+            $('#pilB').val(data[3]); // Pilihan B
+            $('#pilC').val(data[4]); // Pilihan C
+            $('#pilD').val(data[5]); // Pilihan D
+            $('#pilE').val(data[6]); // Pilihan E
+            $('#kunci').val(data[7]); // Kunci Jawaban
+
+            // Tampilkan modal
+            $('#addSoal').modal('show');
+        });
+    });
+</script>
+
+
         <!--**********************************
             Content body end
         ***********************************-->
@@ -369,6 +451,10 @@
     <script src="./vendor/summernote/js/summernote.min.js"></script>
     <!-- Summernote init -->
     <script src="./js/plugins-init/summernote-init.js"></script>
+
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
 
 </body>
 

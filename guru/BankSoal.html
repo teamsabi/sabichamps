@@ -247,7 +247,7 @@
                                             <th>No</th>
                                             <th>Nama Soal Ujian</th>
                                             <th>Keterangan</th>
-                                            <th>Lihat Soal</th>
+                                            <th>Buat Soal</th>
                                             <th>Telah Ujian</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -351,6 +351,41 @@
         </div>
 
 
+<!-- Modal Buat Soal -->
+<div class="modal fade" id="buatSoal" tabindex="-1" role="dialog" aria-labelledby="buatSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="buatSoalLabel">Buat Soal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Keterangan soal akan ditampilkan di sini -->
+                <div class="mb-3">
+                    <h6>Nama Soal Ujian:</h6>
+                    <div id="namaSoal"></div>
+                </div>
+                <div class="mb-3">
+                    <h6>Keterangan Soal:</h6>
+                    <div id="keteranganSoal"></div>
+                </div>
+                
+                <p class="text-center">Pilih jenis soal yang ingin Anda buat:</p>
+                <div class="text-center">
+                    <!-- Tombol untuk mengarahkan ke halaman pembuatan soal pilihan ganda -->
+                    <a href="halaman-pilgan.html" class="btn btn-primary">Soal Pilihan Ganda</a>
+                    <!-- Tombol untuk mengarahkan ke halaman pembuatan soal essay -->
+                    <a href="halaman-essay.html" class="btn btn-secondary">Soal Essay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
  <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
  <script>
     $(document).ready(function () {
@@ -381,7 +416,7 @@
                 table.rows().count() + 1,
                 namaUjian,
                 keterangan,
-                `<button class="btn btn-sm btn-warning lihatSoalBtn"><i class="fa fa-file-text"></i></button>`,
+                `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-file-text"></i></button>`,
                 `<button class="btn btn-sm btn-info lihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
                 `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
                  <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
@@ -442,7 +477,7 @@ $('#formEditSoal').on('submit', function (e) {
         parseInt(rowIndex) + 1, // Row number
         namaUjian, // Nama Ujian
         keterangan, // Keterangan with updated values
-        `<button class="btn btn-sm btn-warning lihatSoalBtn"><i class="fa fa-search"></i></button>`,
+        `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-search"></i></button>`,
         `<button class="btn btn-sm btn-info lihatSoalBtn"><i class="fa fa-graduation-cap"></i></button>`,
         `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
          <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
@@ -451,6 +486,24 @@ $('#formEditSoal').on('submit', function (e) {
     // Close the modal and reset the form
     $('#editSoal').modal('hide');
     $('#formEditSoal')[0].reset();
+});
+
+       // Buat Soal Button in DataTable
+$('#SoalTable tbody').on('click', '.buatSoalBtn', function () {
+    var data = table.row($(this).parents('tr')).data();
+    
+    // Ambil judul soal dari DataTable
+    var namaSoal = data[1]; // nama soal ada di kolom 2
+
+    // Ambil keterangan soal dari DataTable
+    var keteranganSoal = data[2]; // Keterangan soal ada di kolom 3 (index 2)
+    
+    // Masukkan nama dan keterangan soal ke dalam modal Buat Soal
+    $('#namaSoal').text(namaSoal); // Menampilkan nama soal
+    $('#keteranganSoal').html(keteranganSoal); // Menampilkan keterangan soal
+
+    // Tampilkan modal buat soal
+    $('#buatSoal').modal('show');
 });
 
 
