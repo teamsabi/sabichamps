@@ -210,7 +210,7 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, Syaiful!</h4>
+                            Manajemen Akun Guru
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -220,203 +220,231 @@
                         </ol>
                     </div>
                 </div>
-
-                                    <!-- SweetAlert2 CSS dan JS -->
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4 class="card-title">Data Guru</h4>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn btn-success mr-2" data-toggle="modal" data-target="#addGuruModal">
-                                        <i class="fas fa-plus"></i> Tambah Data
-                                    </button>
-                                    <div class="d-flex" style="max-width: 300px;">
-                                        <input type="text" id="searchGuruInput" class="form-control" placeholder="Cari...">
+        
+                <!-- Include DataTables CSS & JS -->
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        
+                <div class="container">
+                    <!-- Table Data Guru -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Data Guru</h4>
+                                </div>
+        
+                                <!-- Button Tambah Akun -->
+                                <div class="row mb-3">
+                                    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 110px;">
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#addAkunGuru">
+                                            <i class="fa fa-plus"></i> Tambah Akun Guru
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="guruTable" class="display" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nama Guru</th>
+                                                    <th>Email</th>
+                                                    <th>Password</th>
+                                                    <th>Alamat</th>
+                                                    <th>Telepon</th>
+                                                    <th>Kategori</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table" id="guruTable">
-                                        <thead class="thead-primary">
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Nama Guru</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Password</th>
-                                                <th scope="col">Alamat</th>
-                                                <th scope="col">Telepon</th>
-                                                <th scope="col">Kategori</th>
-                                                <th scope="col">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>1</th>
-                                                <td>Mark</td>
-                                                <td>Otto@gmail.com</td>
-                                                <td>11223344</td>
-                                                <td>Jember</td>
-                                                <td>08193767624</td>
-                                                <td>Matematika</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary editGuruBtn">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-danger deleteGuruBtn">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        </div>
+        
+                        <!-- Modal untuk Tambah Akun Guru -->
+                        <div class="modal fade" id="addAkunGuru" tabindex="-1" role="dialog" aria-labelledby="addAkunGuruLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addAkunGuruLabel">Tambah Data Guru</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form Tambah Akun Guru -->
+                                        <form id="formAddGuru">
+                                            <div class="form-group">
+                                                <label for="namaGuru">Nama Guru</label>
+                                                <input type="text" class="form-control" id="namaGuru" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alamat">Alamat</label>
+                                                <input type="text" class="form-control" id="alamat" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telepon">Telepon</label>
+                                                <input type="text" class="form-control" id="telepon" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kategori">Kategori</label>
+                                                <input type="text" class="form-control" id="kategori" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Modal Tambah/Edit Data Guru -->
-                    <div class="modal fade" id="addGuruModal" tabindex="-1" aria-labelledby="addGuruModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addGuruModalLabel">Tambah/Edit Data Guru</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="guruForm">
-                            <div class="form-group">
-                                <label for="guruName">Nama Guru</label>
-                                <input type="text" class="form-control" id="guruName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="guruEmail">Email</label>
-                                <input type="email" class="form-control" id="guruEmail" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="gurupassword">Password</label>
-                                <input type="text" class="form-control" id="gurupassword" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="guruAlamat">Alamat</label>
-                                <input type="text" class="form-control" id="guruAlamat" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="guruTelepon">Telepon</label>
-                                <input type="text" class="form-control" id="guruTelepon" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="guruKategori">Kategori</label>
-                                <input type="text" class="form-control" id="guruKategori" required>
-                            </div>
-                            <input type="hidden" id="guruId">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <!-- JavaScript untuk Fungsi Pencarian, Tambah/Edit, dan Hapus -->
-                    <script>
-                        // Fungsi Pencarian
-                        document.getElementById('searchGuruInput').addEventListener('keyup', function() {
-                            const searchValue = this.value.toLowerCase();
-                            const tableRows = document.querySelectorAll('#guruTable tbody tr');
-                            
-                            tableRows.forEach(row => {
-                                const rowText = row.textContent.toLowerCase();
-                                row.style.display = rowText.includes(searchValue) ? '' : 'none';
-                            });
-                        });
-
-                        // Tambah/Edit Data Guru
-                        let selectedRowGuru = null;
-                        document.getElementById('guruForm').addEventListener('submit', function(event) {
-                            event.preventDefault();
-                            const guruId = document.getElementById('guruId').value;
-                            const guruName = document.getElementById('guruName').value;
-                            const guruEmail = document.getElementById('guruEmail').value;
-                            const gurupassword = document.getElementById('gurupassword').value;
-                            const guruAlamat = document.getElementById('guruAlamat').value;
-                            const guruTelepon = document.getElementById('guruTelepon').value;
-                            const guruKategori = document.getElementById('guruKategori').value;
-
-                            if (selectedRowGuru === null) {
-                                const table = document.querySelector('#guruTable tbody');
-                                const newRow = table.insertRow();
-                                newRow.innerHTML = `
-                                    <th>${table.rows.length}</th>
-                                    <td>${guruName}</td>
-                                    <td>${guruEmail}</td>
-                                    <td>${gurupassword}</td>
-                                    <td>${guruAlamat}</td>
-                                    <td>${guruTelepon}</td>
-                                    <td>${guruKategori}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editGuruBtn">
-                                            <i class="fas fa-edit"></i>
+        
+                        <!-- Modal untuk Edit Akun Guru -->
+                        <div class="modal fade" id="editAkunGuru" tabindex="-1" role="dialog" aria-labelledby="editAkunGuruLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editAkunGuruLabel">Edit Data Guru</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <button class="btn btn-sm btn-danger deleteGuruBtn">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>`;
-                            } else {
-                                selectedRowGuru.cells[1].innerText = guruName;
-                                seldRecteowGuru.cells[2].innerText = guruEmail;
-                                seldRecteowGuru.cells[3].innerText = gurupassword;
-                                selectedRowGuru.cells[4].innerText = guruAlamat;
-                                selectedRowGuru.cells[5].innerText = guruTelepon;
-                                selectedRowGuru.cells[6].innerText = guruKategori;
-                                selectedRowGuru = null;
-                            }
-                            $('#addGuruModal').modal('hide');
-                            this.reset();
-                        });
-
-                        // Fungsi Edit Data
-                        document.querySelector('#guruTable').addEventListener('click', function(e) {
-                            if (e.target.closest('.editGuruBtn')) {
-                                selectedRowGuru = e.target.closest('tr');
-                                document.getElementById('guruId').value = selectedRowGuru.cells[0].innerText;
-                                document.getElementById('guruName').value = selectedRowGuru.cells[1].innerText;
-                                document.getElementById('guruEmail').value = selectedRowGuru.cells[2].innerText;
-                                document.getElementById('gurupassword').value = selectedRowGuru.cells[3].innerText;
-                                document.getElementById('guruAlamat').value = selectedRowGuru.cells[4].innerText;
-                                document.getElementById('guruTelepon').value = selectedRowGuru.cells[5].innerText;
-                                document.getElementById('guruKategori').value = selectedRowGuru.cells[6].innerText;
-                                $('#addGuruModal').modal('show');
-                            }
-                        });
-
-                        // Fungsi Hapus Data dengan SweetAlert2
-                        document.querySelector('#guruTable').addEventListener('click', function(e) {
-                            if (e.target.closest('.deleteGuruBtn')) {
-                                const row = e.target.closest('tr');
-                                Swal.fire({
-                                    title: 'Apakah Anda yakin ingin menghapus data ini?',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#d33',
-                                    cancelButtonColor: '#3085d6',
-                                    confirmButtonText: 'Ya, hapus!',
-                                    cancelButtonText: 'Batal'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        row.remove();
-                                        Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
-                                    }
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form Edit Akun Guru -->
+                                        <form id="formEditGuru">
+                                            <div class="form-group">
+                                                <label for="editNamaGuru">Nama Guru</label>
+                                                <input type="text" class="form-control" id="editNamaGuru" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editEmail">Email</label>
+                                                <input type="email" class="form-control" id="editEmail" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editPassword">Password</label>
+                                                <input type="password" class="form-control" id="editPassword" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editAlamat">Alamat</label>
+                                                <input type="text" class="form-control" id="editAlamat" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editTelepon">Telepon</label>
+                                                <input type="text" class="form-control" id="editTelepon" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editKategori">Kategori</label>
+                                                <input type="text" class="form-control" id="editKategori" required>
+                                            </div>
+                                            <input type="hidden" id="editRowIndex">
+                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+            <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
+                        <script>
+                            $(document).ready(function () {
+                                var table = $('#guruTable').DataTable();
+        
+                                // Tambah Guru
+                                $('#formAddGuru').on('submit', function (e) {
+                                    e.preventDefault();
+        
+                                    var namaGuru = $('#namaGuru').val();
+                                    var email = $('#email').val();
+                                    var password = $('#password').val();
+                                    var alamat = $('#alamat').val();
+                                    var telepon = $('#telepon').val();
+                                    var kategori = $('#kategori').val();
+        
+                                    table.row.add([
+                                        table.rows().count() + 1, // ID otomatis
+                                        namaGuru,
+                                        email,
+                                        password,
+                                        alamat,
+                                        telepon,
+                                        kategori,
+                                        `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
+                                         <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
+                                    ]).draw(false);
+        
+                                    $('#addAkunGuru').modal('hide');
+                                    $('#formAddGuru')[0].reset();
                                 });
-                            }
-                        });
-                    </script>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-                
+        
+                                // Edit Guru
+                                $('#guruTable tbody').on('click', '.editGuruBtn', function () {
+                                    var data = table.row($(this).parents('tr')).data();
+        
+                                    $('#editNamaGuru').val(data[1]);
+                                    $('#editEmail').val(data[2]);
+                                    $('#editPassword').val(data[3]);
+                                    $('#editAlamat').val(data[4]);
+                                    $('#editTelepon').val(data[5]);
+                                    $('#editKategori').val(data[6]);
+                                    $('#editRowIndex').val(table.row($(this).parents('tr')).index());
+        
+                                    $('#editAkunGuru').modal('show');
+                                });
+        
+                                // Update Guru
+                                $('#formEditGuru').on('submit', function (e) {
+                                    e.preventDefault();
+        
+                                    var rowIndex = $('#editRowIndex').val();
+                                    table.row(rowIndex).data([
+                                        rowIndex + 1, // ID tetap sama
+                                        $('#editNamaGuru').val(),
+                                        $('#editEmail').val(),
+                                        $('#editPassword').val(),
+                                        $('#editAlamat').val(),
+                                        $('#editTelepon').val(),
+                                        $('#editKategori').val(),
+                                        `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
+                                         <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
+                                    ]).draw();
+        
+                                    $('#editAkunGuru').modal('hide');
+                                    $('#formEditGuru')[0].reset();
+                                });
+        
+                                // Fungsi Hapus Data dengan SweetAlert2
+        $('#guruTable tbody').on('click', '.deleteGuruBtn', function () {
+            const row = $(this).closest('tr'); // Mengambil baris terdekat
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Menghapus baris dari DataTable
+                    table.row(row).remove().draw();
+                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
+                }
+            });
+        });
+    });
+                        </script>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                    </div>
+                </div>
             </div>
         </div>
         <!--**********************************
@@ -457,6 +485,11 @@
     <script src="./vendor/global/global.min.js"></script>
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
+    
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
+
     
 
 </body>
