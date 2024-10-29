@@ -12903,7 +12903,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     position: absolute; }
 
 .profile-info {
-  padding: 30px 20px;
+  padding: 10px 20px;
+  margin-left: 70px;
   background: #F7FAFC; }
   .profile-info h4 {
     color: #464a53 !important; }
