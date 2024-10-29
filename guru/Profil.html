@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SABI - Jadwal Mengajar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>SABI - Profil</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
     <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
@@ -142,7 +141,7 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="./app-profile.html" class="dropdown-item">
+                                    <a href="./Profil.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
@@ -191,6 +190,7 @@
                     </li>
                 </div>
             </div>
+
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -199,261 +199,161 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            <!-- container-fluid starts -->
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, nadhiuu!</h4>
-                            <span class="ml-0">Guru</span>
+                            <p class="mb-0">Guru</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Manajemen Konten</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Jadwal</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Profil</a></li>
                         </ol>
                     </div>
                 </div>
-
-<!-- Include DataTables CSS & JS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-<div class="container">
-
-    <!-- Table Jadwal -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Jadwal Mengajar</h4>
-                </div>
-
-    <!-- Button tambah jadwal -->
-    <div class="row mb-3">
-        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 170px;">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addJadwalMengajar">
-                <i class="fa fa-plus"></i> Tambah Jadwal
-            </button>
-        </div>
-    </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="jadwalTable" class="display" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Hari</th>
-                                    <th>Nama Kelas</th>
-                                    <th>Mata Pelajaran</th>
-                                    <th>Rentang Waktu</th>
-                                    <th>Nama Guru</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Senin</td>
-                                    <td>11 MIPA</td>
-                                    <td>Fisika</td>
-                                    <td>14.00-15.00</td>
-                                    <td>Syaiful Amin</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editJadwalBtn">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </button>
-                                        <button class="btn btn-sm btn-danger deleteJadwalBtn">
-                                            <i class="fa fa-trash"></i> Hapus
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Selasa</td>
-                                    <td>10 IPS</td>
-                                    <td>Matematika</td>
-                                    <td>08.00-09.00</td>
-                                    <td>Ali Muhammad</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editJadwalBtn">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </button>
-                                        <button class="btn btn-sm btn-danger deleteJadwalBtn">
-                                            <i class="fa fa-trash"></i> Hapus
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+        
+                <!-- foto dan cover profil -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="profile">
+                            <div class="profile-head">
+                                <div class="photo-content">
+                                    <img src="images/profile/cover.jpg" class="cover-photo" alt="Cover Photo" data-bs-toggle="modal" data-bs-target="#coverPhotoModal">
+                                    <div class="profile-photo text-center">
+                                        <img src="images/profile/profile.png" class="img-fluid rounded-circle" alt="Profile Picture" data-bs-toggle="modal" data-bs-target="#profilePhotoModal">
+                                    </div>
+                                </div>
+                                <div class="profile-info mt-4">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 col-md-10">
+                                            <div class="row text-center">
+                                                <div class="col-md-4 col-12 mb-3 mb-md-0">
+                                                    <div class="profile-name">
+                                                        <h4 class="text-primary mb-1">Nadhifatus Aulia</h4>
+                                                        <p class="text-secondary">Guru</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-12 mb-3 mb-md-0">
+                                                    <div class="profile-email">
+                                                        <p class="text-secondary mb-1">Email</p>
+                                                        <h4 class="text-muted">nadhiu@gmail.com</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-12">
+                                                    <div class="profile-call">
+                                                        <p class="text-secondary mb-1">Phone No.</p>
+                                                        <h4 class="text-muted">(+62) 321-837-1030</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+        
+                <!-- Edit Biodata -->
+                <div class="row">
+                    <div class="col-lg-12 offset-lg-0 col-md-10 offset-md-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="profile-tab">
+                                    <div class="custom-tab-1">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item">
+                                                <a href="#profile-settings" data-toggle="tab" class="nav-link active">Edit Biodata</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="profile-settings" class="tab-pane fade active show">
+                                                <div class="my-post-content pt-3">
+                                                    <div class="settings-form">
+                                                        <form>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Nama Lengkap</label>
+                                                                    <input type="text" placeholder="Nama Lengkap" class="form-control" required>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Jenis Kelamin</label>
+                                                                    <select class="form-control" required>
+                                                                        <option selected disabled>Pilih Jenis Kelamin</option>
+                                                                        <option value="laki-laki">Laki-laki</option>
+                                                                        <option value="perempuan">Perempuan</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Email</label>
+                                                                <input type="email" placeholder="Email" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Password</label>
+                                                                <input type="password" placeholder="Password" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Tanggal Lahir</label>
+                                                                <input type="date" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Nomor WhatsApp</label>
+                                                                <input type="tel" placeholder="Nomor WhatsApp" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                                                </div>
+                                                                <div class="form-group col-md-6 text-right">
+                                                                    <button class="btn btn-danger" type="button" onclick="confirmDelete()">Hapus Akun</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+                 
+ <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function uploadProfilePhoto() {
+                const profilePhotoInput = document.getElementById('profilePhotoInput');
+                if (profilePhotoInput.files.length > 0) {
+                    // Handle the upload of the profile photo file here
+                    console.log("Profile photo selected:", profilePhotoInput.files[0]);
+                }
+            }
+        
+            function uploadCoverPhoto() {
+                const coverPhotoInput = document.getElementById('coverPhotoInput');
+                if (coverPhotoInput.files.length > 0) {
+                    // Handle the upload of the cover photo file here
+                    console.log("Cover photo selected:", coverPhotoInput.files[0]);
+                }
+            }
 
-<!-- Modal untuk Tambah Jadwal -->
-<div class="modal fade" id="addJadwalMengajar" tabindex="-1" role="dialog" aria-labelledby="addJadwalMengajarLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addJadwalMengajarLabel">Tambah Jadwal Mengajar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Form Tambah Jadwal -->
-                <form id="formAddJadwal">
-                    <div class="form-group">
-                        <label for="hari">Hari</label>
-                        <input type="text" class="form-control" id="hari" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="kelas">Nama Kelas</label>
-                        <input type="text" class="form-control" id="kelas" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mataPelajaran">Mata Pelajaran</label>
-                        <input type="text" class="form-control" id="mataPelajaran" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="rentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="rentangWaktu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guru">Nama Guru</label>
-                        <input type="text" class="form-control" id="guru" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal untuk Edit Jadwal -->
-<div class="modal fade" id="editJadwalMengajar" tabindex="-1" role="dialog" aria-labelledby="editJadwalMengajarLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editJadwalMengajarLabel">Edit Jadwal Mengajar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Form Edit Jadwal -->
-                <form id="formEditJadwal">
-                    <div class="form-group">
-                        <label for="editHari">Hari</label>
-                        <input type="text" class="form-control" id="editHari" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editKelas">Nama Kelas</label>
-                        <input type="text" class="form-control" id="editKelas" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editMataPelajaran">Mata Pelajaran</label>
-                        <input type="text" class="form-control" id="editMataPelajaran" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editRentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="editRentangWaktu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editGuru">Nama Guru</label>
-                        <input type="text" class="form-control" id="editGuru" required>
-                    </div>
-                    <input type="hidden" id="editRowIndex">
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-
-<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
-<script>
-// Fungsi Tambah/Edit Data
-$(document).ready(function () {
-    var table = $('#jadwalTable').DataTable();
-
-    // Tambah Jadwal
-    $('#formAddJadwal').on('submit', function (e) {
-        e.preventDefault();
-
-        var hari = $('#hari').val();
-        var kelas = $('#kelas').val();
-        var mataPelajaran = $('#mataPelajaran').val();
-        var rentangWaktu = $('#rentangWaktu').val();
-        var guru = $('#guru').val();
-
-        table.row.add([
-            table.rows().count() + 1,
-            hari,
-            kelas,
-            mataPelajaran,
-            rentangWaktu,
-            guru,
-            `<button class="btn btn-sm btn-primary editJadwalBtn"><i class="fa fa-edit"></i> Edit</button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> Hapus</button>`
-        ]).draw(false);
-
-        $('#addJadwalMengajar').modal('hide');
-        $('#formAddJadwal')[0].reset();
-    });
-
-    // Edit Jadwal
-    $('#jadwalTable tbody').on('click', '.editJadwalBtn', function () {
-        var data = table.row($(this).parents('tr')).data();
-
-        $('#editHari').val(data[1]);
-        $('#editKelas').val(data[2]);
-        $('#editMataPelajaran').val(data[3]);
-        $('#editRentangWaktu').val(data[4]);
-        $('#editGuru').val(data[5]);
-        $('#editRowIndex').val(table.row($(this).parents('tr')).index());
-
-        $('#editJadwalMengajar').modal('show');
-    });
-
-    // Update Jadwal
-    $('#formEditJadwal').on('submit', function (e) {
-        e.preventDefault();
-
-        var rowIndex = $('#editRowIndex').val();
-        table.row(rowIndex).data([
-            rowIndex + 1,
-            $('#editHari').val(),
-            $('#editKelas').val(),
-            $('#editMataPelajaran').val(),
-            $('#editRentangWaktu').val(),
-            $('#editGuru').val(),
-            `<button class="btn btn-sm btn-primary editJadwalBtn"><i class="fa fa-edit"></i> Edit</button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> Hapus</button>`
-        ]).draw();
-
-        $('#editJadwalMengajar').modal('hide');
-        $('#formEditJadwal')[0].reset();
-    });
-
-    // Hapus Jadwal
-    $('#jadwalTable tbody').on('click', '.deleteJadwalBtn', function () {
-        table.row($(this).parents('tr')).remove().draw();
-    });
-});
-
-</script>
-
+            function confirmDelete() {
+            if (confirm("Apakah Anda yakin ingin menghapus akun?")) {
+            // Tambahkan logika untuk menghapus akun di sini
+            alert("Akun telah dihapus."); // Ganti dengan logika yang sesuai
+        }
+    }
+        </script>
         <!--**********************************
-                Content body end
-            ***********************************-->
+            Content body end
+        ***********************************-->
 
 
         <!--**********************************
@@ -464,20 +364,13 @@ $(document).ready(function () {
                 <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
             </div>
         </div>
-
         <!--**********************************
             Footer end
         ***********************************-->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
         
+
+
     </div>
     <!--**********************************
         Main wrapper end
@@ -490,10 +383,6 @@ $(document).ready(function () {
     <script src="./vendor/global/global.min.js"></script>
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
-    
-    <!-- Datatable -->
-    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="./js/plugins-init/datatables.init.js"></script>
 
 </body>
 
