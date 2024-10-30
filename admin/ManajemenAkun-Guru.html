@@ -354,94 +354,95 @@
                         </div>
         
             <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
-                        <script>
-                            $(document).ready(function () {
-                                var table = $('#guruTable').DataTable();
-        
-                                // Tambah Guru
-                                $('#formAddGuru').on('submit', function (e) {
-                                    e.preventDefault();
-        
-                                    var namaGuru = $('#namaGuru').val();
-                                    var email = $('#email').val();
-                                    var password = $('#password').val();
-                                    var alamat = $('#alamat').val();
-                                    var telepon = $('#telepon').val();
-                                    var kategori = $('#kategori').val();
-        
-                                    table.row.add([
-                                        table.rows().count() + 1, // ID otomatis
-                                        namaGuru,
-                                        email,
-                                        password,
-                                        alamat,
-                                        telepon,
-                                        kategori,
-                                        `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
-                                         <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
-                                    ]).draw(false);
-        
-                                    $('#addAkunGuru').modal('hide');
-                                    $('#formAddGuru')[0].reset();
-                                });
-        
-                                // Edit Guru
-                                $('#guruTable tbody').on('click', '.editGuruBtn', function () {
-                                    var data = table.row($(this).parents('tr')).data();
-        
-                                    $('#editNamaGuru').val(data[1]);
-                                    $('#editEmail').val(data[2]);
-                                    $('#editPassword').val(data[3]);
-                                    $('#editAlamat').val(data[4]);
-                                    $('#editTelepon').val(data[5]);
-                                    $('#editKategori').val(data[6]);
-                                    $('#editRowIndex').val(table.row($(this).parents('tr')).index());
-        
-                                    $('#editAkunGuru').modal('show');
-                                });
-        
-                                // Update Guru
-                                $('#formEditGuru').on('submit', function (e) {
-                                    e.preventDefault();
-        
-                                    var rowIndex = $('#editRowIndex').val();
-                                    table.row(rowIndex).data([
-                                        rowIndex + 1, // ID tetap sama
-                                        $('#editNamaGuru').val(),
-                                        $('#editEmail').val(),
-                                        $('#editPassword').val(),
-                                        $('#editAlamat').val(),
-                                        $('#editTelepon').val(),
-                                        $('#editKategori').val(),
-                                        `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
-                                         <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
-                                    ]).draw();
-        
-                                    $('#editAkunGuru').modal('hide');
-                                    $('#formEditGuru')[0].reset();
-                                });
-        
-                                // Fungsi Hapus Data dengan SweetAlert2
-        $('#guruTable tbody').on('click', '.deleteGuruBtn', function () {
-            const row = $(this).closest('tr'); // Mengambil baris terdekat
-            Swal.fire({
-                title: 'Apakah Anda yakin ingin menghapus data ini?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Menghapus baris dari DataTable
-                    table.row(row).remove().draw();
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
-                }
-            });
-        });
-    });
-                        </script>
+            <script>
+                $(document).ready(function () {
+                    var table = $('#guruTable').DataTable();
+            
+                    // Tambah Guru
+                    $('#formAddGuru').on('submit', function (e) {
+                        e.preventDefault();
+            
+                        var namaGuru = $('#namaGuru').val();
+                        var email = $('#email').val();
+                        var password = $('#password').val();
+                        var alamat = $('#alamat').val();
+                        var telepon = $('#telepon').val();
+                        var kategori = $('#kategori').val();
+            
+                        table.row.add([
+                            table.rows().count() + 1, // ID otomatis
+                            namaGuru,
+                            email,
+                            password,
+                            alamat,
+                            telepon,
+                            kategori,
+                            `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
+                             <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
+                        ]).draw(false);
+            
+                        $('#addAkunGuru').modal('hide');
+                        $('#formAddGuru')[0].reset();
+                    });
+            
+                    // Event Listener untuk Tombol Edit Guru
+                    $('#guruTable tbody').on('click', '.editGuruBtn', function () {
+                        var data = table.row($(this).parents('tr')).data();
+                        
+                        // Menyimpan data di modal edit
+                        $('#editNamaGuru').val(data[1]);
+                        $('#editEmail').val(data[2]);
+                        $('#editPassword').val(data[3]);
+                        $('#editAlamat').val(data[4]);
+                        $('#editTelepon').val(data[5]);
+                        $('#editKategori').val(data[6]);
+                        $('#editRowIndex').val(table.row($(this).parents('tr')).index());
+            
+                        $('#editAkunGuru').modal('show');
+                    });
+            
+                    // Update Data Guru Setelah Pengeditan
+                    $('#formEditGuru').on('submit', function (e) {
+                        e.preventDefault();
+            
+                        var rowIndex = $('#editRowIndex').val();
+                        table.row(rowIndex).data([
+                            rowIndex + 1, // ID tetap sama
+                            $('#editNamaGuru').val(),
+                            $('#editEmail').val(),
+                            $('#editPassword').val(),
+                            $('#editAlamat').val(),
+                            $('#editTelepon').val(),
+                            $('#editKategori').val(),
+                            `<button class="btn btn-sm btn-primary editGuruBtn"><i class="fa fa-edit"></i></button>
+                             <button class="btn btn-sm btn-danger deleteGuruBtn"><i class="fa fa-trash"></i></button>`
+                        ]).draw();
+            
+                        $('#editAkunGuru').modal('hide');
+                        $('#formEditGuru')[0].reset();
+                    });
+            
+                    // Hapus Guru dengan SweetAlert2
+                    $('#guruTable tbody').on('click', '.deleteGuruBtn', function () {
+                        const row = $(this).closest('tr');
+                        Swal.fire({
+                            title: 'Apakah Anda yakin ingin menghapus data ini?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                table.row(row).remove().draw();
+                                Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
+                            }
+                        });
+                    });
+                });
+            </script>
+            
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
                     </div>
                 </div>

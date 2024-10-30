@@ -210,7 +210,7 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, Syaiful!</h4>
+                            Manajemen Akun Siswa
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -220,217 +220,198 @@
                         </ol>
                     </div>
                 </div>
-
-                <!-- SweetAlert2 CSS dan JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="card-title">Data Siswa</h4>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-success mr-2" data-toggle="modal" data-target="#addSiswaModal">
-                    <i class="fas fa-plus"></i> Tambah Data
-                </button>
-                <div class="d-flex" style="max-width: 300px;">
-                    <input type="text" id="searchSiswaInput"  class="form-control" placeholder="Cari...">
+        
+                <!-- Include DataTables CSS & JS -->
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        
+                <div class="container">
+                    <!-- Table Data Siswa -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Data Siswa</h4>
+                                </div>
+        
+                                <!-- Button Tambah Akun -->
+                                <div class="row mb-3">
+                                    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#addAkunSiswa">
+                                            <i class="fa fa-plus"></i> Tambah Akun Siswa
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="siswaTable" class="display" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nama Siswa</th>
+                                                    <th>Email</th>
+                                                    <th>Password</th>
+                                                    <th>Alamat</th>
+                                                    <th>Telepon</th>
+                                                    <th>Tanggal Lahir</th>
+                                                    <th>Kelas</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Modal untuk Tambah Akun Siswa -->
+                        <div class="modal fade" id="addAkunSiswa" tabindex="-1" role="dialog" aria-labelledby="addAkunSiswaLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addAkunSiswaLabel">Tambah Data Siswa</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form Tambah Akun Siswa -->
+                                        <form id="formAddSiswa">
+                                            <div class="form-group">
+                                                <label for="namaSiswa">Nama Siswa</label>
+                                                <input type="text" class="form-control" id="namaSiswa" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alamat">Alamat</label>
+                                                <input type="text" class="form-control" id="alamat" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telepon">Telepon</label>
+                                                <input type="text" class="form-control" id="telepon" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggalLahir">Tanggal Lahir</label>
+                                                <input type="date" class="form-control" id="tanggalLahir" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kelas">Kelas</label>
+                                                <input type="text" class="form-control" id="kelas" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <script>
+                            $(document).ready(function () {
+                                var table = $('#siswaTable').DataTable();
+                        
+                                // Tambah Siswa
+                                $('#formAddSiswa').on('submit', function (e) {
+                                    e.preventDefault();
+                        
+                                    var namaSiswa = $('#namaSiswa').val();
+                                    var email = $('#email').val();
+                                    var password = $('#password').val();
+                                    var alamat = $('#alamat').val();
+                                    var telepon = $('#telepon').val();
+                                    var tanggalLahir = $('#tanggalLahir').val();
+                                    var kelas = $('#kelas').val();
+                        
+                                    table.row.add([
+                                        table.rows().count() + 1, // ID otomatis
+                                        namaSiswa,
+                                        email,
+                                        password,
+                                        alamat,
+                                        telepon,
+                                        tanggalLahir,
+                                        kelas,
+                                        `<button class="btn btn-sm btn-primary editSiswaBtn"><i class="fa fa-edit"></i></button>
+                                         <button class="btn btn-sm btn-danger deleteSiswaBtn"><i class="fa fa-trash"></i></button>`
+                                    ]).draw(false);
+                        
+                                    $('#addAkunSiswa').modal('hide');
+                                    $('#formAddSiswa')[0].reset();
+                                });
+                        
+                                // Event Delegation untuk Edit Siswa
+                                $('#siswaTable tbody').on('click', '.editSiswaBtn', function () {
+                                    var data = table.row($(this).parents('tr')).data();
+                        
+                                    $('#editNamaSiswa').val(data[1]);
+                                    $('#editEmail').val(data[2]);
+                                    $('#editPassword').val(data[3]);
+                                    $('#editAlamat').val(data[4]);
+                                    $('#editTelepon').val(data[5]);
+                                    $('#editTanggalLahir').val(data[6]);
+                                    $('#editKelas').val(data[7]);
+                                    $('#editRowIndex').val(table.row($(this).parents('tr')).index());
+                        
+                                    $('#editAkunSiswa').modal('show');
+                                });
+                        
+                                // Update Siswa Setelah Pengeditan
+                                $('#formEditSiswa').on('submit', function (e) {
+                                    e.preventDefault();
+                        
+                                    var rowIndex = $('#editRowIndex').val();
+                                    table.row(rowIndex).data([
+                                        rowIndex + 1, // ID tetap sama
+                                        $('#editNamaSiswa').val(),
+                                        $('#editEmail').val(),
+                                        $('#editPassword').val(),
+                                        $('#editAlamat').val(),
+                                        $('#editTelepon').val(),
+                                        $('#editTanggalLahir').val(),
+                                        $('#editKelas').val(),
+                                        `<button class="btn btn-sm btn-primary editSiswaBtn"><i class="fa fa-edit"></i></button>
+                                         <button class="btn btn-sm btn-danger deleteSiswaBtn"><i class="fa fa-trash"></i></button>`
+                                    ]).draw();
+                        
+                                    $('#editAkunSiswa').modal('hide');
+                                    $('#formEditSiswa')[0].reset();
+                                });
+                        
+                                // Hapus Siswa
+                                $('#siswaTable tbody').on('click', '.deleteSiswaBtn', function () {
+                                    const row = $(this).closest('tr');
+                                    Swal.fire({
+                                        title: 'Apakah Anda yakin ingin menghapus data ini?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ya, hapus!',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            table.row(row).remove().draw();
+                                            Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        
+                        
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="siswaTable">
-                    <thead class="thead-primary">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nama Siswa</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Telepon</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Tanggal Lahir</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Mark</td>
-                            <td>Otto@gmail.com</td>
-                            <td>11223344</td>
-                            <td>087654321</td>
-                            <td>Banyuwangi</td>
-                            <td>11 Mei 2005</td>
-                            <td>X MIPA 1</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary editSiswaBtn">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger deleteSiswaBtn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal untuk Tambah/Edit Data Siswa -->
-<div class="modal fade" id="addSiswaModal" tabindex="-1" aria-labelledby="addSiswaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addSiswaModalLabel">Tambah/Edit Data Siswa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="siswaForm">
-                    <div class="form-group">
-                        <label for="siswaName">Nama Siswa</label>
-                        <input type="text" class="form-control" id="siswaName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswaEmail">Email</label>
-                        <input type="email" class="form-control" id="siswaEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswapassword">Password</label>
-                        <input type="text" class="form-control" id="siswapassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswaTelepon">Telepon</label>
-                        <input type="text" class="form-control" id="siswaTelepon" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswaAlamat">Alamat</label>
-                        <input type="text" class="form-control" id="siswaAlamat" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswaTglLahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="siswaTglLahir" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="siswaKelas">Kelas</label>
-                        <input type="text" class="form-control" id="siswaKelas" required>
-                    </div>
-                    <input type="hidden" id="siswaId">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
-<script>
-    // Fungsi Pencarian
-    document.getElementById('searchSiswaInput').addEventListener('keyup', function() {
-        const searchValue = this.value.toLowerCase();
-        const tableRows = document.querySelectorAll('#siswaTable tbody tr');
         
-        tableRows.forEach(row => {
-            const rowText = row.textContent.toLowerCase();
-            row.style.display = rowText.includes(searchValue) ? '' : 'none';
-        });
-    });
-
-    // Fungsi Tambah/Edit Data
-    let selectedRow = null;
-    document.getElementById('siswaForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const siswaName = document.getElementById('siswaName').value;
-        const siswaEmail = document.getElementById('siswaEmail').value;
-        const siswapassword = document.getElementById('siswapassword').value;
-        const siswaTelepon = document.getElementById('siswaTelepon').value;
-        const siswaAlamat = document.getElementById('siswaAlamat').value;
-        const siswaTglLahir = document.getElementById('siswaTglLahir').value;
-        const siswaKelas = document.getElementById('siswaKelas').value;
-
-        if (selectedRow === null) {
-            const table = document.querySelector('#siswaTable tbody');
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <th>${table.rows.length}</th>
-                <td>${siswaName}</td>
-                <td>${siswaEmail}</td>
-                <td>${siswapassword}</td>
-                <td>${siswaTelepon}</td>
-                <td>${siswaAlamat}</td>
-                <td>${siswaTglLahir}</td>
-                <td>${siswaKelas}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary editSiswaBtn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger deleteSiswaBtn">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>`;
-        } else {
-            selectedRow.cells[1].innerText = siswaName;
-            selectedRow.cells[2].innerText = siswaEmail;
-            selectedRow.cells[3].innerText = siswapassword;
-            selectedRow.cells[4].innerText = siswaTelepon;
-            selectedRow.cells[5].innerText = siswaAlamat;
-            selectedRow.cells[6].innerText = siswaTglLahir;
-            selectedRow.cells[7].innerText = siswaKelas;
-            selectedRow = null;
-        }
-        $('#addSiswaModal').modal('hide');
-        this.reset();
-    });
-
-    // Fungsi Edit Data
-    document.querySelector('#siswaTable').addEventListener('click', function(e) {
-        if (e.target.closest('.editSiswaBtn')) {
-            selectedRow = e.target.closest('tr');
-            document.getElementById('siswaName').value = selectedRow.cells[1].innerText;
-            document.getElementById('siswaEmail').value = selectedRow.cells[2].innerText;
-            document.getElementById('siswapassword').value = selectedRow.cells[3].innerText;
-            document.getElementById('siswaTelepon').value = selectedRow.cells[4].innerText;
-            document.getElementById('siswaAlamat').value = selectedRow.cells[5].innerText;
-            document.getElementById('siswaTglLahir').value = selectedRow.cells[6].innerText;
-            document.getElementById('siswaKelas').value = selectedRow.cells[7].innerText;
-            $('#addSiswaModal').modal('show');
-        }
-    });
-
-    // Fungsi Hapus Data dengan SweetAlert2
-    document.querySelector('#siswaTable').addEventListener('click', function(e) {
-        if (e.target.closest('.deleteSiswaBtn')) {
-            const row = e.target.closest('tr');
-            Swal.fire({
-                title: 'Yakin ingin menghapus data ini?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    row.remove();
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success');
-                }
-            });
-        }
-    });
-</script>
-
-                
-                <!-- Tambahkan link Font Awesome di bagian <head> dokumen HTML -->
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-                
-                
-            </div>
-        </div>
         <!--**********************************
             Content body end
         ***********************************-->
@@ -470,6 +451,10 @@
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
     
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
+
 
 </body>
 
