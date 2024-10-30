@@ -225,7 +225,11 @@
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-        
+                
+                <!-- SweetAlert2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
                 <div class="container">
                     <!-- Table Data Guru -->
                     <div class="row">
@@ -424,7 +428,7 @@
             
                     // Hapus Guru dengan SweetAlert2
                     $('#guruTable tbody').on('click', '.deleteGuruBtn', function () {
-                        const row = $(this).closest('tr');
+                        const row = table.row($(this).closest('tr'));
                         Swal.fire({
                             title: 'Apakah Anda yakin ingin menghapus data ini?',
                             icon: 'warning',

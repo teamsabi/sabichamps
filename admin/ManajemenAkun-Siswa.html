@@ -225,6 +225,10 @@
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+                <!-- SweetAlert2 -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
                 <div class="container">
                     <!-- Table Data Siswa -->
@@ -252,10 +256,12 @@
                                                     <th>Nama Siswa</th>
                                                     <th>Email</th>
                                                     <th>Password</th>
+                                                    <th>Jenis Kelamin</th>
                                                     <th>Alamat</th>
                                                     <th>Telepon</th>
                                                     <th>Tanggal Lahir</th>
                                                     <th>Kelas</th>
+                                                    <th>Orang Tua/Wali</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -291,6 +297,14 @@
                                                 <input type="password" class="form-control" id="password" required>
                                             </div>
                                             <div class="form-group">
+                                                <label for="kelamin">Kelas</label>
+                                                <select class="form-control" id="kelamin">
+                                                    <option selected="">Pilih Jenis Kelamin...</option>
+                                                    <option>Laki-Laki</option>
+                                                    <option>Perempuan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="alamat">Alamat</label>
                                                 <input type="text" class="form-control" id="alamat" required>
                                             </div>
@@ -304,7 +318,16 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="kelas">Kelas</label>
-                                                <input type="text" class="form-control" id="kelas" required>
+                                                <select class="form-control" id="kelas">
+                                                    <option selected="">Pilih Kelas...</option>
+                                                    <option>X MIPA 1</option>
+                                                    <option>X MIPA 2</option>
+                                                    <option>X MIPA 3</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ortu">Orang Tua/Wali</label>
+                                                <input type="text" class="form-control" id="ortu" required>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                         </form>
@@ -324,20 +347,24 @@
                                     var namaSiswa = $('#namaSiswa').val();
                                     var email = $('#email').val();
                                     var password = $('#password').val();
+                                    var kelamin = $('#kelamin').val();
                                     var alamat = $('#alamat').val();
                                     var telepon = $('#telepon').val();
                                     var tanggalLahir = $('#tanggalLahir').val();
                                     var kelas = $('#kelas').val();
+                                    var ortu = $('#ortu').val();
                         
                                     table.row.add([
                                         table.rows().count() + 1, // ID otomatis
                                         namaSiswa,
                                         email,
                                         password,
+                                        kelamin,
                                         alamat,
                                         telepon,
                                         tanggalLahir,
                                         kelas,
+                                        ortu,
                                         `<button class="btn btn-sm btn-primary editSiswaBtn"><i class="fa fa-edit"></i></button>
                                          <button class="btn btn-sm btn-danger deleteSiswaBtn"><i class="fa fa-trash"></i></button>`
                                     ]).draw(false);
@@ -353,10 +380,12 @@
                                     $('#editNamaSiswa').val(data[1]);
                                     $('#editEmail').val(data[2]);
                                     $('#editPassword').val(data[3]);
-                                    $('#editAlamat').val(data[4]);
-                                    $('#editTelepon').val(data[5]);
-                                    $('#editTanggalLahir').val(data[6]);
-                                    $('#editKelas').val(data[7]);
+                                    $('#editKelamin').val(data[4]);
+                                    $('#editAlamat').val(data[5]);
+                                    $('#editTelepon').val(data[6]);
+                                    $('#editTanggalLahir').val(data[7]);
+                                    $('#editKelas').val(data[8]);
+                                    $('#editOrtu').val(data[9]);
                                     $('#editRowIndex').val(table.row($(this).parents('tr')).index());
                         
                                     $('#editAkunSiswa').modal('show');
@@ -372,10 +401,12 @@
                                         $('#editNamaSiswa').val(),
                                         $('#editEmail').val(),
                                         $('#editPassword').val(),
+                                        $('#editKelamin').val(),
                                         $('#editAlamat').val(),
                                         $('#editTelepon').val(),
                                         $('#editTanggalLahir').val(),
                                         $('#editKelas').val(),
+                                        $('#editOrtu').val(),
                                         `<button class="btn btn-sm btn-primary editSiswaBtn"><i class="fa fa-edit"></i></button>
                                          <button class="btn btn-sm btn-danger deleteSiswaBtn"><i class="fa fa-trash"></i></button>`
                                     ]).draw();
