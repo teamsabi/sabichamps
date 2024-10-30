@@ -234,7 +234,7 @@
                         <!-- Button tambah jadwal -->
                         <div class="row mb-3">
                             <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 110px;">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#addSoal">
+                                <button class="btn" style="background-color: #146E70; color: white;" data-toggle="modal" data-target="#addSoal">
                                     <i class="fa fa-plus"></i> Tambah Soal/Ujian
                                 </button>
                             </div>
@@ -264,92 +264,90 @@
         </div>
 
         <!-- Modal Tambah Soal/Ujian -->
-        <div class="modal fade" id="addSoal" tabindex="-1" role="dialog" aria-labelledby="modalSoalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Tambah Soal/Ujian</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade" id="addSoal" tabindex="-1" role="dialog" aria-labelledby="modalSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tambah Soal/Ujian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formTambahSoal">
+                    <div class="form-group">
+                        <label for="namaUjian">Nama Soal Ujian</label>
+                        <input type="text" class="form-control" id="namaUjian" required>
                     </div>
-                    <div class="modal-body">
-                        <form id="formTambahSoal">
-                            <div class="form-group">
-                                <label for="namaUjian">Nama Soal Ujian</label>
-                                <input type="text" class="form-control" id="namaUjian" placeholder="Masukkan Judul/Nama Ujian" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="mataPelajaran">Mata Pelajaran</label>
-                                <input type="text" class="form-control" id="mataPelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="kelas">Kelas</label>
-                                <input type="text" class="form-control" id="kelas" placeholder="Masukkan Kelas" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="waktuPengerjaan">Waktu Pengerjaan</label>
-                                <input type="text" class="form-control" id="waktuPengerjaan" placeholder="Masukkan Waktu Pengerjaan" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="infoUjian">Info Soal Ujian</label>
-                                <input type="text" class="form-control" id="infoUjian" placeholder="Masukkan Info Ujian" required>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="mataPelajaran">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="mataPelajaran" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" class="form-control" id="kelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="waktuPengerjaan">Waktu Pengerjaan (dalam menit)</label>
+                        <input type="number" class="form-control" id="waktuPengerjaan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="infoUjian">Info Soal Ujian</label>
+                        <input type="text" class="form-control" id="infoUjian" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #d9534f; color: white;" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn" style="background-color: #146E70; color: white;">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Modal Edit Soal/Ujian -->
-        <div class="modal fade" id="editSoal" tabindex="-1" role="dialog" aria-labelledby="editSoalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-white text-white">
-                        <h5 class="modal-title" id="editSoalLabel">Edit Soal/Ujian</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<!-- Modal Edit Soal/Ujian -->
+<div class="modal fade" id="editSoal" tabindex="-1" role="dialog" aria-labelledby="editSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-white text-white">
+                <h5 class="modal-title" id="editSoalLabel">Edit Soal/Ujian</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Edit Soal/Ujian -->
+                <form id="formEditSoal">
+                    <div class="form-group">
+                        <label for="editNamaSoal">Nama Soal Ujian</label>
+                        <input type="text" class="form-control" id="editNamaSoal" required>
                     </div>
-                    <div class="modal-body">
-                        <!-- Form Edit Soal/Ujian -->
-                        <form id="formEditSoal">
-                            <div class="form-group">
-                                <label for="editNamaSoal">Nama Soal Ujian</label>
-                                <input type="text" class="form-control" id="editNamaSoal" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editMapel">Mata Pelajaran</label>
-                                <input type="text" class="form-control" id="editMapel" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editKelas">Kelas</label>
-                                <input type="text" class="form-control" id="editKelas" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editWaktu">Waktu Pengerjaan</label>
-                                <input type="text" class="form-control" id="editWaktu" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editInfo">Info Soal Ujian</label>
-                                <input type="text" class="form-control" id="editInfo" required>
-                            </div>
-                            <input type="hidden" id="editRowIndex">
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="editMapel">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="editMapel" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="editKelas">Kelas</label>
+                        <input type="text" class="form-control" id="editKelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWaktu">Waktu Pengerjaan (dalam menit)</label>
+                        <input type="number" class="form-control" id="editWaktu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editInfo">Info Soal Ujian</label>
+                        <input type="text" class="form-control" id="editInfo" required>
+                    </div>
+                    <input type="hidden" id="editRowIndex">
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #D9534F; color: white;" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn" style="background-color: #146E70; color: white;">Simpan Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
-
+    </div>
+</div>
 
 <!-- Modal Buat Soal -->
 <div class="modal fade" id="buatSoal" tabindex="-1" role="dialog" aria-labelledby="buatSoalLabel" aria-hidden="true">
@@ -375,9 +373,9 @@
                 <p class="text-center">Pilih jenis soal yang ingin Anda buat:</p>
                 <div class="text-center">
                     <!-- Tombol untuk mengarahkan ke halaman pembuatan soal pilihan ganda -->
-                    <a href="SoalPilgan.html" class="btn btn-primary">Soal Pilihan Ganda</a>
+                    <a href="SoalPilgan.html" class="btn" style="background-color: #146e70; color: white;">Soal Pilihan Ganda</a>
                     <!-- Tombol untuk mengarahkan ke halaman pembuatan soal essay -->
-                    <a href="SoalEssay.html" class="btn btn-secondary">Soal Essay</a>
+                    <a href="SoalEssay.html" class="btn" style="background-color: #36b2b4; color: white;">Soal Essay</a>
                 </div>
             </div>
         </div>
@@ -417,7 +415,7 @@
                 keterangan,
                 `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-file-text"></i></button>`,
                 `<button class="btn btn-sm btn-info lihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
-                `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
+                `<button class="btn btn-sm btn-secondary editSoalBtn"><i class="fa fa-edit"></i></button>
                  <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
             ]).draw();
 
@@ -426,7 +424,7 @@
         });
 
         // Edit Soal
-$('#SoalTable tbody').on('click', '.editSoalBtn', function () {
+    $('#SoalTable tbody').on('click', '.editSoalBtn', function () {
     var data = table.row($(this).parents('tr')).data();
     
     // Extract plain text from the HTML content in 'data[2]'
@@ -467,7 +465,7 @@ $('#formEditSoal').on('submit', function (e) {
     var keterangan = `<ol>
                         <li>Pelajaran: ${mataPelajaran}</li>
                         <li>Kelas: ${kelas}</li>
-                        <li>Waktu Pengerjaan: ${waktuPengerjaan}</li>
+                        <li>Waktu Pengerjaan: ${waktuPengerjaan} menit</li>
                         <li>Info Soal Ujian: ${infoUjian}</li>
                       </ol>`;
 
@@ -478,7 +476,7 @@ $('#formEditSoal').on('submit', function (e) {
         keterangan, // Keterangan with updated values
         `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-search"></i></button>`,
         `<button class="btn btn-sm btn-info ihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
-        `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
+        `<button class="btn btn-sm btn-secondary editSoalBtn"><i class="fa fa-edit"></i></button>
          <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
     ]).draw();
 

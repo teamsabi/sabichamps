@@ -281,18 +281,18 @@
     </div>
 </div>
 
-<!-- Modal untuk jawaban Essay siswa -->
-<div class="modal fade" id="jawabanEssayModal" tabindex="-1" role="dialog" aria-labelledby="jawabanEssayLabel" aria-hidden="true">
+<!-- Modal Jawaban Essay -->
+<div id="jawabanEssayModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="jawabanEssayLabel">Jawaban Essay</h5>
+                <h5 class="modal-title">Jawaban Essay</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <table id="EssayJawabanTable" class="table table-bordered">
+                <table id="EssayJawabanTable" class="table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -302,29 +302,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data jawaban Essay siswa akan dimuat di sini -->
+                        <!-- Data akan diisi secara dinamis melalui JavaScript -->
                     </tbody>
                 </table>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="siswaID"> <!-- Hidden field to store the siswaID -->
+                <button type="button" class="btn" style="background-color: #D9534F; color: white;" data-dismiss="modal">Batal</button>
+                <button type="button" id="btnSimpanNilai" class="btn" style="background-color: #146E70; color: white;">Simpan</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     $(document).ready(function () {
         // Inisialisasi DataTable
         var table = $('#NilaiTable').DataTable({
             data: [
-                // Contoh data, tambahkan data siswa di sini
-                [1, 'Nama Siswa 1', 'Kelas 10', '85 <button class="btn btn-info btn-sm nilaiPGBtn"><i class="fa fa-check text-white"></i></button>', '90 <button class="btn btn-info btn-sm nilaiEssayBtn"><i class="fa fa-check text-white"></i></button>', 175],
-                [2, 'Nama Siswa 2', 'Kelas 11', '80 <button class="btn btn-info btn-sm nilaiPGBtn"><i class="fa fa-check text-white"></i></button>', '85 <button class="btn btn-info btn-sm nilaiEssayBtn"><i class="fa fa-check text-white"></i></button>', 165]
+                [1, 'Nama Siswa 1', 'Kelas 10', '85', '90', 175],
+                [2, 'Nama Siswa 2', 'Kelas 11', '80', '85', 165]
             ],
             columns: [
                 { title: "No" },
                 { title: "Nama Siswa" },
                 { title: "Kelas" },
-                { title: "Nilai PG" },
-                { title: "Nilai Essay" },
+                { title: "Nilai PG", data: null, render: function (data, type, row) {
+                        return `${data[3]} <button class="btn btn-primary btn-sm nilaiPGBtn"><i class="fa fa-check text-white"></i></button>`;
+                    }
+                },
+                { title: "Nilai Essay", data: null, render: function (data, type, row) {
+                        return `${data[4]} <button class="btn btn-primary btn-sm nilaiEssayBtn"><i class="fa fa-check text-white"></i></button>`;
+                    }
+                },
                 { title: "Jumlah Nilai" }
             ]
         });
@@ -359,11 +370,24 @@
         // Event untuk membuka modal jawaban Essay
         $('#NilaiTable tbody').on('click', '.nilaiEssayBtn', function () {
             var data = table.row($(this).parents('tr')).data();
+            var siswaID = data[0]; // ID siswa untuk mengidentifikasi
+
+            // Simpan siswaID ke modal agar bisa digunakan saat menyimpan
+            $('#siswaID').val(siswaID);
+
             // Load jawaban Essay siswa
-            var jawabanEssay = [
-                [1, 'Soal Essay 1', 'Jawaban siswa 1', `<input type="number" min="0" max="100" class="form-control" placeholder="Beri Nilai">`],
-                [2, 'Soal Essay 2', 'Jawaban siswa 2', `<input type="number" min="0" max="100" class="form-control" placeholder="Beri Nilai">`]
-            ];
+            var jawabanEssay = [];
+            if (siswaID === 1) {
+                jawabanEssay = [
+                    [1, 'Soal Essay 1', 'Jawaban siswa 1', `<input type="number" min="0" max="100" class="form-control" id="nilaiEssay1" placeholder="Beri Nilai">`],
+                    [2, 'Soal Essay 2', 'Jawaban siswa 1', `<input type="number" min="0" max="100" class="form-control" id="nilaiEssay2" placeholder="Beri Nilai">`]
+                ];
+            } else if (siswaID === 2) {
+                jawabanEssay = [
+                    [1, 'Soal Essay 1', 'Jawaban siswa 2', `<input type="number" min="0" max="100" class="form-control" id="nilaiEssay1" placeholder="Beri Nilai">`],
+                    [2, 'Soal Essay 2', 'Jawaban siswa 2', `<input type="number" min="0" max="100" class="form-control" id="nilaiEssay2" placeholder="Beri Nilai">`]
+                ];
+            }
 
             // Masukkan data ke dalam tabel EssayJawabanTable
             var essayTableBody = $('#EssayJawabanTable tbody');
@@ -381,9 +405,45 @@
             // Tampilkan modal jawaban Essay
             $('#jawabanEssayModal').modal('show');
         });
+
+        // Event untuk menyimpan nilai Essay
+        $('#btnSimpanNilai').on('click', function () {
+            var siswaID = $('#siswaID').val(); // Ambil ID siswa dari modal
+
+            // Ambil nilai dari input di modal
+            var nilaiEssay1 = $('#nilaiEssay1').val();
+            var nilaiEssay2 = $('#nilaiEssay2').val();
+
+            // Pastikan nilai diinputkan
+            if (!nilaiEssay1 || !nilaiEssay2) {
+                alert("Nilai essay belum diisi!");
+                return;
+            }
+
+            // Update nilai Essay di tabel
+            var rowData = table.row(function (idx, data, node) {
+                return data[0] == siswaID; // Cari baris berdasarkan siswaID
+            }).data();
+
+            var totalNilaiEssay = (parseInt(nilaiEssay1) + parseInt(nilaiEssay2)) / 2; // Rata-rata nilai Essay
+            rowData[4] = totalNilaiEssay;
+
+            // Update jumlah nilai (menghitung dari nilai PG dan nilai Essay)
+            var nilaiPG = parseInt(rowData[3]);
+            var jumlahNilai = nilaiPG + totalNilaiEssay;
+            rowData[5] = jumlahNilai;
+
+            // Perbarui DataTable
+            table.row(function (idx, data, node) {
+                return data[0] == siswaID;
+            }).data(rowData).draw();
+
+            // Tutup modal
+            $('#jawabanEssayModal').modal('hide');
+        });
+
     });
 </script>
-
 
 <!--**********************************
         Main wrapper end

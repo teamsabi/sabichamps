@@ -12,6 +12,7 @@
     <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -232,66 +233,29 @@
                 </div>
 
     <!-- Button tambah jadwal -->
-    <div class="row mb-3">
-        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 170px;">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addJadwalMengajar">
-                <i class="fa fa-plus"></i> Tambah Jadwal
-            </button>
-        </div>
+<div class="row mb-3">
+    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 170px;">
+        <button class="btn" style="background-color: #146E70; color: white;" data-toggle="modal" data-target="#addJadwalMengajar">
+            <i class="fa fa-plus"></i> Tambah Jadwal
+        </button>
     </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="jadwalTable" class="display" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Hari</th>
-                                    <th>Nama Kelas</th>
-                                    <th>Mata Pelajaran</th>
-                                    <th>Rentang Waktu</th>
-                                    <th>Nama Guru</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Senin</td>
-                                    <td>11 MIPA</td>
-                                    <td>Fisika</td>
-                                    <td>14.00-15.00</td>
-                                    <td>Syaiful Amin</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editJadwalBtn">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </button>
-                                        <button class="btn btn-sm btn-danger deleteJadwalBtn">
-                                            <i class="fa fa-trash"></i> Hapus
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Selasa</td>
-                                    <td>10 IPS</td>
-                                    <td>Matematika</td>
-                                    <td>08.00-09.00</td>
-                                    <td>Ali Muhammad</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editJadwalBtn">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </button>
-                                        <button class="btn btn-sm btn-danger deleteJadwalBtn">
-                                            <i class="fa fa-trash"></i> Hapus
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table id="jadwalTable" class="display" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Hari</th>
+                    <th>Nama Kelas</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Waktu Mulai</th>
+                    <th>Waktu Selesai</th>
+                    <th>Nama Guru</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 
@@ -321,14 +285,18 @@
                         <input type="text" class="form-control" id="mataPelajaran" required>
                     </div>
                     <div class="form-group">
-                        <label for="rentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="rentangWaktu" required>
+                        <label for="startTime">Waktu Mulai</label>
+                        <input type="time" id="startTime" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">Waktu Selesai</label>
+                        <input type="time" id="endTime" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="guru">Nama Guru</label>
                         <input type="text" class="form-control" id="guru" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn" style="background-color: #146E70; color: white;">Tambah</button>
                 </form>
             </div>
         </div>
@@ -346,7 +314,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Form Edit Jadwal -->
                 <form id="formEditJadwal">
                     <div class="form-group">
                         <label for="editHari">Hari</label>
@@ -361,26 +328,27 @@
                         <input type="text" class="form-control" id="editMataPelajaran" required>
                     </div>
                     <div class="form-group">
-                        <label for="editRentangWaktu">Rentang Waktu</label>
-                        <input type="text" class="form-control" id="editRentangWaktu" required>
+                        <label for="editStartTime">Waktu Mulai</label>
+                        <input type="time" id="editStartTime" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEndTime">Waktu Selesai</label>
+                        <input type="time" id="editEndTime" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="editGuru">Nama Guru</label>
                         <input type="text" class="form-control" id="editGuru" required>
                     </div>
                     <input type="hidden" id="editRowIndex">
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <button type="submit" class="btn" style="background-color: #146E70; color: white;">Simpan Perubahan</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
 
 <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
 <script>
-// Fungsi Tambah/Edit Data
 $(document).ready(function () {
     var table = $('#jadwalTable').DataTable();
 
@@ -391,18 +359,21 @@ $(document).ready(function () {
         var hari = $('#hari').val();
         var kelas = $('#kelas').val();
         var mataPelajaran = $('#mataPelajaran').val();
-        var rentangWaktu = $('#rentangWaktu').val();
+        var waktuMulai = $('#startTime').val();
+        var waktuSelesai = $('#endTime').val();
         var guru = $('#guru').val();
 
+        // Tambahkan data ke dalam tabel
         table.row.add([
-            table.rows().count() + 1,
+            table.rows().count() + 1, 
             hari,
             kelas,
             mataPelajaran,
-            rentangWaktu,
+            waktuMulai,
+            waktuSelesai,
             guru,
-            `<button class="btn btn-sm btn-primary editJadwalBtn"><i class="fa fa-edit"></i> Edit</button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> Hapus</button>`
+            `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
+             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
         ]).draw(false);
 
         $('#addJadwalMengajar').modal('hide');
@@ -416,8 +387,9 @@ $(document).ready(function () {
         $('#editHari').val(data[1]);
         $('#editKelas').val(data[2]);
         $('#editMataPelajaran').val(data[3]);
-        $('#editRentangWaktu').val(data[4]);
-        $('#editGuru').val(data[5]);
+        $('#editStartTime').val(data[4]); // Waktu Mulai
+        $('#editEndTime').val(data[5]); // Waktu Selesai
+        $('#editGuru').val(data[6]);
         $('#editRowIndex').val(table.row($(this).parents('tr')).index());
 
         $('#editJadwalMengajar').modal('show');
@@ -428,26 +400,57 @@ $(document).ready(function () {
         e.preventDefault();
 
         var rowIndex = $('#editRowIndex').val();
+        var waktuMulai = $('#editStartTime').val(); // Ambil waktu mulai dari form edit
+        var waktuSelesai = $('#editEndTime').val(); // Ambil waktu selesai dari form edit
+
+        // Update data pada tabel
         table.row(rowIndex).data([
-            rowIndex + 1,
+            parseInt(rowIndex) + 1, // Nomor urut otomatis
             $('#editHari').val(),
             $('#editKelas').val(),
             $('#editMataPelajaran').val(),
-            $('#editRentangWaktu').val(),
+            waktuMulai,
+            waktuSelesai,
             $('#editGuru').val(),
-            `<button class="btn btn-sm btn-primary editJadwalBtn"><i class="fa fa-edit"></i> Edit</button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> Hapus</button>`
+            `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
+             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
         ]).draw();
 
+        // Menutup modal dan mereset form
         $('#editJadwalMengajar').modal('hide');
         $('#formEditJadwal')[0].reset();
     });
 
-    // Hapus Jadwal
+    // Hapus Jadwal dengan Konfirmasi
     $('#jadwalTable tbody').on('click', '.deleteJadwalBtn', function () {
-        table.row($(this).parents('tr')).remove().draw();
+        var row = $(this).parents('tr');
+
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: "Anda yakin ingin menghapus jadwal ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                table.row(row).remove().draw();
+                Swal.fire(
+                    'Dihapus!',
+                    'Jadwal berhasil dihapus.',
+                    'success'
+                );
+            }
+        });
     });
 });
+</script>
+
+
+
+
 
 </script>
 

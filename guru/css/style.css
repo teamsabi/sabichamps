@@ -233,6 +233,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --danger: #FF1616;
   --light: #f8f9fa;
   --dark: #454545;
+  --hijau: #146E70;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -2025,8 +2026,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #593bdb;
-  border-color: #593bdb; }
+  background-color: #296ce9;
+  border-color: #296ce9; }
   .btn-primary:hover {
     color: #fff;
     background-color: #4425cb;
@@ -2094,8 +2095,8 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #212529;
-  background-color: #229799;
-  border-color: #229799; }
+  background-color: #146E70;
+  border-color: #146E70; }
   .btn-info:hover {
     color: #212529;
     background-color: #2fdeb7;
@@ -8148,7 +8149,7 @@ a {
   z-index: 999; }
 
 .hamburger .line {
-  background: #593bdb;
+  background: #146E70;
   display: block;
   height: 2px;
   margin-top: 6px;
@@ -11554,7 +11555,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_2"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_3"] .header {
@@ -11581,7 +11582,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_3"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_4"] .header {
@@ -11608,7 +11609,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_4"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_5"] .header {
@@ -11635,7 +11636,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_5"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_6"] .header {
@@ -11662,7 +11663,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_6"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_7"] .header {
@@ -11689,7 +11690,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_7"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_8"] .header {
@@ -11716,7 +11717,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_8"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_9"] .header {
@@ -11743,7 +11744,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_9"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-headerbg="color_10"] .header {
@@ -11770,7 +11771,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   color: #fff; }
 
 [data-headerbg="color_10"] .nav-control {
-  background-color: #229799;
+  background-color: #146E70;
   color: #fff; }
 
 [data-sibebarbg="color_2"] .quixnav {
@@ -15095,7 +15096,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   .page-titles h4 {
     margin-bottom: 0;
     margin-top: 0;
-    color: #593bdb;
+    color: #146E70;
     font-size: 1.25rem; }
     .page-titles h4 span {
       font-size: 0.875rem;
@@ -15452,7 +15453,17 @@ button {
   .card-title {
     font-size: 16px;
     font-weight: 500;
-    color: #454545;
+    color: #<div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="stat-widget-one card-body">
+            <div class="stat-icon d-inline-block">
+                <i class="ti-clipboard text-pink border-pink"></i>
+            </div>
+            <div class="stat-content d-inline-block">
+                <div class="stat-text">Kelas</div>
+                <div class="stat-digit">3</div>
+            </div>
+        </div>;
     text-transform: capitalize;
     letter-spacing: 0.05em; }
     .card-title--large {
