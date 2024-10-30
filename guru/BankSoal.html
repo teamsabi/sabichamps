@@ -477,7 +477,7 @@ $('#formEditSoal').on('submit', function (e) {
         namaUjian, // Nama Ujian
         keterangan, // Keterangan with updated values
         `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-search"></i></button>`,
-        `<button class="btn btn-sm btn-info lihatSoalBtn"><i class="fa fa-graduation-cap"></i></button>`,
+        `<button class="btn btn-sm btn-info ihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
         `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
          <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
     ]).draw();
@@ -505,13 +505,18 @@ $('#SoalTable tbody').on('click', '.buatSoalBtn', function () {
     $('#buatSoal').modal('show');
 });
 
-
-
         // Hapus Soal
         $('#SoalTable tbody').on('click', '.deleteSoalBtn', function () {
             table.row($(this).parents('tr')).remove().draw();
         });
     });
+
+    // Tambahkan fungsi untuk menangani klik pada tombol "Lihat Telah Ujian"
+    $('#SoalTable tbody').on('click', '.lihatTelahUjianBtn', function () {
+    // Mengarahkan ke halaman TelahMengerjakan.html
+    window.location.href = "TelahMengerjakan.html";
+    });
+
 </script>
 </div>
 </div>

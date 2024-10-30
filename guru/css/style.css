@@ -246,7 +246,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .buatSoalBtn i,
 .editSoalBtn i,
 .deleteSoalBtn i,
-.lihatTelahUjianBtn i {
+.lihatTelahUjianBtn i,
+.nilaiPGBtn,
+.nilaiEssayBtn {
     color: white !important;  
 }
   
@@ -10361,7 +10363,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       .quixnav .metismenu > li > a {
         color: #bdbdc7; }
       .quixnav .metismenu > li:hover > a, .quixnav .metismenu > li:focus > a, .quixnav .metismenu > li.mm-active > a {
-        background-color: #6b51df;
+        background-color: rgba(66, 66, 66, 50%);
         color: #fff; }
       .quixnav .metismenu > li.mm-active ul {
         background-color: rgba(88, 115, 254, 0.04); }
