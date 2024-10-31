@@ -218,7 +218,7 @@
                     </div>
                 </div>
 
-                <!-- Include DataTables CSS & JS -->
+<!-- Include DataTables CSS & JS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -376,9 +376,9 @@
                 <p class="text-center">Pilih jenis soal yang ingin Anda buat:</p>
                 <div class="text-center">
                     <!-- Tombol untuk mengarahkan ke halaman pembuatan soal pilihan ganda -->
-                    <a href="SoalPilgan.html" class="btn btn-primary">Soal Pilihan Ganda</a>
+                    <a href="SoalPilgan.html" class="btn" style="background-color: #ff9900; color: white;">Soal Pilihan Ganda</a>
                     <!-- Tombol untuk mengarahkan ke halaman pembuatan soal essay -->
-                    <a href="SoalEssay.html" class="btn btn-secondary">Soal Essay</a>
+                    <a href="SoalEssay.html" class="btn" style="background-color: #0f6e6a; color: white;">Soal Essay</a>
                 </div>
             </div>
         </div>
@@ -387,22 +387,19 @@
 
 <!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
 <script>
-                $(document).ready(function () {
-    // Inisialisasi DataTable dan simpan di variabel 'table'
+    $(document).ready(function () {
     var table = $('#SoalTable').DataTable();
 
-    // Tambah Soal - Form submission handler
+    // Event handler untuk tombol "Tambah Soal/Ujian"
     $('#formTambahSoal').on('submit', function (e) {
-        e.preventDefault(); // Mencegah submit form bawaan
+        e.preventDefault();
 
-        // Ambil nilai input dari form
         var namaUjian = $('#namaUjian').val();
         var mataPelajaran = $('#mataPelajaran').val();
         var kelas = $('#kelas').val();
         var waktuPengerjaan = $('#waktuPengerjaan').val();
         var infoUjian = $('#infoUjian').val();
 
-        // Format keterangan dalam HTML list
         var keterangan = `<ol>
                             <li>Pelajaran: ${mataPelajaran}</li>
                             <li>Kelas: ${kelas}</li>
@@ -410,18 +407,16 @@
                             <li>Info Soal Ujian: ${infoUjian}</li>
                           </ol>`;
 
-        // Tambah data ke dalam tabel DataTable
         table.row.add([
             table.rows().count() + 1,
             namaUjian,
             keterangan,
             `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-file-text"></i></button>`,
-            `<button class="btn btn-sm btn-info lihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
+            `<button class="btn btn-sm btn-success lihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
             `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
              <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
         ]).draw();
 
-        // Tampilkan SweetAlert untuk konfirmasi sukses
         Swal.fire({
             icon: 'success',
             title: 'Soal berhasil ditambahkan',
@@ -429,9 +424,24 @@
             timer: 1500
         });
 
-        // Tutup modal dan reset form
         $('#addSoal').modal('hide');
         $('#formTambahSoal')[0].reset();
+    });
+
+    // Event handler untuk tombol "Telah Mengerjakan"
+    $('#SoalTable tbody').on('click', '.lihatTelahUjianBtn', function () {
+        window.location.href = "TelahMengerjakan.html";  // Mengarahkan ke halaman baru
+    });
+
+    // Tampilkan modal "Buat Soal" dengan informasi dari DataTable
+    $('#SoalTable tbody').on('click', '.buatSoalBtn', function () {
+        var row = table.row($(this).parents('tr'));
+        var data = row.data();
+
+        $('#namaSoal').text(data[1]);
+        $('#keteranganSoal').html(data[2]);
+
+        $('#buatSoal').modal('show');
     });
 
     // Fungsi Edit Soal
@@ -439,14 +449,12 @@
         var row = table.row($(this).parents('tr'));
         var data = row.data();
 
-        // Tampilkan data di modal edit
         $('#editNamaSoal').val(data[1]);
         $('#editMapel').val($(data[2]).find('li:nth-child(1)').text().replace('Pelajaran: ', ''));
         $('#editKelas').val($(data[2]).find('li:nth-child(2)').text().replace('Kelas: ', ''));
         $('#editWaktu').val($(data[2]).find('li:nth-child(3)').text().replace('Waktu Pengerjaan: ', '').replace(' menit', ''));
         $('#editInfo').val($(data[2]).find('li:nth-child(4)').text().replace('Info Soal Ujian: ', ''));
-        
-        // Simpan perubahan
+
         $('#formEditSoal').off('submit').on('submit', function (e) {
             e.preventDefault();
             row.data([
@@ -463,7 +471,6 @@
                 data[5]
             ]).draw(false);
 
-            // Tampilkan notifikasi sukses
             Swal.fire({
                 icon: 'success',
                 title: 'Data berhasil diperbarui',
@@ -471,11 +478,9 @@
                 timer: 1500
             });
 
-            // Tutup modal
             $('#editSoal').modal('hide');
         });
 
-        // Tampilkan modal edit
         $('#editSoal').modal('show');
     });
 
@@ -483,7 +488,6 @@
     $('#SoalTable tbody').on('click', '.deleteSoalBtn', function () {
         var row = table.row($(this).parents('tr'));
 
-        // Konfirmasi hapus
         Swal.fire({
             title: 'Apakah Anda yakin?',
             text: 'Data ini akan dihapus!',

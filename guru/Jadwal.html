@@ -347,113 +347,121 @@
     </div>
 </div>
 
-<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
 <script>
-$(document).ready(function () {
-    var table = $('#jadwalTable').DataTable();
-
-    // Tambah Jadwal
-    $('#formAddJadwal').on('submit', function (e) {
-        e.preventDefault();
-
-        var hari = $('#hari').val();
-        var kelas = $('#kelas').val();
-        var mataPelajaran = $('#mataPelajaran').val();
-        var waktuMulai = $('#startTime').val();
-        var waktuSelesai = $('#endTime').val();
-        var guru = $('#guru').val();
-
-        // Tambahkan data ke dalam tabel
-        table.row.add([
-            table.rows().count() + 1, 
-            hari,
-            kelas,
-            mataPelajaran,
-            waktuMulai,
-            waktuSelesai,
-            guru,
-            `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
-        ]).draw(false);
-
-        $('#addJadwalMengajar').modal('hide');
-        $('#formAddJadwal')[0].reset();
-    });
-
-    // Edit Jadwal
-    $('#jadwalTable tbody').on('click', '.editJadwalBtn', function () {
-        var data = table.row($(this).parents('tr')).data();
-
-        $('#editHari').val(data[1]);
-        $('#editKelas').val(data[2]);
-        $('#editMataPelajaran').val(data[3]);
-        $('#editStartTime').val(data[4]); // Waktu Mulai
-        $('#editEndTime').val(data[5]); // Waktu Selesai
-        $('#editGuru').val(data[6]);
-        $('#editRowIndex').val(table.row($(this).parents('tr')).index());
-
-        $('#editJadwalMengajar').modal('show');
-    });
-
-    // Update Jadwal
-    $('#formEditJadwal').on('submit', function (e) {
-        e.preventDefault();
-
-        var rowIndex = $('#editRowIndex').val();
-        var waktuMulai = $('#editStartTime').val(); // Ambil waktu mulai dari form edit
-        var waktuSelesai = $('#editEndTime').val(); // Ambil waktu selesai dari form edit
-
-        // Update data pada tabel
-        table.row(rowIndex).data([
-            parseInt(rowIndex) + 1, // Nomor urut otomatis
-            $('#editHari').val(),
-            $('#editKelas').val(),
-            $('#editMataPelajaran').val(),
-            waktuMulai,
-            waktuSelesai,
-            $('#editGuru').val(),
-            `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
-             <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
-        ]).draw();
-
-        // Menutup modal dan mereset form
-        $('#editJadwalMengajar').modal('hide');
-        $('#formEditJadwal')[0].reset();
-    });
-
-    // Hapus Jadwal dengan Konfirmasi
-    $('#jadwalTable tbody').on('click', '.deleteJadwalBtn', function () {
-        var row = $(this).parents('tr');
-
-        Swal.fire({
-            title: 'Konfirmasi Hapus',
-            text: "Anda yakin ingin menghapus jadwal ini?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Hapus',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                table.row(row).remove().draw();
-                Swal.fire(
-                    'Dihapus!',
-                    'Jadwal berhasil dihapus.',
-                    'success'
-                );
-            }
+    $(document).ready(function () {
+        var table = $('#jadwalTable').DataTable();
+    
+        // Tambah Jadwal - Notifikasi setelah tambah jadwal
+        $('#formAddJadwal').on('submit', function (e) {
+            e.preventDefault();
+    
+            var hari = $('#hari').val();
+            var kelas = $('#kelas').val();
+            var mataPelajaran = $('#mataPelajaran').val();
+            var waktuMulai = $('#startTime').val();
+            var waktuSelesai = $('#endTime').val();
+            var guru = $('#guru').val();
+    
+            // Tambahkan data ke dalam tabel
+            table.row.add([
+                table.rows().count() + 1, 
+                hari,
+                kelas,
+                mataPelajaran,
+                waktuMulai,
+                waktuSelesai,
+                guru,
+                `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
+                 <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
+            ]).draw(false);
+    
+            // Notifikasi sukses
+            Swal.fire({
+                icon: 'success',
+                title: 'Jadwal berhasil ditambahkan',
+                showConfirmButton: false,
+                timer: 1500
+            });
+    
+            $('#addJadwalMengajar').modal('hide');
+            $('#formAddJadwal')[0].reset();
+        });
+    
+        // Edit Jadwal
+        $('#jadwalTable tbody').on('click', '.editJadwalBtn', function () {
+            var data = table.row($(this).parents('tr')).data();
+    
+            $('#editHari').val(data[1]);
+            $('#editKelas').val(data[2]);
+            $('#editMataPelajaran').val(data[3]);
+            $('#editStartTime').val(data[4]); // Waktu Mulai
+            $('#editEndTime').val(data[5]); // Waktu Selesai
+            $('#editGuru').val(data[6]);
+            $('#editRowIndex').val(table.row($(this).parents('tr')).index());
+    
+            $('#editJadwalMengajar').modal('show');
+        });
+    
+        // Update Jadwal - Notifikasi setelah simpan perubahan
+        $('#formEditJadwal').on('submit', function (e) {
+            e.preventDefault();
+    
+            var rowIndex = $('#editRowIndex').val();
+            var waktuMulai = $('#editStartTime').val();
+            var waktuSelesai = $('#editEndTime').val();
+    
+            // Update data pada tabel
+            table.row(rowIndex).data([
+                parseInt(rowIndex) + 1, // Nomor urut otomatis
+                $('#editHari').val(),
+                $('#editKelas').val(),
+                $('#editMataPelajaran').val(),
+                waktuMulai,
+                waktuSelesai,
+                $('#editGuru').val(),
+                `<button class="btn btn-sm btn-secondary editJadwalBtn"><i class="fa fa-edit"></i> </button>
+                 <button class="btn btn-sm btn-danger deleteJadwalBtn"><i class="fa fa-trash"></i> </button>`
+            ]).draw();
+    
+            // Menampilkan notifikasi setelah update
+            Swal.fire({
+                icon: 'success',
+                title: 'Jadwal berhasil diperbarui',
+                showConfirmButton: false,
+                timer: 1500
+            });
+    
+            $('#editJadwalMengajar').modal('hide');
+            $('#formEditJadwal')[0].reset();
+        });
+    
+        // Hapus Jadwal dengan Konfirmasi
+        $('#jadwalTable tbody').on('click', '.deleteJadwalBtn', function () {
+            var row = $(this).parents('tr');
+    
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: "Anda yakin ingin menghapus jadwal ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    table.row(row).remove().draw();
+                    Swal.fire(
+                        'Dihapus!',
+                        'Jadwal berhasil dihapus.',
+                        'success'
+                    );
+                }
+            });
         });
     });
-});
-</script>
-
-
-
-
-
-</script>
-
+    </script>
+    
         <!--**********************************
                 Content body end
             ***********************************-->
