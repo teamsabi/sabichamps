@@ -249,7 +249,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .deleteSoalBtn i,
 .lihatTelahUjianBtn i,
 .nilaiPGBtn,
-.nilaiEssayBtn {
+.nilaiEssayBtn,
+.viewKelasBtn {
     color: white !important;  
 }
   
