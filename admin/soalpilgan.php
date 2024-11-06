@@ -6,18 +6,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Sabi - Bank Soal </title>
+    <title>SABI - Buat Soal PG</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
+    <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
+    <!--Preloader start-->
     <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
@@ -32,7 +31,7 @@
     <div id="main-wrapper">
 
         <!--Nav header start-->
-        <?php include "layout/nav-header.html"?>  
+        <?php include "layout/nav-header.html"?>
         <!--Nav header end-->
 
         <!--Header start-->
@@ -45,15 +44,14 @@
 
         <!--Content body start-->
         <div class="content-body">
-        <?php include "layout-banksoal/accordion.html"?>
+        <?php include "layout-pilgan/accordion.html"?>
         </div>
-        <!--Content body end*-->
+        <!--Content body end-->
 
 
         <!--Footer start-->
         <?php include "layout/footer.html"?>
         <!--Footer end-->
-
     </div>
     <!--Main wrapper end-->
 
@@ -62,13 +60,16 @@
     <script src="./vendor/global/global.min.js"></script>
     <script src="./js/quixnav-init.js"></script>
     <script src="./js/custom.min.js"></script>
+    
 
-    <script src="./vendor/highlightjs/highlight.pack.min.js"></script>
-    <!-- Circle progress -->
+    <!-- Summernote -->
+    <script src="./vendor/summernote/js/summernote.min.js"></script>
+    <!-- Summernote init -->
+    <script src="./js/plugins-init/summernote-init.js"></script>
 
-     <!-- Datatable -->
-     <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
-     <script src="./js/plugins-init/datatables.init.js"></script>
+    <!-- Datatable -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./js/plugins-init/datatables.init.js"></script>
 
 </body>
 
