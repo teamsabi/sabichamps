@@ -232,7 +232,7 @@
                 <!-- Button tambah kelas -->
                 <div class="row mb-3">
                     <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#addDataKelas">
+                        <button class="btn" style="background-color: #146E70; color: white;" data-toggle="modal" data-target="#addDataKelas">
                             <i class="fa fa-plus"></i> Tambah Kelas
                         </button>
                     </div>
@@ -279,7 +279,7 @@
                         <label for="jumlahSiswa">Jumlah Siswa</label>
                         <input type="number" class="form-control" id="jumlahSiswa" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn" style="background-color: #146E70; color: white;">Tambah</button>
                 </form>
             </div>
         </div>
@@ -331,9 +331,9 @@
                 table.rows().count() + 1,
                 kelasNama,
                 jumlahSiswa,
-                `<button class="btn btn-sm btn-primary editKelasBtn"><i class="fa fa-edit"></i> Edit</button>
-                 <button class="btn btn-sm btn-danger deleteKelasBtn"><i class="fa fa-trash"></i> Hapus</button>
-                 <button class="btn btn-sm btn-info viewKelasBtn" data-kelas="${kelasNama}"><i class="fa fa-eye"></i> Lihat Kelas</button>`
+                `<button class="btn btn-sm btn-primary editKelasBtn"><i class="fa fa-edit"></i></button>
+                 <button class="btn btn-sm btn-danger deleteKelasBtn"><i class="fa fa-trash"></i></button>
+                 <button class="btn btn-sm btn-warning viewKelasBtn" data-kelas="${kelasNama}"><i class="fa fa-eye"></i></button>`
             ]).draw();
 
             $('#addDataKelas').modal('hide');
