@@ -1,0 +1,1 @@
+{"version":1,"defects":{"AuthTest::testRegisterSuccess":7,"AuthTest::testLoginSuccess":7,"AuthTest::testLoginFailure":7},"times":{"AuthTest::testRegisterSuccess":0,"AuthTest::testLoginSuccess":0,"AuthTest::testLoginFailure":0}}
