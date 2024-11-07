@@ -3,7 +3,7 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Hi, Syaiful!</h4>
+                    <h4>Hi, <?php echo htmlspecialchars($username); ?>!</h4>
                     <p class="mb-0">Admin</p>
                 </div>
             </div>

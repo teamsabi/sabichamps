@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Jika pengguna belum login, arahkan ke halaman login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Dapatkan username dari sesi
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -42,7 +55,7 @@
         <!--Sidebar end-->
 
         <!--Content body start-->
-        <?php include "layout/content-body.html"?>
+        <?php include "layout/content-body.php"?>
         <!--Content body end-->
 
         <!--Footer start-->

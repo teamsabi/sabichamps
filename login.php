@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Coba login dengan kelas Auth
     if ($auth->login($email, $password)) {
         // Jika berhasil, arahkan ke dashboard
-        header("Location: dashboard.php");
+        header("Location: admin/dashboard.php");
         exit();
     } else {
         // Jika gagal, simpan pesan error
