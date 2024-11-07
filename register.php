@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
     <div class="register-card">
-        <img src="assets/img/user.png" alt="User Icon">
+        <img src="assets2/img/user.png" alt="User Icon">
         <h2>Register</h2>
         
         <!-- Menampilkan pesan error jika registrasi gagal -->

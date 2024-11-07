@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <div class="login-card">
-        <img src="assets/img/user.png" alt="User Icon">
+        <img src="assets2/img/user.png" alt="User Icon">
         <h2>Login</h2>
         <!-- Menampilkan pesan error jika login gagal -->
         <?php if (!empty($error)): ?>
