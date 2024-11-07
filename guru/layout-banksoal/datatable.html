@@ -1,0 +1,292 @@
+<!-- Include DataTables CSS & JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container">
+    <!-- Table Soal/Ujian -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Bank Soal</h4>
+                </div>
+
+                <!-- Button tambah soal -->
+                <div class="row mb-3">
+                    <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 110px;">
+                        <button class="btn" style="background-color: #146E70; color: white;" data-toggle="modal" data-target="#addSoal">
+                            <i class="fa fa-plus"></i> Tambah Soal/Ujian
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="SoalTable" class="display" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Soal Ujian</th>
+                                    <th>Keterangan</th>
+                                    <th>Buat Soal</th>
+                                    <th>Telah Mengerjakan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data Dummy -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tambah Soal/Ujian -->
+<div class="modal fade" id="addSoal" tabindex="-1" role="dialog" aria-labelledby="modalSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tambah Soal/Ujian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formTambahSoal">
+                    <div class="form-group">
+                        <label for="namaUjian">Nama Soal Ujian</label>
+                        <input type="text" class="form-control" id="namaUjian" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mataPelajaran">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="mataPelajaran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" class="form-control" id="kelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="waktuPengerjaan">Waktu Pengerjaan (dalam menit)</label>
+                        <input type="number" class="form-control" id="waktuPengerjaan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="infoUjian">Info Soal Ujian</label>
+                        <input type="text" class="form-control" id="infoUjian" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #d9534f; color: white;" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn" style="background-color: #146E70; color: white;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Soal/Ujian -->
+<div class="modal fade" id="editSoal" tabindex="-1" role="dialog" aria-labelledby="editSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-white text-white">
+                <h5 class="modal-title" id="editSoalLabel">Edit Soal/Ujian</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Edit Soal/Ujian -->
+                <form id="formEditSoal">
+                    <div class="form-group">
+                        <label for="editNamaSoal">Nama Soal Ujian</label>
+                        <input type="text" class="form-control" id="editNamaSoal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMapel">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="editMapel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editKelas">Kelas</label>
+                        <input type="text" class="form-control" id="editKelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWaktu">Waktu Pengerjaan (dalam menit)</label>
+                        <input type="number" class="form-control" id="editWaktu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editInfo">Info Soal Ujian</label>
+                        <input type="text" class="form-control" id="editInfo" required>
+                    </div>
+                    <input type="hidden" id="editRowIndex">
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #D9534F; color: white;" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn" style="background-color: #146E70; color: white;">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Buat Soal -->
+<div class="modal fade" id="buatSoal" tabindex="-1" role="dialog" aria-labelledby="buatSoalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="buatSoalLabel">Buat Soal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Keterangan soal akan ditampilkan di sini -->
+                <div class="mb-3">
+                    <h6>Nama Soal Ujian:</h6>
+                    <div id="namaSoal"></div>
+                </div>
+                <div class="mb-3">
+                    <h6>Keterangan Soal:</h6>
+                    <div id="keteranganSoal"></div>
+                </div>
+                
+                <p class="text-center">Pilih jenis soal yang ingin Anda buat:</p>
+                <div class="text-center">
+                    <!-- Tombol untuk mengarahkan ke halaman pembuatan soal pilihan ganda -->
+                    <a href="SoalPilgan.html" class="btn" style="background-color: #ff9900; color: white;">Soal Pilihan Ganda</a>
+                    <!-- Tombol untuk mengarahkan ke halaman pembuatan soal essay -->
+                    <a href="SoalEssay.html" class="btn" style="background-color: #0f6e6a; color: white;">Soal Essay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript untuk SweetAlert2 dan Fungsi Form -->
+<script>
+    $(document).ready(function () {
+    var table = $('#SoalTable').DataTable();
+
+    // Event handler untuk tombol "Tambah Soal/Ujian"
+    $('#formTambahSoal').on('submit', function (e) {
+        e.preventDefault();
+
+        var namaUjian = $('#namaUjian').val();
+        var mataPelajaran = $('#mataPelajaran').val();
+        var kelas = $('#kelas').val();
+        var waktuPengerjaan = $('#waktuPengerjaan').val();
+        var infoUjian = $('#infoUjian').val();
+
+        var keterangan = `<ol>
+                            <li>Pelajaran: ${mataPelajaran}</li>
+                            <li>Kelas: ${kelas}</li>
+                            <li>Waktu Pengerjaan: ${waktuPengerjaan} menit</li>
+                            <li>Info Soal Ujian: ${infoUjian}</li>
+                          </ol>`;
+
+        table.row.add([
+            table.rows().count() + 1,
+            namaUjian,
+            keterangan,
+            `<button class="btn btn-sm btn-warning buatSoalBtn"><i class="fa fa-file-text"></i></button>`,
+            `<button class="btn btn-sm btn-success lihatTelahUjianBtn"><i class="fa fa-graduation-cap"></i></button>`,
+            `<button class="btn btn-sm btn-primary editSoalBtn"><i class="fa fa-edit"></i></button>
+             <button class="btn btn-sm btn-danger deleteSoalBtn"><i class="fa fa-trash"></i></button>`
+        ]).draw();
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Soal berhasil ditambahkan',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        $('#addSoal').modal('hide');
+        $('#formTambahSoal')[0].reset();
+    });
+
+    // Event handler untuk tombol "Telah Mengerjakan"
+    $('#SoalTable tbody').on('click', '.lihatTelahUjianBtn', function () {
+        window.location.href = "TelahMengerjakan.html";  // Mengarahkan ke halaman baru
+    });
+
+    // Tampilkan modal "Buat Soal" dengan informasi dari DataTable
+    $('#SoalTable tbody').on('click', '.buatSoalBtn', function () {
+        var row = table.row($(this).parents('tr'));
+        var data = row.data();
+
+        $('#namaSoal').text(data[1]);
+        $('#keteranganSoal').html(data[2]);
+
+        $('#buatSoal').modal('show');
+    });
+
+    // Fungsi Edit Soal
+    $('#SoalTable tbody').on('click', '.editSoalBtn', function () {
+        var row = table.row($(this).parents('tr'));
+        var data = row.data();
+
+        $('#editNamaSoal').val(data[1]);
+        $('#editMapel').val($(data[2]).find('li:nth-child(1)').text().replace('Pelajaran: ', ''));
+        $('#editKelas').val($(data[2]).find('li:nth-child(2)').text().replace('Kelas: ', ''));
+        $('#editWaktu').val($(data[2]).find('li:nth-child(3)').text().replace('Waktu Pengerjaan: ', '').replace(' menit', ''));
+        $('#editInfo').val($(data[2]).find('li:nth-child(4)').text().replace('Info Soal Ujian: ', ''));
+
+        $('#formEditSoal').off('submit').on('submit', function (e) {
+            e.preventDefault();
+            row.data([
+                data[0],
+                $('#editNamaSoal').val(),
+                `<ol>
+                    <li>Pelajaran: ${$('#editMapel').val()}</li>
+                    <li>Kelas: ${$('#editKelas').val()}</li>
+                    <li>Waktu Pengerjaan: ${$('#editWaktu').val()} menit</li>
+                    <li>Info Soal Ujian: ${$('#editInfo').val()}</li>
+                </ol>`,
+                data[3],
+                data[4],
+                data[5]
+            ]).draw(false);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Data berhasil diperbarui',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            $('#editSoal').modal('hide');
+        });
+
+        $('#editSoal').modal('show');
+    });
+
+    // Fungsi Hapus Soal
+    $('#SoalTable tbody').on('click', '.deleteSoalBtn', function () {
+        var row = table.row($(this).parents('tr'));
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Data ini akan dihapus!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                row.remove().draw();
+
+                Swal.fire(
+                    'Dihapus!',
+                    'Data berhasil dihapus.',
+                    'success'
+                );
+            }
+        });
+    });
+});
+</script>
