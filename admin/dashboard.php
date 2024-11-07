@@ -26,7 +26,6 @@ $username = $_SESSION['username'];
     <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
 </head>
-
 <body>
 
     <!--Preloader start-->
