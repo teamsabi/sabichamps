@@ -71,10 +71,10 @@
                                                     <?php echo $result['created_at']; ?>
                                                 </td>
                                                 <td>
-                                                <a href="kelola.php?ubah=1" type="button" class="btn btn-success btn-sm">
+                                                <a href="kelola.php?ubah=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-success btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="proses.php?hapus=1" type="button" class="btn btn-danger btn-sm">
+                                                <a href="proses.php?hapus=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                                 </td>

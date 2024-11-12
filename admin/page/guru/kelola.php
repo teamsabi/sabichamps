@@ -16,13 +16,13 @@ require_once '../../layout/top.php';
                                                                 <div class="form-group row">
                                                                         <label for="namaguru" class="col-sm-3 col-form-label">Nama Guru</label>
                                                                         <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru">
+                                                                                <input type="text" name = "nama_guru" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="emailguru" class="col-sm-3 col-form-label">Email</label>
                                                                         <div class="col-sm-9">
-                                                                                <input type="email" class="form-control" id="emailguru" placeholder="Masukkan Email">
+                                                                                <input type="email" name="email_guru" class="form-control" id="emailguru" placeholder="Masukkan Email">
                                                                         </div>
                                                                 </div>
                                                                 <!-- <div class="form-group row">
@@ -41,7 +41,7 @@ require_once '../../layout/top.php';
                                                                 <div class="form-group row">
                                                                         <label for="jkel" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                                         <div class="col-sm-9">
-                                                                                <select id="jkel" class="form-control">
+                                                                                <select id="jkel" name="jenis_kelamin" class="form-control">
                                                                                 <option selected>Jenis Kelamin</option>
                                                                                 <option value="Laki-Laki">Laki-Laki</option>
                                                                                 <option value="Perempuan">Perempuan</option>
@@ -51,19 +51,19 @@ require_once '../../layout/top.php';
                                                                 <div class="form-group row">
                                                                         <label for="fotoguru" class="col-sm-3 col-form-label">Foto Profil</label>
                                                                         <div class="col-sm-9">
-                                                                                <input type="file" class="form-control-file" id="fotoguru">
+                                                                                <input type="file" name="foto_guru" class="form-control-file" id="fotoguru">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="teleponguru" class="col-sm-3 col-form-label">Telepon</label>
                                                                         <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon">
+                                                                                <input type="text" name="telepon_guru" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="alamatguru" class="col-sm-3 col-form-label">Alamat</label>
                                                                         <div class="col-sm-9">
-                                                                                <textarea class="form-control" id="alamatguru" rows="3" placeholder="Masukkan Alamat"></textarea>
+                                                                                <textarea class="form-control" name="alamat_guru" id="alamatguru" rows="3" placeholder="Masukkan Alamat"></textarea>
                                                                         </div>
                                                                 </div>
                                                         </div>
