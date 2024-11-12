@@ -19,13 +19,24 @@ $username = $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SABI</title>
+    <title>SABI - Sahabat Bimbel</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/logosabi.png">
-    <link href="./vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
-    <link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+    <link href="../../vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="../../vendor/chartist/css/chartist.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap 5 -->
+    <link href="../../css/bootstrap.min.css">
+    <script src="../../js/bootstrap.min.js"></script>
+    
+
+
 </head>
+
 <body>
 
     <!--Preloader start-->
@@ -41,3 +52,8 @@ $username = $_SESSION['username'];
 
     <!--Main wrapper start-->
     <div id="main-wrapper">
+        <?php
+        require_once 'navheader.php';
+        require_once 'header.php';
+        require_once 'sidebar.php';
+         ?>

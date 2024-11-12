@@ -2075,11 +2075,11 @@ fieldset:disabled a.btn {
   .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
   .show > .btn-success.dropdown-toggle {
     color: #fff;
-    background-color: #64a71a;
-    border-color: #5d9c18; }
+    background-color: #229799;
+    border-color: #229799; }
     .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
     .show > .btn-success.dropdown-toggle:focus {
-      box-shadow: 0 0 0 0.2rem rgba(112, 185, 34, 0.5); }
+      box-shadow: 0 0 0 0.2rem rgba(34, 151, 153, 100%); }
 
 .btn-info {
   color: #212529;
