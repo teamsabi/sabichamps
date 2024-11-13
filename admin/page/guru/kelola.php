@@ -1,5 +1,29 @@
 <?php
 require_once '../../layout/top.php';
+require_once '../../helper/conek.php';
+
+$kode_guru = '';
+$nama_guru = '';
+$email = '';
+$jenis_kelamin = '';
+$telepon = '';
+$alamat = '';
+
+if(isset($_GET['ubah'])){
+        $kode_guru = $_GET['ubah'];
+
+        $query = "SELECT * FROM guru WHERE kode_guru = '$kode_guru';";
+        $sql = mysqli_query($conn, $query);
+
+        $result = mysqli_fetch_assoc($sql);
+
+        $nama_guru = $result['nama_guru'];
+        $email = $result['email'];
+        $jenis_kelamin = $result['jenis_kelamin'];
+        $telepon = $result['telepon'];
+        $alamat = $result['alamat'];
+}
+
  ?>
 
         <!--Content body start-->
@@ -16,33 +40,20 @@ require_once '../../layout/top.php';
                                                                 <div class="form-group row">
                                                                         <label for="namaguru" class="col-sm-3 col-form-label">Nama Guru</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required ="text" name = "nama_guru" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru">
+                                                                                <input required ="text" name = "nama_guru" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru" value="<?php echo $nama_guru; ?>">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="emailguru" class="col-sm-3 col-form-label">Email</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required type="email" name="email_guru" class="form-control" id="emailguru" placeholder="Masukkan Email">
+                                                                                <input required type="email" name="email_guru" class="form-control" id="emailguru" placeholder="Masukkan Email" value="<?php echo $email; ?>">
                                                                         </div>
                                                                 </div>
-                                                                <!-- <div class="form-group row">
-                                                                        <label for="passwordguru" class="col-sm-3 col-form-label">Password</label>
-                                                                        <div class="col-sm-9">
-                                                                                <div class="input-group">
-                                                                                        <input type="password" class="form-control" id="passwordguru" placeholder="Masukkan Password">
-                                                                                        <div class="input-group-append">
-                                                                                                <span class="input-group-text password-toggle" onclick="togglePassword()">
-                                                                                                        <i class="fa fa-eye" id="toggleIcon"></i>
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                </div> -->
                                                                 <div class="form-group row">
                                                                         <label for="jkel" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                                         <div class="col-sm-9">
                                                                                 <select required id="jkel" name="jenis_kelamin" class="form-control">
-                                                                                <option selected>Jenis Kelamin</option>
+                                                                                <option selected>--Jenis Kelamin--</option>
                                                                                 <option value="Laki-Laki">Laki-Laki</option>
                                                                                 <option value="Perempuan">Perempuan</option>
                                                                                 </select>
@@ -57,13 +68,13 @@ require_once '../../layout/top.php';
                                                                 <div class="form-group row">
                                                                         <label for="teleponguru" class="col-sm-3 col-form-label">Telepon</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required type="text" name="telepon_guru" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon">
+                                                                                <input required type="text" name="telepon_guru" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon" value="<?php echo $telepon; ?>">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="alamatguru" class="col-sm-3 col-form-label">Alamat</label>
                                                                         <div class="col-sm-9">
-                                                                                <textarea required class="form-control" name="alamat_guru" id="alamatguru" rows="3" placeholder="Masukkan Alamat"></textarea>
+                                                                                <textarea required class="form-control" name="alamat_guru" id="alamatguru" rows="3" placeholder="Masukkan Alamat"><?php echo $alamat; ?></textarea>
                                                                         </div>
                                                                 </div>
                                                         </div>
@@ -93,24 +104,6 @@ require_once '../../layout/top.php';
                         </form>
                 </div>
         </div>
-
-        <!-- <script>
-        function togglePassword() {     
-                const passwordInput = document.getElementById("passwordguru");
-                const toggleIcon = document.getElementById("toggleIcon");
-                
-                if (passwordInput.type === "password") {
-                        passwordInput.type = "text";
-                        toggleIcon.classList.remove("fa-eye");
-                        toggleIcon.classList.add("fa-eye-slash");
-                } else {
-                        passwordInput.type = "password";
-                        toggleIcon.classList.remove("fa-eye-slash");
-                        toggleIcon.classList.add("fa-eye");
-                }
-        }
-        </script> -->
-
         <!--Content body end-->
 
 
