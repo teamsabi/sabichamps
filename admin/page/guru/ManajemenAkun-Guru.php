@@ -59,7 +59,7 @@
                                                     <?php echo $result['jenis_kelamin']; ?>
                                                 </td>
                                                 <td>
-                                                    <img src="../../images/<?php echo $result['foto_guru']; ?>" style="width: 70px;">
+                                                    <img src="../../images/foto_guru/<?php echo $result['foto_guru']; ?>" style="width: 70px;">
                                                 </td>
                                                 <td>
                                                     <?php echo $result['telepon']; ?>
@@ -74,7 +74,7 @@
                                                 <a href="kelola.php?ubah=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-success btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="proses.php?hapus=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-danger btn-sm">
+                                                <a href="proses.php?hapus=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                                 </td>
