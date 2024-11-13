@@ -8,41 +8,54 @@ if (isset($_POST['aksi'])) {
         $hari = $_POST['hari'];
         $namaKelas = $_POST['nama_kelas'];
         $mapel = $_POST['mapel'];
-        $jamMulai = $_POST['jamMulai'];
-        $jamSelesai = $_POST['jamSelesai'];
-        $namaGuru = $_POST['namaGuru'];
-
+        $jamMulai = $_POST['jam_mulai'];
+        $jamSelesai = $_POST['jam_selesai'];
+        $namaGuru = $_POST['nama_guru'];
+        
         // Query untuk menambahkan data ke database
         $query = "INSERT INTO jadwal (hari, nama_kelas, mapel, jam_mulai, jam_selesai, nama_guru) 
                   VALUES ('$hari', '$namaKelas', '$mapel', '$jamMulai', '$jamSelesai', '$namaGuru')";
 
-        // Eksekusi query
         $sql = mysqli_query($conn, $query);
 
-        // Cek apakah query berhasil
-        if ($sql) {
-            header("Location: jadwal.php"); // Redirect ke halaman jadwal jika berhasil
-            exit;
-        } else {
-            echo "Error: " . $query . "<br>" . mysqli_error($conn); // Tampilkan error jika query gagal
+        if($sql){
+            header("location: Jadwal.php");
+        }else{
+            echo $query;
         }
+        }else if($_POST['aksi'] == "edit"){
+        // echo "edit data <a href='Jadwal.php'>[Home]</a>";
+
+        $id_jadwal = $_POST['id_jadwal'];
+        $hari = $_POST['hari'];
+        $namaKelas = $_POST['nama_kelas'];
+        $mapel = $_POST['mapel'];
+        $jamMulai = $_POST['jam_mulai'];
+        $jamSelesai = $_POST['jam_selesai'];
+        $namaGuru = $_POST['nama_guru'];
+
+        $queryshow = "SELECT * FROM jadwal WHERE id_jadwal = '$id_jadwal';";
+        $sqlshow = mysqli_query($conn, $queryshow);
+        $result = mysqli_fetch_assoc($sqlshow);
+
+        $query = "UPDATE jadwal SET hari = '$hari', nama_kelas = '$namaKelas',
+        mapel = '$mapel', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', nama_guru = '$nama_guru'  WHERE id_jadwal = '$id_jadwal';";
+        $sql = mysqli_query($conn, $query); 
+        header("location: Jadwal.php");
+        }
+        }
+
+        if (isset($_GET['hapus'])) {   
+            $id_jadwal = $_GET['hapus'];  // Mengambil ID dari URL
+            
+            // Query untuk menghapus data
+            $query = "DELETE FROM jadwal WHERE id_jadwal = '$id_jadwal';";
+            $sql = mysqli_query($conn, $query);
         
-    } elseif ($_POST['aksi'] == "edit") {
-        echo "edit data";
-    }
-}
-
-if (isset($_GET['hapus'])) {   
-    $idjadwal = $_GET['hapus'];
-    $query = "DELETE FROM jadwal WHERE id_jadwal = '$idjadwal'";
-    $sql = mysqli_query($conn, $query);
-
-    // Cek apakah query berhasil
-    if ($sql) {
-        header("Location: jadwal.php"); // Redirect ke halaman jadwal jika berhasil
-        exit;
-    } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn); // Tampilkan error jika query gagal
-    }
-}
-?>
+            if ($sql) {
+                header("location: Jadwal.php");
+            } else {
+                echo $query;
+            }
+        }
+        ?>

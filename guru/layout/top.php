@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Jika pengguna belum login, arahkan ke halaman login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Dapatkan username dari sesi
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -16,6 +29,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap 5 -->
+    <link href="../../css/bootstrap.min.css">
+    <script src="../../js/bootstrap.min.js"></script>
+    
 
 
 </head>

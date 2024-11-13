@@ -1,11 +1,47 @@
 <?php
 require_once '../../layout/top.php';
+require_once '../../helper/conek.php';
+
+$id_jadwal = '';
+$hari = '';
+$nama_kelas = '';
+$mapel = '';    
+$jam_mulai = '';
+$jam_selesai = '';
+$nama_guru = '';
+
+// Mengecek apakah ada parameter 'ubah' di URL
+if (isset($_GET['ubah'])) {
+    $id_jadwal = $_GET['ubah'];
+
+    // Query untuk mengambil data berdasarkan ID jadwal
+    $query = "SELECT * FROM jadwal WHERE id_jadwal = '$id_jadwal'";
+    $sql = mysqli_query($conn, $query);
+    
+    // Cek apakah data ditemukan
+    if (mysqli_num_rows($sql) > 0) {
+        $result = mysqli_fetch_assoc($sql);
+        
+        // Ambil data dari database
+        $hari = $result['hari'];
+        $nama_kelas = $result['nama_kelas'];
+        $mapel = $result['mapel'];
+        $jam_mulai = $result['jam_mulai'];
+        $jam_selesai = $result['jam_selesai'];
+        $nama_guru = $result['nama_guru'];
+    } else {
+        echo "Data tidak ditemukan!";
+        exit;
+    }
+}
 ?>
+
 
 <!--Content body start-->
 <div class="content-body">
     <div class="container">
-        <form method="POST" action="tambah.php">
+        <form method="POST" action="proses.php">
+        <input type="hidden" name="id_jadwal" value="<?= $id_jadwal; ?>">
             <div class="row justify-content-center">
                 <div class="col-md-11">
                     <div class="card">
@@ -84,3 +120,4 @@ require_once '../../layout/top.php';
 <?php
 require_once '../../layout/footer.php';
 ?>
+
