@@ -227,7 +227,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --gray-dark: #343a40;
   --primary: #593bdb;
   --secondary: #673BB7;
-  --success: #7ED321;
+  --success: #229799;
   --info: #50E3C2;
   --warning: #FFAA16;
   --danger: #FF1616;
@@ -1435,7 +1435,7 @@ pre {
 .table-success td,
 .table-success thead th,
 .table-success tbody + tbody {
-  border-color: #bce88c; }
+  border-color: #229799; }
 
 .table-hover .table-success:hover {
   background-color: #cfefac; }
@@ -2073,23 +2073,23 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #212529;
-  background-color: #7ED321;
-  border-color: #7ED321; }
+  background-color: #229799;
+  border-color: #229799; }
   .btn-success:hover {
     color: #fff;
-    background-color: #6ab21c;
-    border-color: #64a71a; }
+    background-color: #229799;
+    border-color: #229799; }
   .btn-success:focus, .btn-success.focus {
     box-shadow: 0 0 0 0.2rem rgba(112, 185, 34, 0.5); }
   .btn-success.disabled, .btn-success:disabled {
     color: #212529;
-    background-color: #7ED321;
-    border-color: #7ED321; }
+    background-color: #229799;
+    border-color: #229799; }
   .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
   .show > .btn-success.dropdown-toggle {
     color: #fff;
-    background-color: #64a71a;
-    border-color: #5d9c18; }
+    background-color: #229799;
+    border-color: #229799; }
     .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
     .show > .btn-success.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(112, 185, 34, 0.5); }
@@ -15454,17 +15454,7 @@ button {
   .card-title {
     font-size: 16px;
     font-weight: 500;
-    color: #<div class="col-lg-4 col-sm-6">
-    <div class="card">
-        <div class="stat-widget-one card-body">
-            <div class="stat-icon d-inline-block">
-                <i class="ti-clipboard text-pink border-pink"></i>
-            </div>
-            <div class="stat-content d-inline-block">
-                <div class="stat-text">Kelas</div>
-                <div class="stat-digit">3</div>
-            </div>
-        </div>;
+    color: #229799;
     text-transform: capitalize;
     letter-spacing: 0.05em; }
     .card-title--large {
