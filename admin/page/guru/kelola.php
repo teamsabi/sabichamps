@@ -37,6 +37,7 @@ if(isset($_GET['ubah'])){
                                                                 <h4 class="card-title">Tambah Data Guru</h4>
                                                         </div>
                                                         <div class="card-body">
+                                                                <input type="hidden" value="<?php echo $kode_guru; ?>" name="kode_guru">
                                                                 <div class="form-group row">
                                                                         <label for="namaguru" class="col-sm-3 col-form-label">Nama Guru</label>
                                                                         <div class="col-sm-9">
@@ -53,22 +54,22 @@ if(isset($_GET['ubah'])){
                                                                         <label for="jkel" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                                         <div class="col-sm-9">
                                                                                 <select required id="jkel" name="jenis_kelamin" class="form-control">
-                                                                                <option selected>--Jenis Kelamin--</option>
-                                                                                <option value="Laki-Laki">Laki-Laki</option>
-                                                                                <option value="Perempuan">Perempuan</option>
+                                                                                <!-- <option selected>--Pilih Jenis Kelamin--</option> -->
+                                                                                <option <?php if($jenis_kelamin == 'Laki-Laki'){echo "selected";} ?> value="Laki-Laki">Laki-Laki</option>
+                                                                                <option <?php if($jenis_kelamin == 'Perempuan'){echo "selected";} ?> value="Perempuan">Perempuan</option>
                                                                                 </select>
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="fotoguru" class="col-sm-3 col-form-label">Foto Profil</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required type="file" name="foto_guru" class="form-control-file" id="fotoguru" accept="image/*">
+                                                                                <input <?php if(!isset($_GET['ubah'])){ echo "required";} ?> type="file" name="foto_guru" class="form-control-file" id="fotoguru" accept="image/*">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                         <label for="teleponguru" class="col-sm-3 col-form-label">Telepon</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required type="text" name="telepon_guru" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon" value="<?php echo $telepon; ?>">
+                                                                                <input required ="text" name="telepon_guru" class="form-control" id="teleponguru" placeholder="Masukkan No Telepon" value="<?php echo $telepon; ?>">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">
