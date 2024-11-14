@@ -105,7 +105,7 @@ if (isset($_GET['ubah'])) {
                                     <i class="fa fa-floppy-o"></i> Simpan
                                 </button>
                             <?php } ?>
-                            <a href="jadwal.php" type="button" class="btn btn-danger btn-sm">
+                            <a href="Jadwal.php" type="button" class="btn btn-danger btn-sm">
                                 <i class="fa fa-reply"></i> Batal
                             </a>
                         </div>
