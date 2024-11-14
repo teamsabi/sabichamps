@@ -34,12 +34,8 @@ if (isset($_POST['aksi'])) {
         $jamSelesai = $_POST['jam_selesai'];
         $namaGuru = $_POST['nama_guru'];
 
-        $queryshow = "SELECT * FROM jadwal WHERE id_jadwal = '$id_jadwal';";
-        $sqlshow = mysqli_query($conn, $queryshow);
-        $result = mysqli_fetch_assoc($sqlshow);
-
         $query = "UPDATE jadwal SET hari = '$hari', nama_kelas = '$namaKelas',
-        mapel = '$mapel', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', nama_guru = '$nama_guru'  WHERE id_jadwal = '$id_jadwal';";
+        mapel = '$mapel', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', nama_guru = '$namaGuru'  WHERE id_jadwal = '$id_jadwal';";
         $sql = mysqli_query($conn, $query); 
         header("location: Jadwal.php");
         }

@@ -41,7 +41,6 @@ if (isset($_GET['ubah'])) {
 <div class="content-body">
     <div class="container">
         <form method="POST" action="proses.php">
-        <input type="hidden" name="id_jadwal" value="<?= $id_jadwal; ?>">
             <div class="row justify-content-center">
                 <div class="col-md-11">
                     <div class="card">
@@ -49,6 +48,7 @@ if (isset($_GET['ubah'])) {
                             <h4 class="card-title">Tambah Jadwal Mengajar</h4>
                         </div>
                         <div class="card-body">
+                            <input type="hidden" value="<?php echo $id_jadwal; ?>" name="id_jadwal">
                             <div class="form-group row">
                                 <label for="hari" class="col-sm-3 col-form-label">Hari</label>
                                 <div class="col-sm-9">
@@ -67,31 +67,31 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="namaKelas" class="col-sm-3 col-form-label">Nama Kelas</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="nama_kelas" class="form-control" id="namaKelas" placeholder="Masukkan Nama Kelas" required>
+                                    <input required ="text" name="nama_kelas" class="form-control" id="namaKelas" placeholder="Masukkan Nama Kelas" value="<?php echo $nama_kelas;?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="mapel" class="col-sm-3 col-form-label">Mata Pelajaran</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="mapel" class="form-control" id="mapel" placeholder="Masukkan Mata Pelajaran" required>
+                                    <input required="text" name="mapel" class="form-control" id="mapel" placeholder="Masukkan Mata Pelajaran" value="<?php echo $mapel;?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="jamMulai" class="col-sm-3 col-form-label">Jam Mulai</label>
                                 <div class="col-sm-9">
-                                    <input type="time" name="jam_mulai" class="form-control" id="jamMulai" required>
+                                    <input type="time" name="jam_mulai" class="form-control" id="jamMulai" value="<?php echo $jam_mulai;?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="jamSelesai" class="col-sm-3 col-form-label">Jam Selesai</label>
                                 <div class="col-sm-9">
-                                    <input type="time" name="jam_selesai" class="form-control" id="jamSelesai" required>
+                                    <input type="time" name="jam_selesai" class="form-control" id="jamSelesai" value="<?php echo $jam_selesai;?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="namaGuru" class="col-sm-3 col-form-label">Nama Guru</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="nama_guru" class="form-control" id="namaGuru" placeholder="Masukkan Nama Guru" required>
+                                    <input required="text" name="nama_guru" class="form-control" id="namaGuru" placeholder="Masukkan Nama Guru" value="<?php echo $nama_guru;?>">
                                 </div>
                             </div>
                         </div>
