@@ -48,12 +48,12 @@
                                     <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= htmlspecialchars($row['hari']); ?></td>
-                                            <td><?= htmlspecialchars($row['nama_kelas']); ?></td>
-                                            <td><?= htmlspecialchars($row['mapel']); ?></td>
-                                            <td><?= htmlspecialchars($row['jam_mulai']); ?></td>
-                                            <td><?= htmlspecialchars($row['jam_selesai']); ?></td>
-                                            <td><?= htmlspecialchars($row['nama_guru']); ?></td>
+                                            <td><?= ($row['hari']); ?></td>
+                                            <td><?= ($row['nama_kelas']); ?></td>
+                                            <td><?= ($row['mapel']); ?></td>
+                                            <td><?= ($row['jam_mulai']); ?></td>
+                                            <td><?= ($row['jam_selesai']); ?></td>
+                                            <td><?= ($row['nama_guru']); ?></td>
                                             <td>
                                             <a href="tambah.php?ubah=<?php echo $row['id_jadwal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>

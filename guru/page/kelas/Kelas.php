@@ -43,11 +43,11 @@ require_once '../../helper/conek.php';
                                     <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= htmlspecialchars($row['kode_kelas']); ?></td>
-                                            <td><?= htmlspecialchars($row['nama_kelas']); ?></td>
-                                            <td><?= htmlspecialchars($row['jumlah_siswa']); ?></td>
+                                            <td><?= ($row['kode_kelas']); ?></td>
+                                            <td><?= ($row['nama_kelas']); ?></td>
+                                            <td><?= ($row['jumlah_siswa']); ?></td>
                                             <td>
-                                            <a href="dataSiswa.php" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                            <a href="dataSiswa.php" type="button" class="btn btn-sm" style="background-color: #FFAA16; color: white;">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="tambah.php?ubah=<?php echo $row['kode_kelas']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
