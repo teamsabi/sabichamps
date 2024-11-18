@@ -47,7 +47,7 @@ require_once '../../helper/conek.php';
                                             <td><?= ($row['nama_kelas']); ?></td>
                                             <td><?= ($row['jumlah_siswa']); ?></td>
                                             <td>
-                                            <a href="dataSiswa.php" type="button" class="btn btn-sm" style="background-color: #FFAA16; color: white;">
+                                            <a href="dataSiswa.php?kode_kelas=<?= $row['kode_kelas']; ?>" class="btn btn-sm lihatSiswa" style="background-color: #FFAA16; color: white;">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="tambah.php?ubah=<?php echo $row['kode_kelas']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
@@ -78,6 +78,16 @@ require_once '../../helper/conek.php';
             <script>
                 $(document).ready(function () {
                     $('#kelasTable').DataTable();
+
+                    // Event listener untuk semua tombol dengan class 'lihatSiswa'
+                    $('.lihatSiswa').on('click', function (e) {
+                        e.preventDefault(); // Mencegah perilaku default tombol
+                        const url = $(this).attr('href'); // Ambil URL dari atribut href
+                        console.log('Tombol diklik, menuju:', url);
+
+                        // Redirect ke URL
+                        window.location.href = url;
+                    });
                 });
             </script>
             </div>
