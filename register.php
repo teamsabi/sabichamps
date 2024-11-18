@@ -85,8 +85,8 @@
 <?php
 // Mulai sesi PHP dan sertakan file koneksi dan Auth
 session_start();
-require_once 'koneksi.php'; // File koneksi database
-require_once 'Auth.php'; // File kelas Auth
+require_once './admin/helper/koneksi.php'; // File koneksi database
+require_once './admin/helper/Auth.php'; // File kelas Auth
 
 $auth = new Auth($koneksi); // Inisialisasi kelas Auth
 $error = '';
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($auth->register($username, $email, $password)) {
         // Jika berhasil, simpan pesan sukses dan arahkan ke login
         $success = "Registrasi berhasil. Silakan login.";
-        header("Location: login.php"); // Arahkan ke halaman login
+        header("Location: ./admin/login.php"); // Arahkan ke halaman login
         exit();
     } else {
         // Jika gagal, simpan pesan error
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="show-password" id="togglePassword">Show</span>
             </div>
             <button type="submit" class="btn btn-custom">Daftar</button>
-            <p class="text-center text-small mt-3">Sudah Punya Akun? <a href="login.php">Masuk</a></p>
+            <p class="text-center text-small mt-3">Sudah Punya Akun? <a href="./admin/login.php">Masuk</a></p>
         </form>
     </div>
 

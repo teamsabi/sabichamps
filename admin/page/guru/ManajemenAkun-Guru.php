@@ -25,6 +25,12 @@
                                     </a>
                                 </div>
                             </div>
+                            <!-- <div class="alert alert-info alert-dismissible fade show" role="alert" style=" margin-left: 20px; margin-right: 20px;">
+                                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> -->
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="guruTable" class="display table-hover" style="width: 100%;">

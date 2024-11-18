@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Login</title>
+    <title>SABI - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <button type="submit" class="btn btn-custom" id="submit">Masuk</button>
-    <p class="text-center text-small mt-3">Belum Punya Akun? <a href="register.php">Daftar</a></p>
+    <p class="text-center text-small mt-3">Belum Punya Akun? <a href="../register.php">Daftar</a></p>
 </form>
 
     </div>
