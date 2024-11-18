@@ -77,7 +77,7 @@
             <div class="d-flex mt-4 justify-content-center justify-content-md-start">
               <a href="#" class="download-btn"><i class="bi bi-google-play"></i> <span>Google Play</span></a>
               <a href="#" class="download-btn"><i class="bi bi-apple"></i> <span>App Store</span></a>
-              <a href="../sabiwebsite/login.php" class="download-btn"><i class="bi bi-arrow-right-circle"></i> <span>Login</span></a>
+              <a href="./admin/login.php" class="download-btn"><i class="bi bi-arrow-right-circle"></i> <span>Login</span></a>
             </div>
           </div>
         </div>

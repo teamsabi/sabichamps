@@ -5,7 +5,9 @@
         $nama_guru = $data['nama_guru'];
         $email = $data['email_guru'];
         $jenis_kelamin = $data['jenis_kelamin'];
-        $foto = $files['foto_guru']['name'];
+        $split = explode('.', $files['foto_guru']['name']);
+        $ekstensi = $split[count($split)-1];
+        $foto = $nama_guru.'.'.$ekstensi;
         $telepon = $data['telepon_guru'];
         $alamat = $data['alamat_guru'];
 
@@ -23,28 +25,49 @@
     }
 
     function ubah_data($data, $files){
-        $kode_guru = $_POST['kode_guru'];
-        $nama_guru = $_POST['nama_guru'];
-        $email = $_POST['email_guru'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $telepon = $_POST['telepon_guru'];
-        $alamat = $_POST['alamat_guru'];
+        $kode_guru = $data['kode_guru'];
+        $nama_guru = $data['nama_guru'];
+        $email = $data['email_guru'];
+        $jenis_kelamin = $data['jenis_kelamin'];
+        $telepon = $data['telepon_guru'];
+        $alamat = $data['alamat_guru'];
 
         $queryshow = "SELECT * FROM guru WHERE kode_guru = '$kode_guru';";
-        $sqlshow = mysqli_query($conn, $queryshow);
+        $sqlshow = mysqli_query($GLOBALS['conn'], $queryshow);
         $result = mysqli_fetch_assoc($sqlshow);
 
-        if($_FILES['foto_guru']['name'] == ""){
+        if($files['foto_guru']['name'] == ""){
             $foto = $result['foto_guru'];
         }else {
-            $foto = $_FILES['foto_guru']['name'];
+
+            $split = explode('.', $files['foto_guru']['name']);
+            $ekstensi = $split[count($split)-1];
+            $foto = $result['nama_guru'].'.'.$ekstensi;
             unlink("../../images/foto_guru/".$result['foto_guru']);
-            move_uploaded_file($_FILES['foto_guru']['tmp_name'], '../../images/foto_guru/'.$_FILES['foto_guru']['name']);
+            move_uploaded_file($files['foto_guru']['tmp_name'], '../../images/foto_guru/'.$foto);
         }
 
         $query = "UPDATE guru SET nama_guru = '$nama_guru', email = '$email',
         jenis_kelamin = '$jenis_kelamin', foto_guru = '$foto', telepon = '$telepon', alamat = '$alamat' WHERE kode_guru = '$kode_guru';";
-        $sql = mysqli_query($conn, $query);
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+
+        return true;
+    }
+
+    function hapus_data($data){
+        $kode_guru = $data['hapus'];
+
+        $queryshow = "SELECT * FROM guru WHERE kode_guru = '$kode_guru';";
+        $sqlshow = mysqli_query($GLOBALS['conn'], $queryshow);
+        $result = mysqli_fetch_assoc($sqlshow);
+
+        unlink("../../images/foto_guru/".$result['foto_guru']);
+
+        $query = "DELETE FROM guru WHERE kode_guru = '$kode_guru';";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+
+        return true;
+
     }
 
 
