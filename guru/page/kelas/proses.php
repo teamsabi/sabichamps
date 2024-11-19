@@ -1,39 +1,25 @@
 <?php
 require_once '../../helper/conek.php';
 
-// Cek koneksi ke database
-if (!$conn) {
-    die("Koneksi database gagal: " . mysqli_connect_error());
-}
+// Proses tambah data
+if (isset($_POST['aksi']) && $_POST['aksi'] == "add") {
+    $kode_kelas = generateKodeKelas($conn);
+    $nama_kelas = $_POST['nama_kelas'];
+    $jumlah_siswa = $_POST['jumlah_siswa'];
 
-// Proses Tambah Data (Add)
-if (isset($_POST['aksi']) && $_POST['aksi'] == 'add') {
-    // Ambil data dari form dan sanitasi input
-    $kode_kelas = isset($_POST['kode_kelas']) ? mysqli_real_escape_string($conn, $_POST['kode_kelas']) : null;
-    $nama_kelas = isset($_POST['nama_kelas']) ? mysqli_real_escape_string($conn, $_POST['nama_kelas']) : null;
-    $jumlah_siswa = isset($_POST['jumlah_siswa']) ? (int)$_POST['jumlah_siswa'] : 0; // Jika jumlah siswa kosong, set ke 0
-
-    // Validasi input
-    if (empty($kode_kelas) || empty($nama_kelas)) {
-        echo "Kode kelas dan nama kelas tidak boleh kosong!";
-        exit;
-    }
-
-    // Query untuk insert data kelas baru
+// Query untuk insert data
     $query = "INSERT INTO kelas (kode_kelas, nama_kelas, jumlah_siswa) 
-              VALUES ('$kode_kelas', '$nama_kelas', '$jumlah_siswa')";
+          VALUES ('$kode_kelas', '$nama_kelas', '$jumlah_siswa')";
 
-    // Eksekusi query dan cek keberhasilan
-    if (mysqli_query($conn, $query)) {
-        // Redirect ke halaman kelas.php jika berhasil
-        header("Location: Kelas.php");
-        exit;
-    } else {
-        // Tampilkan pesan error jika gagal
-        echo "Error saat menyimpan data: " . mysqli_error($conn);
-        exit;
+    $sql = mysqli_query($conn, $query);
+
+    if($sql){
+        header("location: Kelas.php");
+    }else{
+        echo $query;
     }
 }
+
 
 // Proses Edit Data
 if (isset($_POST['aksi']) && $_POST['aksi'] == 'edit') {

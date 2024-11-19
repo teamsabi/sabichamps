@@ -12,12 +12,10 @@ if (empty($kode_kelas)) {
 }
 
 // Jika kode_kelas ada, lanjutkan dengan query untuk mendapatkan data siswa
-$query = "SELECT s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin, s.alamat, s.telepon, 
-          s.tanggal_lahir, k.nama_kelas, o.nama_ortu
-          FROM siswa s
-          JOIN kelas k ON s.kode_kelas = k.kode_kelas
-          JOIN ortu o ON s.kode_ortu = o.kode_ortu
-          WHERE s.kode_kelas = '$kode_kelas';";
+$query = "SELECT kode_siswa, nama_siswa, email, jenis_kelamin, alamat, telepon, 
+          tanggal_lahir, kelas, ortu_wali FROM siswa
+          JOIN kelas ON kode_kelas = kode_kelas
+          WHERE kode_kelas = '$kode_kelas';";
 $sql = mysqli_query($conn, $query);
 
 // Cek apakah query berhasil
@@ -58,14 +56,14 @@ $no = 1;
                                 <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= htmlspecialchars($row['nama_siswa']); ?></td>
-                                        <td><?= htmlspecialchars($row['email']); ?></td>
-                                        <td><?= htmlspecialchars($row['jenis_kelamin']); ?></td>
-                                        <td><?= htmlspecialchars($row['alamat']); ?></td>
-                                        <td><?= htmlspecialchars($row['telepon']); ?></td>
-                                        <td><?= htmlspecialchars($row['tanggal_lahir']); ?></td>
-                                        <td><?= htmlspecialchars($row['nama_kelas']); ?></td>
-                                        <td><?= htmlspecialchars($row['nama_ortu']); ?></td>
+                                        <td><?= ($row['nama_siswa']); ?></td>
+                                        <td><?= ($row['email']); ?></td>
+                                        <td><?= ($row['jenis_kelamin']); ?></td>
+                                        <td><?= ($row['alamat']); ?></td>
+                                        <td><?= ($row['telepon']); ?></td>
+                                        <td><?= ($row['tanggal_lahir']); ?></td>
+                                        <td><?= ($row['kelas']); ?></td>
+                                        <td><?= ($row['nama_ortu']); ?></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>

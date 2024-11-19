@@ -78,7 +78,7 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="jumlahSiswa" class="col-sm-3 col-form-label">Jumlah Siswa</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="jumlahSiswa" value="<?php echo $jumlah_siswa; ?>" readonly>
+                                    <input type="text" class="form-control" name="jumlah_siswa" id="jumlahSiswa" value="<?php echo $jumlah_siswa; ?>" readonly>
                                 </div>
                             </div>
                         </div>
