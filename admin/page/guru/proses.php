@@ -1,5 +1,6 @@
 <?php
 require_once 'fungsi.php'; 
+session_start();
 
     if(isset($_POST['aksi'])){
         if($_POST['aksi'] == "add"){
@@ -7,6 +8,7 @@ require_once 'fungsi.php';
             $berhasil = tambah_data($_POST, $_FILES);
 
             if($berhasil){
+                $_SESSION['status'] = "Data Berhasil Ditambahkan";
                 header("location: ManajemenAkun-Guru.php");
             }else{
                 echo $berhasil;
@@ -17,6 +19,7 @@ require_once 'fungsi.php';
 
              
             if($berhasil){
+                $_SESSION['status'] = "Data Berhasil Diubah";
                 header("location: ManajemenAkun-Guru.php");
             }else{
                 echo $berhasil;
@@ -31,6 +34,7 @@ require_once 'fungsi.php';
         $berhasil = hapus_data($_GET);
 
         if($berhasil){
+            $_SESSION['status'] = "Data Telah Dihapus";
             header("location: ManajemenAkun-Guru.php");
         }else{
             echo $berhasil;
