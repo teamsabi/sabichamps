@@ -25,7 +25,7 @@
                         <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 130px;">
                             <a href="tambah.php" class="btn" style="background-color: #229799; color: white;">
                                 <i class="fa fa-plus"></i> Tambah Jadwal
-                            </a>
+                            </a>    
                         </div>
                     </div>
 
