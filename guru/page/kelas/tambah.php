@@ -7,17 +7,18 @@ $kode_kelas= '';
 $nama_kelas = '';
 $jumlah_siswa = '';
 
-if(isset($_GET['ubah'])){
+if (isset($_GET['ubah']) && !empty($_GET['ubah'])) {
     $id_kelas = $_GET['ubah'];
 
     $query = "SELECT * FROM kelas WHERE id_kelas = '$id_kelas';";
     $sql = mysqli_query($conn, $query);
 
+if ($sql && mysqli_num_rows($sql) > 0) {
     $result = mysqli_fetch_assoc($sql);
-
     $kode_kelas = $result['kode_kelas'];
     $nama_kelas = $result['nama_kelas'];
     $jumlah_siswa = $result['jumlah_siswa'];
+    }
 } else {
     // Generate kode kelas secara otomatis
     $query = "SELECT kode_kelas FROM kelas ORDER BY id_kelas DESC LIMIT 1;";
@@ -30,12 +31,10 @@ if(isset($_GET['ubah'])){
     } else {
         $next_number = 1;
     }
-
     $kode_kelas = 'KLS' . str_pad($next_number, 3, '0', STR_PAD_LEFT);
-}
+    }
 
  ?>
-
         <!--Content body start-->
         <div class="content-body">
             <div class="container">
@@ -48,22 +47,22 @@ if(isset($_GET['ubah'])){
                                 </div>
                                 <div class="card-body">
                                     <input type="hidden" value="<?php echo $id_kelas; ?>" name="id_kelas">
-                                        <div class="form-group row">
-                                            <label for="kodekelas" class="col-sm-3 col-form-label">Kode Kelas</label>
+                                    <div class="form-group row">
+                                        <label for="kodekelas" class="col-sm-3 col-form-label">Kode Kelas</label>
                                             <div class="col-sm-9">
                                                 <input required type="text" name="kode_kelas" class="form-control" id="kodekelas" value="<?php echo $kode_kelas; ?>" readonly>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="namakelas" class="col-sm-3 col-form-label">Nama Kelas</label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="namakelas" class="col-sm-3 col-form-label">Nama Kelas</label>
                                             <div class="col-sm-9">
                                                 <input required type="text" name="nama_kelas" class="form-control" id="namakelas" placeholder="Masukkan Nama Kelas" value="<?php echo $nama_kelas; ?>">
                                             </div>
-                                        </div>
+                                    </div>
                                         <div class="form-group row">
                                             <label for="jumlahsiswa" class="col-sm-3 col-form-label">Jumlah Siswa</label>
                                             <div class="col-sm-9">
-                                                <input required ="text" name="jumlah_siswa" class="form-control" id="jumlahsiswa" value="<?php echo $jumlah_siswa; ?>">
+                                            <input required type="text" name="jumlah_siswa" class="form-control" id="jumlahsiswa" value="<?php echo $jumlah_siswa ?: 0; ?>" readonly>
                                             </div>
                                         </div>
                                 </div>
