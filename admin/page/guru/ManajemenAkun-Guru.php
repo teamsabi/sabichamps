@@ -98,7 +98,7 @@
                                                 }
                                             ?>
                                         </tbody>
-                                        <!-- <tfoot>
+                                        <tfoot>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nama Guru</th>
@@ -110,7 +110,7 @@
                                                 <th>Tanggal Buat</th>
                                                 <th>Aksi</th>
                                             </tr>
-                                        </tfoot> -->
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
