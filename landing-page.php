@@ -1,8 +1,4 @@
-<?php
-
-
-?>
-
+<?php ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +35,9 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="landing-page.php" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets2/img/logo.png" alt=""> -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">SABI</h1>
       </a>
 
@@ -120,16 +116,17 @@
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon-box">
                   <i class="bi bi-bar-chart-line"></i>
-                  <h3>interaktif</h3>
-                  <p>Aplikasi ini menawarkan berbagai fitur interaktif seperti diskusi real-time, ambis meter untuk memantau perkembangan siswa, serta ujian online. Selain itu, tersedia materi pembelajaran lengkap dan bank soal yang mendukung pengalaman belajar di platform yang interaktif dan adaptif.</p>
+                  <h3>Interaktif</h3>
+                  <p>Aplikasi ini menawarkan berbagai fitur interaktif seperti diskusi real-time, kuis harian dan simulasi ujian online yang mendukung pengalaman belajar di platform yang interaktif dan adaptif.</p>
                 </div>
               </div> <!-- End Icon Box -->
 
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
                 <div class="icon-box">
                   <i class="bi bi-graph-up-arrow"></i>
-                  <h3>Delares sapiente</h3>
-                  <p>Sint et dolor voluptas minus possimus nostrum. Reiciendis commodi eligendi omnis quideme lorenda</p>
+                  <h3>Ambis Meter</h3>
+                  <p>Pemahaman materi dapat diukur melalui tingkat kesulitan soal yang 
+                    dikerjakan dan tren peningkatan atau penurunan performa pengguna.</p>
                 </div>
               </div> <!-- End Icon Box -->
 
@@ -151,33 +148,42 @@
 
       <div class="container">
 
-        <div class="text-center mb-4 steps-img" data-aos="zoom-out">
-          <img src="assets2/img/steps.svg" alt="">
-        </div>
-
         <div class="row gy-4">
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-item">
               <span>01</span>
-              <h4>Sign Up</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <h4><a href="" class="stretched-link">Login</a></h4>
+              <ol>
+                <li>Buka aplikasi</li>
+                <li>Masukkan email</li>
+                <li>Masukkan kata sandi</li>
+                <li>Klik login</li>
+             </ol>             
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-item">
               <span>02</span>
-              <h4><a href="" class="stretched-link">Repellat Nihil</a></h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <h4><a href="" class="stretched-link">Mulai Belajar</a></h4>
+              <ol>
+                <li>Login ke akun</li>
+                <li>Pilih mata pelajaran</li>
+                <li>Buka materi atau latihan soal</li>
+                <li>Mulai kerjakan</li>
+             </ol>
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card-item">
               <span>03</span>
-              <h4><a href="" class="stretched-link">Ad ad velit qui</a></h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4><a href="" class="stretched-link">Rapor</a></h4>
+              <ol>
+                <li>Login ke akun</li>
+                <li>Masuk ke menu rapor</li>
+             </ol>
             </div>
           </div><!-- Card Item -->
 
@@ -193,83 +199,11 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Features</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>SABI menawarkan fitur utama untuk menunjang belajar siswa, seperti Jadwal Belajar agar siswa lebih disiplin, 
+          Materi Belajar yang mencakup beragam mata pelajaran, dan Latihan Soal untuk persiapan ujian. Fitur Diskusi Real-Time 
+          dan Chat Pengajar memudahkan interaksi langsung dengan tutor, sementara Strategi Belajar Khusus memberikan panduan 
+          persiapan ujian nasional dan tes masuk perguruan tinggi dengan lebih percaya diri.</p>
       </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets2/img/features-1.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
-            </ul>
-          </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets2/img/features-2.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-            <h3>Corporis temporibus maiores provident</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-          </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-            <img src="assets2/img/features-3.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7" data-aos="fade-up">
-            <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-            <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
-            <ul>
-              <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
-            </ul>
-          </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-            <img src="assets2/img/features-4.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-            <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-          </div>
-        </div><!-- Features Item -->
-
-      </div>
-
-    </section><!-- /Features Section -->
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section">
@@ -318,18 +252,18 @@
             }
           </script>
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-1.png"><img src="assets2/img/app-gallery/app-gallery-1.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-2.png"><img src="assets2/img/app-gallery/app-gallery-2.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-3.png"><img src="assets2/img/app-gallery/app-gallery-3.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-4.png"><img src="assets2/img/app-gallery/app-gallery-4.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-5.png"><img src="assets2/img/app-gallery/app-gallery-5.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-6.png"><img src="assets2/img/app-gallery/app-gallery-6.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-7.png"><img src="assets2/img/app-gallery/app-gallery-7.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-8.png"><img src="assets2/img/app-gallery/app-gallery-8.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-9.png"><img src="assets2/img/app-gallery/app-gallery-9.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-10.png"><img src="assets2/img/app-gallery/app-gallery-10.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-11.png"><img src="assets2/img/app-gallery/app-gallery-11.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-12.png"><img src="assets2/img/app-gallery/app-gallery-12.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-1.png"><img src="assets/img/app-gallery/app-gallery-1.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-2.png"><img src="assets/img/app-gallery/app-gallery-2.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-3.png"><img src="assets/img/app-gallery/app-gallery-3.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-4.png"><img src="assets/img/app-gallery/app-gallery-4.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-5.png"><img src="assets/img/app-gallery/app-gallery-5.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-6.png"><img src="assets/img/app-gallery/app-gallery-6.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-7.png"><img src="assets/img/app-gallery/app-gallery-7.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-8.png"><img src="assets/img/app-gallery/app-gallery-8.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-9.png"><img src="assets/img/app-gallery/app-gallery-9.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-10.png"><img src="assets/img/app-gallery/app-gallery-10.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-11.png"><img src="assets/img/app-gallery/app-gallery-11.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="assets2/img/app-gallery/app-gallery-12.png"><img src="assets/img/app-gallery/app-gallery-12.png" class="img-fluid" alt=""></a></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -338,9 +272,54 @@
 
     </section><!-- /Gallery Section -->
 
+    <section id="faq" class="faq" style="background-color: #ffffff;">
+      <div class="container" data-aos="fade-up">
+  
+        <div class="section-title">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+      
+        <div class="row faq-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-10 col-lg-5">
+            <i class="bi bi-question-circle question-icon"></i>
+            <h3>Apa saja program bimbingan yang di tawarkan?</h3>
+          </div>
+          <div class="col-10 col-lg-7">
+            <p>
+              Kami menawarkan program bimbingan belajar tingkat SMA. Program meliputi mata pelajaran seperti Matematika, Bahasa Indonesia, Bahasa Inggris, dan Ilmu Pengetahuan Alam, serta program persiapan ujian seperti UTBK, Ujian Nasional, dan tes masuk perguruan tinggi.
+            </p>
+          </div>
+        </div><!-- End FAQ Item -->
+
+        <div class="row faq-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-10 col-lg-5">
+            <i class="bi bi-question-circle question-icon"></i>
+            <h3>Apakah ada ujian atau tes untuk mengukur perkembangan siswa?</h3>
+          </div>
+          <div class="col-10 col-lg-7">
+            <p>
+              Ada, ujian atau tes biasanya dilakukan secara berkala setiap akhir materi.
+            </p>
+          </div>
+        </div><!-- End FAQ Item -->
+
+        <div class="row faq-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-10 col-lg-5">
+            <i class="bi bi-question-circle question-icon"></i>
+            <h3>Bagaimana metode pembelajaran yang digunakan?</h3>
+          </div>
+          <div class="col-10 col-lg-7">
+            <p>
+              Kami menggunakan metode pembelajaran interaktif yang mencakup penjelasan konsep, latihan soal, dan diskusi.
+            </p>
+          </div>
+        </div><!-- End FAQ Item -->
+    
+      </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section light-background">
-
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Team SABI</h2>
@@ -455,18 +434,13 @@
 
     </section><!-- /Testimonials Section -->
 
-    <!-- Faq Section -->
-    <section id="faq" class="faq section">
-
-    </section><!-- /Faq Section -->
-
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Butuh bantuan atau informasi lebih lanjut? Hubungi kami, kami siap membantu!</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade" data-aos-delay="100">
@@ -478,7 +452,7 @@
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
                 <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>Jl. Mastrip No.164, Lingkungan Panji, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -486,7 +460,7 @@
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Contact us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>+62 858-0727-8580 (Syaiful)</p>
               </div>
             </div><!-- End Info Item -->
 
