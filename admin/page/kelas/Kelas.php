@@ -69,7 +69,7 @@ $query = 'SELECT * FROM kelas;';
                                                 <a href="proses.php?hapus=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <a href="proses.php?hapus=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
+                                                <a href="data_siswa.php?kode_kelas=<?php echo $result['kode_kelas']; ?>" type="button" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 </td>
