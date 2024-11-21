@@ -25,7 +25,20 @@
 
     <script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../../js/plugins-init/datatables.init.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tanggallahir').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+                clearBtn: true
+            });
+        });
+    </script>
     <script src="../../js/JamDigital.js"></script>
+    
     
     <!-- Circle progress -->
 
