@@ -7,8 +7,6 @@ $query = 'SELECT * FROM kelas;';
     $no = 0;
 
 ?>
-
-
         <!--Content body start-->
         <div class="content-body badge-demo">
             <div class="container">
@@ -28,7 +26,7 @@ $query = 'SELECT * FROM kelas;';
                             <!-- Button tambah kelas -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
-                                    <a href="tambah.php" class="btn btn-success">
+                                    <a href="kelola.php" class="btn btn-success">
                                         <i class="fa fa-plus"></i> Tambah Data Kelas
                                     </a>
                                 </div>
@@ -63,26 +61,28 @@ $query = 'SELECT * FROM kelas;';
                                                     <?php echo $result['jumlah_siswa']; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="dataSiswa.php?kode_kelas=<?= urlencode($result['kode_kelas']); ?>" class="btn btn-sm lihatSiswa" style="background-color: #FFAA16; color: white;">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a href="tambah.php?ubah=<?= urlencode($result['kode_kelas']); ?>" class="btn btn-sm" style="background-color: #229799; color: white;">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a href="proses.php?hapus=<?= urlencode($result['kode_kelas']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
-                                                        <i class="fa fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
+                                                <a href="tambah.php?ubah=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-success btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="proses.php?hapus=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a href="dataSiswa.php?=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-warning btn-sm" style="background-color: #FFAA16; color: white;">
+                                                    <i class="fa fa-eye" style="color: white;"></i>
+                                                </a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                                }
+                                            ?>
                                         </tbody>
                                         <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kode Kelas</th>
-                                            <th>Nama Kelas</th>
-                                            <th>Jumlah Siswa</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Kode Kelas</th>
+                                                <th>Nama Kelas</th>
+                                                <th>Jumlah Siswa</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -90,11 +90,11 @@ $query = 'SELECT * FROM kelas;';
                             </div>
                         </div>
                     </div>
-
-            <!-- Inisialisasi DataTables -->
+                </div>
                 <script>
                     $(document).ready(function () {
-                        $('#kelasTable').DataTable();
+                        // Inisialisasi DataTable
+                        const table = $('#kelasTable').DataTable();
                     });
                 </script>
             </div>    

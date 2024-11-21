@@ -2,28 +2,6 @@
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
-// Ambil parameter kode_kelas dari URL
-$kode_kelas = isset($_GET['kode_kelas']) ? $_GET['kode_kelas'] : '';
-
-// Debugging untuk memastikan parameter diterima
-if (empty($kode_kelas)) {
-    echo 'Kode kelas tidak ditemukan di URL!';
-    exit;
-}
-
-// Jika kode_kelas ada, lanjutkan dengan query untuk mendapatkan data siswa
-$query = "SELECT kode_siswa, nama_siswa, email, jenis_kelamin, alamat, telepon, 
-          tanggal_lahir, kelas, ortu_wali FROM siswa
-          JOIN kelas ON kode_kelas = kode_kelas
-          WHERE kode_kelas = '$kode_kelas';";
-$sql = mysqli_query($conn, $query);
-
-// Cek apakah query berhasil
-if (!$sql) {
-    die('Query gagal: ' . mysqli_error($conn));
-}
-
-$no = 1;
 ?>
 
 <!--Content body start-->
