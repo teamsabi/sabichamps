@@ -46,13 +46,12 @@
                                     <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= ($row['kode_materi']); ?></td>
                                             <td><?= ($row['judul_materi']); ?></td>
                                             <td><?= ($row['mapel']); ?></td>
                                             <td><?= ($row['nama_kelas']); ?></td>
                                             <td><?= ($row['file_materi']); ?></td>
                                             <td>
-                                            <a href="tambah.php?ubah=<?php echo $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                            <a href="tambah.php?ubah=<?= $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a href="proses.php?hapus=<?= $row['kode_materi']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
