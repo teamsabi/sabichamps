@@ -1,6 +1,23 @@
 <?php
 require_once '../../layout/top.php';
- ?>
+require_once '../../helper/conek.php';
+
+    // Query untuk menghitung jumlah data
+    $queryGuru = "SELECT COUNT(*) AS jumlah_guru FROM guru";
+    $querySiswa = "SELECT COUNT(*) AS jumlah_siswa FROM siswa";
+    $queryKelas = "SELECT COUNT(*) AS jumlah_kelas FROM kelas";
+
+    // Eksekusi query
+    $resultGuru = $conn->query($queryGuru);
+    $resultSiswa = $conn->query($querySiswa);
+    $resultKelas = $conn->query($queryKelas);
+
+    // Ambil hasil
+    $jumlahGuru = $resultGuru->fetch_assoc()['jumlah_guru'];
+    $jumlahSiswa = $resultSiswa->fetch_assoc()['jumlah_siswa'];
+    $jumlahKelas = $resultKelas->fetch_assoc()['jumlah_kelas'];
+
+?>
 
         <!--Content body start-->
         <div class="content-body">
@@ -30,7 +47,7 @@ require_once '../../layout/top.php';
                                     </div>
                                     <div class="stat-content d-inline-block">
                                         <div class="stat-text">Guru</div>
-                                        <div class="stat-digit">15</div>
+                                        <div class="stat-digit"><?php echo $jumlahGuru; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +60,7 @@ require_once '../../layout/top.php';
                                     </div>
                                     <div class="stat-content d-inline-block">
                                         <div class="stat-text">Siswa</div>
-                                        <div class="stat-digit">19</div>
+                                        <div class="stat-digit"><?php echo $jumlahSiswa; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +73,7 @@ require_once '../../layout/top.php';
                                     </div>
                                     <div class="stat-content d-inline-block">
                                         <div class="stat-text">Kelas</div>
-                                        <div class="stat-digit">3</div>
+                                        <div class="stat-digit"><?php echo $jumlahKelas; ?></div>
                                     </div>
                                 </div>
                             </div>

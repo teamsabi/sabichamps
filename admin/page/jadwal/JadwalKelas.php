@@ -1,6 +1,11 @@
 <?php
-require_once '../../layout/top.php';
- ?>
+    require_once '../../layout/top.php';
+    require_once '../../helper/conek.php';
+
+    $query = 'SELECT * FROM jadwal;';
+    $sql = mysqli_query($conn, $query);
+    $no = 1;
+?>
 
         <!--**********************************
             Content body start
@@ -17,32 +22,55 @@ require_once '../../layout/top.php';
                             <!-- Button Tambah Akun -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 130px;">
-                                    <button class="btn btn-success" style="color: #f1f5f8; background-color: #229799; border-color: #229799;" data-toggle="modal" data-target="#addAkunGuru">
+                                    <a href="kelola.php" class="btn" style="background-color: #229799; color: white;">
                                         <i class="fa fa-plus"></i> Tambah Jadwal
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="guruTable" class="display" style="width: 100%;">
+                                    <table id="jadwalTable" class="display" style="width: 100%;">
                                         <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Hari</th>
                                             <th>Nama Kelas</th>
                                             <th>Mata Pelajaran</th>
-                                            <th>Rentang Waktu</th>
+                                            <th>Jam Mulai</th>
+                                            <th>Jam Selesai</th>
                                             <th>Nama Guru</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
+                                        <tbody>
+                                            <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                                <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= ($row['hari']); ?></td>
+                                                    <td><?= ($row['nama_kelas']); ?></td>
+                                                    <td><?= ($row['mapel']); ?></td>
+                                                    <td><?= ($row['jam_mulai']); ?></td>
+                                                    <td><?= ($row['jam_selesai']); ?></td>
+                                                    <td><?= ($row['nama_guru']); ?></td>
+                                                    <td>
+                                                    <a href="kelola.php?ubah=<?php echo $row['id_jadwal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="proses.php?hapus=<?= $row['id_jadwal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Hari</th>
                                             <th>Nama Kelas</th>
                                             <th>Mata Pelajaran</th>
-                                            <th>Rentang Waktu</th>
+                                            <th>Jam Mulai</th>
+                                            <th>Jam Selesai</th>
                                             <th>Nama Guru</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -55,7 +83,7 @@ require_once '../../layout/top.php';
 
                     <script>
                     $(document).ready(function () {
-                        var table = $('#guruTable').DataTable();
+                        var table = $('#jadwalTable').DataTable();
                     });
                     </script>
                 </div>
