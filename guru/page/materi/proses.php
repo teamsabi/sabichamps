@@ -28,48 +28,51 @@ if (isset($_POST['aksi'])) {
     }
 
         if ($_POST['aksi'] == "edit") {
-            $kodeMateri = $_POST['kode_materi'];
             $judulMateri = $_POST['judul_materi'];
             $mapel = $_POST['mapel'];
             $namaKelas = $_POST['nama_kelas'];
 
-            // Ambil data lama
             $queryShow = "SELECT file_materi FROM materi WHERE kode_materi = '$kodeMateri'";
-            $sqlShow = mysqli_query($conn, $queryShow);
-            $data = mysqli_fetch_assoc($sqlShow);
-            $fileLama = $data['file_materi'];
+            $sqlshow = mysqli_query($GLOBALS['conn'], $queryshow);
 
-            // Proses file baru
-            if (!empty($_FILES['file_materi']['name'])) {
-                $fileMateriBaru = $_FILES['file_materi']['name'];
-                $dir = "C:/laragon/www/sabiwebsite/guru/file/";
+            if (mysqli_num_rows($sqlShow) > 0) {
+                $data = mysqli_fetch_assoc($sqlShow);
+                $fileLama = $data['file_materi'];
 
-                // Hapus file lama
-                if (file_exists($dir . $fileLama)) {
-                    unlink($dir . $fileLama);
-                }
-
-                // Pindahkan file baru
-                move_uploaded_file($_FILES['file_materi']['tmp_name'], $dir . $fileMateriBaru);
-            } else {
-                $fileMateriBaru = $fileLama;
+            if ($_FILES['file_materi']['name'] != "") {
+            // Jika ada file baru, proses penggantian file
+            $split = explode('.', $_FILES['file_materi']['name']);
+            $ekstensi = $split[count($split) - 1];
+            $fileMateri = uniqid() . '.' . $ekstensi; // Nama file baru unik
+            $filePathLama = "C:/laragon/www/sabiwebsite/guru/file/" . $fileLama;
+    
+            if (file_exists($filePathLama)) {
+                unlink($filePathLama);
             }
 
-            // Update database
+            // Simpan file baru
+            move_uploaded_file($_FILES['file_materi']['tmp_name'], "C:/laragon/www/sabiwebsite/guru/file/" . $fileMateri);
+            } else {
+            // Jika tidak ada file baru, gunakan file lama
+            $fileMateri = $fileLama;
+            }
+
             $query = "UPDATE materi 
-                    SET judul_materi = '$judulMateri', 
-                        mapel = '$mapel', 
-                        nama_kelas = '$namaKelas', 
-                        file_materi = '$fileMateriBaru' 
-                    WHERE kode_materi = '$kodeMateri'";
+                  SET judul_materi = '$judulMateri', mapel = '$mapel', nama_kelas = '$namaKelas', file_materi = '$fileMateri' 
+                  WHERE kode_materi = '$kodeMateri'";
             $sql = mysqli_query($conn, $query);
+
+    
             if ($sql) {
-                header("location: Materi.php");
+                header("location: Materi.php"); // Redirect ke halaman materi
             } else {
-                echo "Gagal mengedit data.";
+                echo "Error: " . mysqli_error($conn); // Tampilkan error jika query gagal
             }
+        } else {
+            echo "Data tidak ditemukan!";
         }
     }
+}
 
         if (isset($_GET['hapus'])) {   
             $kodeMateri = $_GET['hapus'];  // Mengambil ID dari URL

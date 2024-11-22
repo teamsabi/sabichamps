@@ -66,11 +66,8 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="file_materi" class="col-sm-3 col-form-label">File Materi</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="file" name="file_materi" id="file_materi" accept="application/*">
-                                    <!-- Tampilkan file lama jika ada -->
-                                    <?php if (!empty($fileMateri)): ?>
-                                        <br><strong>File Lama:</strong> <a href="file/<?php echo $fileMateri; ?>" target="_blank"><?php echo $fileMateri; ?></a>
-                                    <?php endif; ?>
+                                    <input <?php if(!isset($_GET['ubah'])){ echo "required";} ?> class="form-control" type="file" name="file_materi" id="file_materi" accept="application/*">
+                                    
                                 </div>
                             </div>
                         <div class="card-footer text-right">
