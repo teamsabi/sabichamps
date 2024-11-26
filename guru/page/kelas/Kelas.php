@@ -26,7 +26,7 @@ $query = 'SELECT * FROM kelas;';
                             <!-- Button tambah kelas -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
-                                    <a href="kelola.php" class="btn btn-success">
+                                    <a href="tambah.php" class="btn btn-success">
                                         <i class="fa fa-plus"></i> Tambah Data Kelas
                                     </a>
                                 </div>

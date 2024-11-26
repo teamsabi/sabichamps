@@ -12,6 +12,7 @@
                     <li><a href="../jadwal/Jadwal.php">Jadwal</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Pembelajaran</a>
                         <ul aria-expanded="false">
+                            <li><a href="../mapel/Mapel.php">Mata Pelajaran</a></li>
                             <li><a href="../materi/Materi.php">Materi</a></li>
                             <li><a href="../soal/BankSoal.php">Bank Soal</a></li>
                         </ul>
