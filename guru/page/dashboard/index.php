@@ -64,12 +64,12 @@ require_once '../../layout/top.php';
                     </div>
 
                     <!-- Table Jadwal Mengajar and Siswa Ter-Ambis -->
-                    <div class="row">
+                    <div class="row mb-3">
                         <!-- Table Jadwal Mengajar -->
-                        <div class="col-lg-8 col-12">
+                        <div class="col-lg-12" style="margin-top: -30px;">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Starus User</h4>
+                                    <h4 class="card-title">Jadwal Mengajar</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -80,19 +80,20 @@ require_once '../../layout/top.php';
                                                     <th>Hari</th>
                                                     <th>Nama Kelas</th>
                                                     <th>Mata Pelajaran</th>
-                                                    <th>Rentang Waktu</th>
+                                                    <th>Waktu Mulai</th>
+                                                    <th>Waktu Selesai</th>
+                                                    <th>Nama Guru</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Hari</th>
                                                     <th>Nama Kelas</th>
                                                     <th>Mata Pelajaran</th>
-                                                    <th>Rentang Waktu</th>
+                                                    <th>Waktu Mulai</th>
+                                                    <th>Waktu Selesai</th>
+                                                    <th>Nama Guru</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -101,58 +102,6 @@ require_once '../../layout/top.php';
                             </div>
                         </div>
 
-                        <!-- Siswa Ter-Ambis Card -->
-                        <div class="col-lg-4 col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Riwayat Login</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="recent-comment m-t-15">
-                                        <div class="media mb-3">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">John Doe</h4>
-                                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                                <p class="comment-date">10 min ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="media mb-3">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object mr-3" src="./images/avatar/2.png" alt="..." style="width: 40px; height: 40px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-success">Mr. John</h4>
-                                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                                <p class="comment-date">1 hour ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="media mb-3">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object mr-3" src="./images/avatar/3.png" alt="..." style="width: 40px; height: 40px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-danger">Mr. John</h4>
-                                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                                <p class="comment-date">Yesterday</p>
-                                            </div>
-                                        </div>
-                                        <div class="media mb-3">
-                                            <div class="media-left">
-                                                <a href="#"><img class="media-object mr-3" src="./images/avatar/4.png" alt="..." style="width: 40px; height: 40px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">John Doe</h4>
-                                                <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                                <p class="comment-date">10 min ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
