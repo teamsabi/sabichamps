@@ -10,7 +10,7 @@
         $file = $judul_materi.'.'.$ekstensi;
         $nama_guru = $data['nama_guru'];
 
-        $dir = "../../images/file_materi/";
+        $dir = "../../file/";
         $tmpfile = $files['file_materi']['tmp_name'];
 
         move_uploaded_file($tmpfile, $dir.$file);
@@ -41,8 +41,8 @@
             $split = explode('.', $files['file_materi']['name']);
             $ekstensi = $split[count($split)-1];
             $file = $result['judul_materi'].'.'.$ekstensi;
-            unlink("../../images/file_materi/".$result['file_materi']);
-            move_uploaded_file($files['file_materi']['tmp_name'], '../../images/file_materi/'.$file);
+            unlink("../../file/".$result['file_materi']);
+            move_uploaded_file($files['file_materi']['tmp_name'], '../../file/'.$file);
         }
 
         $query = "UPDATE materi SET judul_materi = '$judul_materi', mapel = '$mapel',
@@ -59,7 +59,7 @@
         $sqlshow = mysqli_query($GLOBALS['conn'], $queryshow);
         $result = mysqli_fetch_assoc($sqlshow);
 
-        unlink("../../images/file_materi/".$result['file_materi']);
+        unlink("../../file/".$result['file_materi']);
 
         $query = "DELETE FROM materi WHERE kode_materi = '$kode_materi';";
         $sql = mysqli_query($GLOBALS['conn'], $query);
