@@ -9,6 +9,7 @@ $nama_kelas = '';
 $nama_guru = '';
 $kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
 $gurukelas = mysqli_query($conn, "SELECT nama_guru FROM guru");
+$namamapel = mysqli_query($conn, "SELECT nama_mapel FROM mapel");
 
 // Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
@@ -57,7 +58,16 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="mapel" class="col-sm-3 col-form-label">Mata Pelajaran</label>
                                 <div class="col-sm-9">
-                                    <input required="text" name="mapel" class="form-control" id="mapel" placeholder="Masukkan Mata Pelajaran" value="<?php echo $mapel;?>">
+                                    <select class="form-control" name="mapel" id="mapel" required>
+                                        <option value="">--Pilih Mata Pelajaran--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($namamapel)) :
+                                        ?>
+                                        <option value="<?= $r['nama_mapel'] ?>"><?= $r['nama_mapel'] ?></option>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
