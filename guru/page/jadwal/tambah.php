@@ -9,6 +9,8 @@ $mapel = '';
 $jam_mulai = '';
 $jam_selesai = '';
 $nama_guru = '';
+$kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
+$gurukelas = mysqli_query($conn, "SELECT nama_guru FROM guru");
 
 // Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
@@ -65,9 +67,18 @@ if (isset($_GET['ubah'])) {
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="namaKelas" class="col-sm-3 col-form-label">Nama Kelas</label>
+                                <label for="kelassiswa" class="col-sm-3 col-form-label">Kelas</label>
                                 <div class="col-sm-9">
-                                    <input required ="text" name="nama_kelas" class="form-control" id="namaKelas" placeholder="Masukkan Nama Kelas" value="<?php echo $nama_kelas;?>">
+                                    <select class="form-control" name="nama_kelas" id="kelassiswa" required>
+                                        <option value="">--Pilih Kelas--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($kelasjadwal)) :
+                                        ?>
+                                        <option value="<?= $r['nama_kelas'] ?>"><?= $r['nama_kelas'] ?></option>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -89,9 +100,18 @@ if (isset($_GET['ubah'])) {
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="namaGuru" class="col-sm-3 col-form-label">Nama Guru</label>
+                                <label for="gurukelas" class="col-sm-3 col-form-label">Nama Guru</label>
                                 <div class="col-sm-9">
-                                    <input required="text" name="nama_guru" class="form-control" id="namaGuru" placeholder="Masukkan Nama Guru" value="<?php echo $nama_guru;?>">
+                                    <select class="form-control" name="nama_guru" id="gurukelas" required>
+                                        <option value="">--Pilih Guru Pengajar--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($gurukelas)) :
+                                        ?>
+                                        <option value="<?= $r['nama_guru'] ?>"><?= $r['nama_guru'] ?></option>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +125,7 @@ if (isset($_GET['ubah'])) {
                                     <i class="fa fa-floppy-o"></i> Simpan
                                 </button>
                             <?php } ?>
-                            <a href="Jadwal.php" type="button" class="btn btn-danger btn-sm">
+                            <a href="JadwalKelas.php" type="button" class="btn btn-danger btn-sm">
                                 <i class="fa fa-reply"></i> Batal
                             </a>
                         </div>
@@ -120,4 +140,3 @@ if (isset($_GET['ubah'])) {
 <?php
 require_once '../../layout/footer.php';
 ?>
-

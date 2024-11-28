@@ -19,7 +19,7 @@ if (isset($_POST['aksi'])) {
         $sql = mysqli_query($conn, $query);
 
         if($sql){
-            header("location: Jadwal.php");
+            header("location: JadwalKelas.php");
         }else{
             echo $query;
         }
@@ -37,7 +37,7 @@ if (isset($_POST['aksi'])) {
         $query = "UPDATE jadwal SET hari = '$hari', nama_kelas = '$namaKelas',
         mapel = '$mapel', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', nama_guru = '$namaGuru'  WHERE id_jadwal = '$id_jadwal';";
         $sql = mysqli_query($conn, $query); 
-        header("location: Jadwal.php");
+        header("location: JadwalKelas.php");
         }
         }
 
@@ -49,9 +49,9 @@ if (isset($_POST['aksi'])) {
             $sql = mysqli_query($conn, $query);
         
             if ($sql) {
-                header("location: Jadwal.php");
+                header("location: JadwalKelas.php");
             } else {
                 echo $query;
             }
         }
-        ?>
+?>

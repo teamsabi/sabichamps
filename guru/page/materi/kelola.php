@@ -9,12 +9,13 @@ $nama_kelas = '';
 $nama_guru = '';
 $kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
 $gurukelas = mysqli_query($conn, "SELECT nama_guru FROM guru");
+$mata_pelajaran = mysqli_query($conn, "SELECT nama_mapel FROM mapel");
 
 // Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
     $kode_materi = $_GET['ubah'];
 
-    // Query untuk mengambil data berdasarkan ID jadwal
+    // Query untuk mengambil data berdasarkan ID materi
     $query = "SELECT * FROM materi WHERE kode_materi = '$kode_materi'";
     $sql = mysqli_query($conn, $query);
     
@@ -34,7 +35,6 @@ if (isset($_GET['ubah'])) {
     }
 }
 ?>
-
 
 <!--Content body start-->
 <div class="content-body">
@@ -57,7 +57,16 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="mapel" class="col-sm-3 col-form-label">Mata Pelajaran</label>
                                 <div class="col-sm-9">
-                                    <input required="text" name="mapel" class="form-control" id="mapel" placeholder="Masukkan Mata Pelajaran" value="<?php echo $mapel;?>">
+                                  <select class="form-control" name="mapel" id="mapel" required>
+                                        <option value="">--Pilih Mata Pelajaran--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($mata_pelajaran)) :
+                                        ?>
+                                        <option value="<?= $r['nama_mapel'] ?>"><?= $r['nama_mapel'] ?></option>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </select>  
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -2,11 +2,18 @@
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
-$query = 'SELECT * FROM kelas;';
+$query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
+        COUNT(s.id_siswa) AS jumlah_siswa
+        FROM kelas k
+        LEFT JOIN siswa s ON k.nama_kelas = s.kelas
+        GROUP BY k.id_kelas, k.kode_kelas, k.nama_kelas";
+
     $sql = mysqli_query($conn, $query);
     $no = 0;
 
 ?>
+
+
         <!--Content body start-->
         <div class="content-body badge-demo">
             <div class="container">
@@ -26,7 +33,7 @@ $query = 'SELECT * FROM kelas;';
                             <!-- Button tambah kelas -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
-                                    <a href="tambah.php" class="btn btn-success">
+                                    <a href="kelola.php" class="btn btn-success">
                                         <i class="fa fa-plus"></i> Tambah Data Kelas
                                     </a>
                                 </div>
@@ -61,14 +68,14 @@ $query = 'SELECT * FROM kelas;';
                                                     <?php echo $result['jumlah_siswa']; ?>
                                                 </td>
                                                 <td>
-                                                <a href="tambah.php?ubah=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-success btn-sm">
+                                                <a href="kelola.php?ubah=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-success btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <a href="proses.php?hapus=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <a href="dataSiswa.php?=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-warning btn-sm" style="background-color: #FFAA16; color: white;">
-                                                    <i class="fa fa-eye" style="color: white;"></i>
+                                                <a href="dataSiswa.php?kode_kelas=<?php echo $result['kode_kelas']; ?>" type="button" class="btn btn-warning btn-sm"style="background-color: #FFAA16; color: white;">
+                                                    <i class="fa fa-eye"></i>
                                                 </a>
                                                 </td>
                                             </tr>

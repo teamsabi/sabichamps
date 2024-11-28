@@ -29,7 +29,7 @@ if(isset($_GET['ubah'])){
         $next_number = 1;
     }
 
-    $kode_mapel = 'MP-' . str_pad($next_number, 3, '0', STR_PAD_LEFT);
+    $kode_mapel = 'MPL' . str_pad($next_number, 3, '0', STR_PAD_LEFT);
 }
 ?>
         <!--Content body start-->
