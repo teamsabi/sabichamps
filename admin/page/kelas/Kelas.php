@@ -2,11 +2,7 @@
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
-$query = "
-        SELECT 
-        k.id_kelas,
-        k.kode_kelas,
-        k.nama_kelas,
+$query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
         COUNT(s.id_siswa) AS jumlah_siswa
         FROM kelas k
         LEFT JOIN siswa s ON k.nama_kelas = s.kelas
