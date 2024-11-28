@@ -1,4 +1,6 @@
 <?php
+require_once '../../layout/top.php';
+
 // Contoh data siswa
 $siswa = [
     [
@@ -64,3 +66,7 @@ $siswa = [
     <script src="assets/js/script.js"></script>
 </body>
 </html>
+
+<?php
+require_once '../../layout/footer.php';
+?>

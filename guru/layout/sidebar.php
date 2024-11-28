@@ -18,7 +18,7 @@
                         </ul>
                     </li>
                     <li><a href="../kelas/Kelas.php">Kelas</a></li>
-                    <li><a href="./ui-button.html">Raport Siswa</a></li>
+                    <li><a href="../raport/Raport.php">Raport Siswa</a></li>
                 </ul>
             </li>
         </ul>
