@@ -22,8 +22,8 @@
 
                     <!-- Button Tambah Materi -->
                     <div class="row mb-3">
-                        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 130px;">
-                            <a href="tambah.php" class="btn" style="background-color: #229799; color: white;">
+                        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 90px;">
+                            <a href="kelola.php" class="btn" style="background-color: #229799; color: white;">
                                 <i class="fa fa-plus"></i> Tambah Materi
                             </a>    
                         </div>
@@ -39,6 +39,7 @@
                                         <th>Mata Pelajaran</th>
                                         <th>Nama Kelas</th>
                                         <th>File Materi</th>
+                                        <th>Nama Guru</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,10 +49,11 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= ($row['judul_materi']); ?></td>
                                             <td><?= ($row['mapel']); ?></td>
-                                            <td><?= ($row['nama_kelas']); ?></td>
+                                            <td><?= ($row['kelas']); ?></td>
                                             <td><?= ($row['file_materi']); ?></td>
+                                            <td><?= ($row['nama_guru']); ?></td>
                                             <td>
-                                            <a href="tambah.php?ubah=<?= $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                            <a href="kelola.php?ubah=<?= $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a href="proses.php?hapus=<?= $row['kode_materi']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
@@ -68,6 +70,7 @@
                                         <th>Mata Pelajaran</th>
                                         <th>Nama Kelas</th>
                                         <th>File Materi</th>
+                                        <th>Nama Guru</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
