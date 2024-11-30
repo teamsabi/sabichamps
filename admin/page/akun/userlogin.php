@@ -1,6 +1,11 @@
 <?php
-require_once '../../layout/top.php';
- ?>
+    require_once '../../layout/top.php';
+    require_once '../../helper/conek.php';
+
+    $query = 'SELECT * FROM user;';
+    $sql = mysqli_query($conn, $query);
+    $no = 1;
+?>
 
         <!--**********************************
             Content body start
@@ -17,14 +22,14 @@ require_once '../../layout/top.php';
                             <!-- Button Tambah Akun -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#addAkunGuru">
+                                    <a href="kelola.php" class="btn" style="background-color: #229799; color: white;">
                                         <i class="fa fa-plus"></i> Tambah Data User
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="guruTable" class="display" style="width: 100%;">
+                                    <table id="userTable" class="display" style="width: 100%;">
                                         <thead>
                                         <tr>
                                             <th>No.</th>
@@ -32,10 +37,28 @@ require_once '../../layout/top.php';
                                             <th>Email</th>
                                             <th>Password</th>
                                             <th>Role</th>
-                                            <th>Tanggal buat</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
+                                        <tbody>
+                                            <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                                <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= ($row['username']); ?></td>
+                                                    <td><?= ($row['email']); ?></td>
+                                                    <td><?= ($row['password']); ?></td>
+                                                    <td><?= ($row['role']); ?></td>
+                                                    <td>
+                                                        <a href="kelola.php?ubah=<?php echo $row['id_user']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <a href="proses.php?hapus=<?= $row['id_user']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>No.</th>
@@ -43,7 +66,6 @@ require_once '../../layout/top.php';
                                             <th>Email</th>
                                             <th>Password</th>
                                             <th>Role</th>
-                                            <th>Tanggal buat</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </tfoot>
@@ -55,7 +77,7 @@ require_once '../../layout/top.php';
 
                     <script>
                     $(document).ready(function () {
-                        var table = $('#guruTable').DataTable();
+                        var table = $('#userTable').DataTable();
                     });
                     </script>
                 </div>
