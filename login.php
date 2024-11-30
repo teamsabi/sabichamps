@@ -1,8 +1,8 @@
 <?php
 // Mulai sesi PHP dan sertakan file koneksi dan Auth
 session_start();
-require_once './helper/koneksi.php'; // File koneksi database
-require_once './helper/Auth.php'; // File kelas Auth
+require_once './admin/helper/koneksi.php'; // File koneksi database
+require_once './admin/helper/Auth.php'; // File kelas Auth
 
 $auth = new Auth($koneksi); // Inisialisasi kelas Auth
 $error = '';
@@ -14,8 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Coba login dengan kelas Auth
     if ($auth->login($email, $password)) {
-        // Jika berhasil, arahkan ke dashboard
-        header("Location: page/dashboard/index.php");
+        // Ambil data role dari sesi atau database
+        $role = $auth->getUserRole(); // Pastikan metode getUserRole() tersedia dalam kelas Auth
+
+        // Arahkan pengguna berdasarkan role
+        if ($role === 'admin') {
+            header("Location: ./admin/page/dashboard/index.php");
+        } elseif ($role === 'guru') {
+            header("Location: ./guru/page/dashboard/index.php");
+        } else {
+            // Default jika role tidak dikenali
+            header("Location: login.php");
+        }
         exit();
     } else {
         // Jika gagal, simpan pesan error
@@ -112,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <div class="login-card">
-        <img src="images/user.png" alt="User Icon">
+        <img src="./admin/images/user.png" alt="User Icon">
         <h2>Login</h2>
         <!-- Menampilkan pesan error jika login gagal -->
         <?php if (!empty($error)): ?>
@@ -135,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <button type="submit" class="btn btn-custom" id="submit">Masuk</button>
-    <p class="text-center text-small mt-3">Belum Punya Akun? <a href="../register.php">Daftar</a></p>
+    <p class="text-center text-small mt-3">Belum Punya Akun? <a href="register.php">Daftar</a></p>
 </form>
 
     </div>

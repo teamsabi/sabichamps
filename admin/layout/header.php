@@ -40,7 +40,7 @@
                                 <i class="icon-envelope-open"></i>
                                 <span class="ml-2">Inbox </span>
                             </a>
-                            <a href="/sabiwebsite/admin/logout.php" class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin Logout??')">
+                            <a href="/sabiwebsite/logout.php" class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin Logout??')">
                                 <i class="icon-key"></i>
                                 <span class="ml-2">Logout </span>
                             </a>

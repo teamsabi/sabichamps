@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($auth->register($username, $email, $password)) {
         // Jika berhasil, simpan pesan sukses dan arahkan ke login
         $success = "Registrasi berhasil. Silakan login.";
-        header("Location: ./admin/login.php"); // Arahkan ke halaman login
+        header("Location: login.php"); // Arahkan ke halaman login
         exit();
     } else {
         // Jika gagal, simpan pesan error
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
     <div class="register-card">
-        <img src="assets2/img/user.png" alt="User Icon">
+        <img src="./admin/images/user.png" alt="User Icon">
         <h2>Register</h2>
         
         <!-- Menampilkan pesan error jika registrasi gagal -->
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="show-password" id="togglePassword">Show</span>
             </div>
             <button type="submit" class="btn btn-custom">Daftar</button>
-            <p class="text-center text-small mt-3">Sudah Punya Akun? <a href="./admin/login.php">Masuk</a></p>
+            <p class="text-center text-small mt-3">Sudah Punya Akun? <a href="login.php">Masuk</a></p>
         </form>
     </div>
 

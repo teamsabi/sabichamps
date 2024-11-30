@@ -25,30 +25,30 @@ class Auth
      * Registrasi User baru
      */
     public function register($username, $email, $password)
-    {
-        try {
-            // Hash password sebelum disimpan
-            $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
+{
+    try {
+        // Hash password sebelum disimpan
+        $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
 
-            // Masukkan user baru ke database
-            $stmt = $this->db->prepare("INSERT INTO user (username, email, password) 
-                                        VALUES (:username, :email, :pass)");
-            $stmt->bindParam(":username", $username);
-            $stmt->bindParam(":email", $email);
-            $stmt->bindParam(":pass", $hashPasswd);
-            $stmt->execute();
+        // Masukkan user baru ke database dengan role default 'guru'
+        $stmt = $this->db->prepare("INSERT INTO user (username, email, password, role) 
+                                    VALUES (:username, :email, :pass, 'guru')");
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":pass", $hashPasswd);
+        $stmt->execute();
 
-            return true;
-        } catch (PDOException $e) {
-            // Tangani error jika email sudah digunakan (duplicate entry)
-            if ($e->errorInfo[0] == 23000) { // 23000 adalah kode error duplicate entry
-                $this->error = "Email sudah digunakan!";
-            } else {
-                $this->error = "Terjadi kesalahan: " . $e->getMessage();
-            }
-            return false;
+        return true;
+    } catch (PDOException $e) {
+        // Tangani error jika email sudah digunakan (duplicate entry)
+        if ($e->errorInfo[0] == 23000) { // 23000 adalah kode error duplicate entry
+            $this->error = "Email sudah digunakan!";
+        } else {
+            $this->error = "Terjadi kesalahan: " . $e->getMessage();
         }
+        return false;
     }
+}
 
     /**
      * Login User
@@ -75,6 +75,18 @@ class Auth
         return false;
     }
 }
+
+    public function getUserRole()
+    {
+        if (isset($_SESSION['user_session'])) {
+            $stmt = $this->db->prepare("SELECT role FROM user WHERE id_user = :id_user");
+            $stmt->bindParam(":id_user", $_SESSION['user_session']);
+            $stmt->execute();
+            $data = $stmt->fetch();
+            return $data['role'] ?? null; // Kembalikan role atau null jika tidak ditemukan
+        }
+        return null; // Jika sesi tidak ada
+    }
 
 
     /**
