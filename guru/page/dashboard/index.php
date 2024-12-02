@@ -8,7 +8,7 @@ require_once '../../layout/top.php';
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi,!</h4>
+                            <h4>Hai, <?php echo htmlspecialchars($username); ?>!</h4>
                             <p class="mb-0">Guru</p>
                         </div>
                     </div>
