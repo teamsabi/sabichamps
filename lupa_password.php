@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php'; // Koneksi ke database
+require './admin/helper/koneksi.php'; // Koneksi ke database
 require 'vendor2/autoload.php'; // Pastikan PHPMailer sudah diinstal dan autoload tersedia
 
 use PHPMailer\PHPMailer\PHPMailer;

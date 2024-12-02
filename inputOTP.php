@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php'; // Koneksi ke database
+require './admin/helper/koneksi.php'; // Koneksi ke database
 session_start(); // Memulai sesi
 $response = "";
 
