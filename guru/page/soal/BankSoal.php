@@ -2,7 +2,7 @@
     require_once '../../layout/top.php';
     require_once '../../helper/conek.php';
 
-    // Ambil data dari tabel 'jadwal'
+    // Ambil data dari tabel 'soal'
     $query = 'SELECT * FROM soal;';
     $sql = mysqli_query($conn, $query);
     $no = 1;
@@ -50,17 +50,17 @@
                                             <td>
                                                 <strong>Mata Pelajaran:</strong> <?= ($row['mapel']); ?><br>
                                                 <strong>Kelas:</strong> <?= ($row['nama_kelas']); ?><br>
-                                                <strong>Waktu Pengerjaan:</strong> <?= ($row['waktu_pengerjaan']); ?><br>
+                                                <strong>Waktu Pengerjaan:</strong> <?= ($row['waktu_pengerjaan']); ?> menit <br>
                                                 <strong>Info Soal:</strong> <?= ($row['info_soal']); ?>
                                             </td>
                                             <td>
-                                            <a href="buatSoal.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-warning btn-sm buatSoalBtn" style="color: white;">
-                                                <i class="fa fa-graduation-cap"></i>
+                                            <a href="BuatSoal.php?id_soal=<?= $row['id_soal']; ?>" type="button" class="btn btn-warning btn-sm buatSoalBtn" style="color: white;">
+                                                <i class="fa fa-file-text"></i>
                                             </a>
                                             </td>
                                             <td>
-                                            <a href="telahMengerjakan.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm lihatTelahUjianBtn" style=" background-color: #3065D0; color: white;">
-                                                <i class="fa fa-file-text"></i>
+                                            <a href="telahMengerjakan.php?=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm lihatTelahUjianBtn" style=" background-color: #3065D0; color: white;">
+                                                <i class="fa fa-graduation-cap"></i>
                                             </a>
                                             </td>
                                             <td>
