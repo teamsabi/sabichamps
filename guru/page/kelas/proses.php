@@ -8,7 +8,7 @@ if(isset($_POST['aksi'])){
     $jumlah_siswa = $_POST['jumlah_siswa'];
 
     if($_POST['aksi'] == "add"){
-        $query = "INSERT INTO kelas (kode_kelas, nama_kelas, jumlah_siswa) VALUES ('$kode_kelas', '$nama_kelas', '$jumlah_siswa');";
+        $query = "INSERT INTO kelas (kode_kelas, nama_kelas, jumlah_siswa) VALUES ('$kode_kelas', '$nama_kelas', '0');";
     } elseif($_POST['aksi'] == "edit"){
         $query = "UPDATE kelas SET kode_kelas='$kode_kelas', nama_kelas='$nama_kelas', jumlah_siswa='$jumlah_siswa' WHERE id_kelas='$id_kelas';";
     }
