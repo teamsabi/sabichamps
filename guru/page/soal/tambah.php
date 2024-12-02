@@ -16,7 +16,7 @@ if (isset($_GET['ubah'])) {
     $id_soal = $_GET['ubah'];
 
     // Query untuk mengambil data berdasarkan ID soal
-    $query = "SELECT * FROM jadwal WHERE id_soal = '$id_soal'";
+    $query = "SELECT * FROM soal WHERE id_soal = '$id_soal'";
     $sql = mysqli_query($conn, $query);
     
     // Cek apakah data ditemukan

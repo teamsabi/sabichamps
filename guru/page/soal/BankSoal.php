@@ -54,12 +54,12 @@
                                                 <strong>Info Soal:</strong> <?= ($row['info_soal']); ?>
                                             </td>
                                             <td>
-                                            <a href="buatSoal.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm btn-warning buatSoalBtn" style="background-color: #229799; color: white;">
+                                            <a href="buatSoal.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-warning btn-sm buatSoalBtn" style="color: white;">
                                                 <i class="fa fa-graduation-cap"></i>
                                             </a>
                                             </td>
                                             <td>
-                                            <a href="telahMengerjakan.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm btn-info lihatTelahUjianBtn" style="background-color: #229799; color: white;">
+                                            <a href="telahMengerjakan.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm lihatTelahUjianBtn" style=" background-color: #3065D0; color: white;">
                                                 <i class="fa fa-file-text"></i>
                                             </a>
                                             </td>
