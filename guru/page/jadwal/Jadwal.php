@@ -36,6 +36,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Hari</th>
+                                        <th>Tanggal</th>
+                                        <th>Tempat</th>
                                         <th>Nama Kelas</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Jam Mulai</th>
@@ -49,6 +51,8 @@
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= ($row['hari']); ?></td>
+                                            <td><?= ($row['tanggal']); ?></td>
+                                            <td><?= ($row['tempat']); ?></td>
                                             <td><?= ($row['nama_kelas']); ?></td>
                                             <td><?= ($row['mapel']); ?></td>
                                             <td><?= ($row['jam_mulai']); ?></td>
@@ -69,6 +73,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Hari</th>
+                                        <th>Tanggal</th>
+                                        <th>Tempat</th>
                                         <th>Nama Kelas</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Jam Mulai</th>

@@ -4,6 +4,8 @@ require_once '../../helper/conek.php';
 
 $id_jadwal = '';
 $hari = '';
+$tanggal = '';
+$tempat= '';
 $nama_kelas = '';
 $mapel = '';    
 $jam_mulai = '';
@@ -27,6 +29,8 @@ if (isset($_GET['ubah'])) {
         
         // Ambil data dari database
         $hari = $result['hari'];
+        $tanggal = $result['tanggal'];
+        $tempat = $result['tempat'];
         $nama_kelas = $result['nama_kelas'];
         $mapel = $result['mapel'];
         $jam_mulai = $result['jam_mulai'];
@@ -67,6 +71,18 @@ if (isset($_GET['ubah'])) {
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="tanggal" class="col-sm-3 col-form-label">Tanggal</label>
+                                <div class="col-sm-9">
+                                    <input required type="date" name="tanggal" class="form-control" id="tanggal" value="<?php echo $tanggal; ?>" min="<?php echo date('Y-m-d'); ?>">
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label for="tempat" class="col-sm-3 col-form-label">Tempat</label>
+                                <div class="col-sm-9">
+                                    <input required type ="text" name="tempat" class="form-control" id="tempat" placeholder="Masukkan Tempat" value="<?php echo $tempat;?>">
+                                </div>
+                            </div> 
                             <div class="form-group row">
                                 <label for="kelassiswa" class="col-sm-3 col-form-label">Kelas</label>
                                 <div class="col-sm-9">
@@ -135,7 +151,7 @@ if (isset($_GET['ubah'])) {
                                     <i class="fa fa-floppy-o"></i> Simpan
                                 </button>
                             <?php } ?>
-                            <a href="JadwalKelas.php" type="button" class="btn btn-danger btn-sm">
+                            <a href="Jadwal.php" type="button" class="btn btn-danger btn-sm">
                                 <i class="fa fa-reply"></i> Batal
                             </a>
                         </div>

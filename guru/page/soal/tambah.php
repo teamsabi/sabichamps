@@ -88,7 +88,8 @@ if (isset($_GET['ubah'])) {
                             <div class="form-group row">
                                 <label for="waktuPengerjaan" class="col-sm-3 col-form-label">Waktu Pengerjaan</label>
                                 <div class="col-sm-9">
-                                    <input type="time" name="waktuPengerjaan" class="form-control" id="waktuPengerjaan" value="<?php echo $waktu_pengerjaan;?>">
+                                    <input type="number" name="waktuPengerjaan" class="form-control" id="waktuPengerjaan" value="<?php echo $waktu_pengerjaan;?>" 
+                                    min="1" max="1440" placeholder="Masukkan waktu dalam menit">
                                 </div>
                             </div>
                             <div class="form-group row">

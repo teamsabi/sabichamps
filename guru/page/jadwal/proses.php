@@ -6,6 +6,8 @@ if (isset($_POST['aksi'])) {
         
         // Mengambil nilai dari input form
         $hari = $_POST['hari'];
+        $tanggal = $_POST['tanggal'];
+        $tempat = $_POST['tempat'];
         $namaKelas = $_POST['nama_kelas'];
         $mapel = $_POST['mapel'];
         $jamMulai = $_POST['jam_mulai'];
@@ -13,13 +15,13 @@ if (isset($_POST['aksi'])) {
         $namaGuru = $_POST['nama_guru'];
         
         // Query untuk menambahkan data ke database
-        $query = "INSERT INTO jadwal (hari, nama_kelas, mapel, jam_mulai, jam_selesai, nama_guru) 
-                  VALUES ('$hari', '$namaKelas', '$mapel', '$jamMulai', '$jamSelesai', '$namaGuru')";
+        $query = "INSERT INTO jadwal (hari, tanggal, tempat, nama_kelas, mapel, jam_mulai, jam_selesai, nama_guru) 
+                  VALUES ('$hari', '$tanggal', '$tempat', '$namaKelas', '$mapel', '$jamMulai', '$jamSelesai', '$namaGuru')";
 
         $sql = mysqli_query($conn, $query);
 
         if($sql){
-            header("location: JadwalKelas.php");
+            header("location: Jadwal.php");
         }else{
             echo $query;
         }
@@ -28,16 +30,18 @@ if (isset($_POST['aksi'])) {
 
         $id_jadwal = $_POST['id_jadwal'];
         $hari = $_POST['hari'];
+        $tanggal = $_POST['tanggal'];
+        $tempat = $_POST['tempat'];
         $namaKelas = $_POST['nama_kelas'];
         $mapel = $_POST['mapel'];
         $jamMulai = $_POST['jam_mulai'];
         $jamSelesai = $_POST['jam_selesai'];
         $namaGuru = $_POST['nama_guru'];
 
-        $query = "UPDATE jadwal SET hari = '$hari', nama_kelas = '$namaKelas',
+        $query = "UPDATE jadwal SET hari = '$hari', tanggal = '$tanggal', tempat = '$tempat', nama_kelas = '$namaKelas',
         mapel = '$mapel', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', nama_guru = '$namaGuru'  WHERE id_jadwal = '$id_jadwal';";
         $sql = mysqli_query($conn, $query); 
-        header("location: JadwalKelas.php");
+        header("location: Jadwal.php");
         }
         }
 
@@ -49,7 +53,7 @@ if (isset($_POST['aksi'])) {
             $sql = mysqli_query($conn, $query);
         
             if ($sql) {
-                header("location: JadwalKelas.php");
+                header("location: Jadwal.php");
             } else {
                 echo $query;
             }

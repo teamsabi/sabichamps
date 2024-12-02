@@ -6,13 +6,13 @@ if(isset($_POST['aksi'])){
     $judul_soal = $_POST['judul_soal'];
     $mapel = $_POST['mapel'];
     $nama_kelas = $_POST['nama_kelas'];
-    $waktu_pengerjaan = $_POST['waktu_pengerjaan'];
-    $info_soal = $_POST['info_soal'];
+    $waktu_pengerjaan = $_POST['waktuPengerjaan'];
+    $info_soal = $_POST['infoSoal'];
 
     if($_POST['aksi'] == "add"){
         $query = "INSERT INTO soal (judul_soal, mapel, nama_kelas, waktu_pengerjaan, info_soal) VALUES ('$judul_soal', '$mapel', '$nama_kelas', '$waktu_pengerjaan', '$info_soal');";
     } elseif($_POST['aksi'] == "edit"){
-        $query = "UPDATE soal SET judul_soal='$judul_soal', mapel='$mapel', nama_kelas='$nama_kelas', waktu_pengerjaan='$waktu_pengerjaan', info_kuliah='$info_soal' WHERE id_soal='$id_soal';";
+        $query = "UPDATE soal SET judul_soal='$judul_soal', mapel='$mapel', nama_kelas='$nama_kelas', waktu_pengerjaan='$waktu_pengerjaan', info_soal='$info_soal' WHERE id_soal='$id_soal';";
     }
 
     if(mysqli_query($conn, $query)){

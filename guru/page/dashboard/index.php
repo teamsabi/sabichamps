@@ -2,6 +2,10 @@
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
+    // Ambil data jadwal dari database
+    $queryJadwal = "SELECT * FROM jadwal"; 
+    $resultJadwal = $conn->query($queryJadwal);
+
     // Query untuk menghitung jumlah data
     $queryGuru = "SELECT COUNT(*) AS jumlah_guru FROM guru";
     $querySiswa = "SELECT COUNT(*) AS jumlah_siswa FROM siswa";
@@ -94,25 +98,41 @@ require_once '../../helper/conek.php';
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Hari</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Tempat</th>
                                                     <th>Nama Kelas</th>
                                                     <th>Mata Pelajaran</th>
-                                                    <th>Waktu Mulai</th>
-                                                    <th>Waktu Selesai</th>
+                                                    <th>Jam Mulai</th>
                                                     <th>Nama Guru</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Hari</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Tempat</th>
                                                     <th>Nama Kelas</th>
                                                     <th>Mata Pelajaran</th>
-                                                    <th>Waktu Mulai</th>
-                                                    <th>Waktu Selesai</th>
+                                                    <th>Jam Mulai</th>
                                                     <th>Nama Guru</th>
                                                 </tr>
                                             </tfoot>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                while ($row = $resultJadwal->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . $no++ . "</td>";
+                                                    echo "<td>" . $row['tanggal'] . "</td>";
+                                                    echo "<td>" . $row['tempat'] . "</td>";
+                                                    echo "<td>" . $row['nama_kelas'] . "</td>";
+                                                    echo "<td>" . $row['mapel'] . "</td>";
+                                                    echo "<td>" . $row['jam_mulai'] . "</td>";
+                                                    echo "<td>" . $row['nama_guru'] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                                ?>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
