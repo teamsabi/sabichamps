@@ -2,16 +2,22 @@
     require_once '../../layout/top.php';
     require_once '../../helper/conek.php';
 
-    // Ambil ID soal dari URL
-    $id_soal = isset($_GET['id_soal']) ? mysqli_real_escape_string($conn, $_GET['id_soal']) : '';
-
-    if (!$id_soal) {
-        die("ID Soal tidak ditemukan.");
+    if ($id_soal) {
+        // Query untuk mengambil soal berdasarkan id_soal
+        $query = "SELECT e.judul_soal, e.pertanyaan, e.tanggal_buat
+                FROM essay e
+                INNER JOIN soal s ON e.judul_soal = e.judul_soal
+                WHERE s.id_soal = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('e', $id_soal);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } else {
+        $result = null; // Kosongkan jika tidak ada kode_kelas
     }
-
     // Ambil data dari tabel 'soal'
-    $query = "SELECT id_essay, pertanyaan, tanggal_buat FROM essay ORDER BY tanggal_buat DESC";
-    $result = mysqli_query($conn, $query);    
+    $query = "SELECT id_essay, judul_soal, pertanyaan, tanggal_buat FROM essay ORDER BY tanggal_buat DESC;";
+    $sql = mysqli_query($conn, $query);    
     $no = 1;
 ?>
 
@@ -40,24 +46,26 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Judul Soal</th>
                                         <th>Pertanyaan</th>
                                         <th>Tanggal Buat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                    <?php while($result = mysqli_fetch_assoc($sql)){ ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
+                                            <td><?php echo $result['judul_soal']; ?></td>
                                             <td><?php echo $result['pertanyaan']; ?></td>
                                             <td><?php echo $result['tanggal_buat']; ?></td>
                                             <td>
-                                            <a href="tambah-SoalEssay.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="proses-SoalEssay.php?hapus=<?= $row['id_soal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a href="tambah-SoalEssay.php?ubah=<?php echo $result['id_essay']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="proses-SoalEssay.php?hapus=<?php echo $result['id_essay']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -65,6 +73,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
+                                        <th>Judul Soal</th>
                                         <th>Pertanyaan</th>
                                         <th>Tanggal Buat</th>
                                         <th>Aksi</th>
@@ -73,8 +82,13 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                <div class="card-footer text-right">
+                    <a href="BankSoal.php" type="button" class="btn btn-danger btn-sm">
+                        <i class="fa fa-reply"></i> Kembali
+                    </a>
             </div>
+        </div>
+    </div>
 
             <!-- Inisialisasi DataTables -->
             <script>

@@ -5,6 +5,7 @@ require_once '../../helper/conek.php';
 $id_essay = '';
 $pertanyaan = '';
 $tanggal_buat = '';
+$judul_soal = mysqli_query($conn, "SELECT judul_soal FROM soal");
 
 // Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
@@ -41,8 +42,23 @@ if (isset($_GET['ubah'])) {
                         <div class="card-body">
                             <input type="hidden" value="<?php echo $id_essay; ?>" name="id_essay">
                             <div class="form-group row">
-                                <label for="pertanyaan" class="col-sm-3 col-form-label" style="margin-top: -40px;">Pertanyaan</label>
-                                <div class="col-sm-12">
+                                <label for="judul_soal" class="col-sm-3 col-form-label">Judul Soal</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="judul_soal" id="juduk_soal" required>
+                                        <option value="">--Pilih Judul Soal--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($judul_soal)) :
+                                        ?>
+                                        <option value="<?= $r['judul_soal'] ?>"><?= $r['judul_soal'] ?></option>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="pertanyaan" class="col-sm-3 col-form-label">Pertanyaan</label>
+                                <div class="col-sm-9">
                                 <textarea required name="pertanyaan" class="form-control summernote" id="pertanyaan"><?php echo $pertanyaan; ?></textarea>
                             </div>
                         </div>
