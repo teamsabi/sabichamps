@@ -2,6 +2,13 @@
     require_once '../../layout/top.php';
     require_once '../../helper/conek.php';
 
+    // Ambil ID soal dari URL
+    $id_soal = isset($_GET['id_soal']) ? mysqli_real_escape_string($conn, $_GET['id_soal']) : '';
+
+    if (!$id_soal) {
+        die("ID Soal tidak ditemukan.");
+    }
+
     // Ambil data dari tabel 'soal'
     $query = "SELECT id_essay, pertanyaan, tanggal_buat FROM essay ORDER BY tanggal_buat DESC";
     $result = mysqli_query($conn, $query);    
@@ -45,10 +52,10 @@
                                             <td><?php echo $result['pertanyaan']; ?></td>
                                             <td><?php echo $result['tanggal_buat']; ?></td>
                                             <td>
-                                            <a href="tambah.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                            <a href="tambah-SoalEssay.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="proses.php?hapus=<?= $row['id_soal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                            <a href="proses-SoalEssay.php?hapus=<?= $row['id_soal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             </td>
