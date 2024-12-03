@@ -9,16 +9,47 @@
     $no = 0;
 
     // Pesan Status
-    if (isset($_GET['status'])) {
+    if (isset($_GET['status']) && isset($_GET['aksi'])) {
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
         if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
-            $pesan = "<div class='alert alert-success'>Data siswa berhasil ditambahkan!</div>";
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data siswa berhasil ditambahkan!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
         } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
-            $pesan = "<div class='alert alert-success'>Data siswa berhasil diperbarui!</div>";
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data siswa berhasil diperbarui!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
         } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
-            $pesan = "<div class='alert alert-success'>Data siswa berhasil dihapus!</div>";
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data siswa berhasil dihapus!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
         } elseif ($_GET['status'] == 'gagal') {
-            $pesan = "<div class='alert alert-danger'>Operasi gagal. Silakan coba lagi.</div>";
+            echo "
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Operasi gagal. Silakan coba lagi.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            ";
         }
+        echo "</script>";
     }
 ?>
  ?>
@@ -96,9 +127,9 @@
                                                     <a href="kelola.php?ubah=<?php echo $result['id_siswa']; ?>" type="button" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="proses.php?hapus=<?php echo $result['id_siswa']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?php echo $result['id_siswa']; ?>')">
                                                         <i class="fa fa-trash"></i>
-                                                    </a>
+                                                    </button>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -129,6 +160,24 @@
                     $(document).ready(function () {
                         var table = $('#guruTable').DataTable();
                     });
+
+                    function confirmDelete(id) {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Data ini akan dihapus secara permanen!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Arahkan ke proses.php dengan parameter hapus
+                                window.location.href = `proses.php?hapus=${id}`;
+                            }
+                        });
+                    }
                     </script>
                 </div>
             </div>
