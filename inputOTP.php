@@ -4,7 +4,6 @@ session_start();
 
 $response = "";
 
-    $stmt->bindParam(':email', $email);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp_code'], $_POST['email'])) {
     try {
         // Ambil data dari POST
