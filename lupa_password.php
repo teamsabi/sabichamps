@@ -57,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                                 text: 'OTP berhasil dikirim ke email Anda. Silakan cek email Anda.',
                                 confirmButtonText: 'OK'
                             }).then(() => {
-                                window.location.href = 'inputOTP.php'; // Redirect ke halaman input OTP
+                                window.location.href = 'inputOTP.php?email=$email'; // Kirim email ke inputOTP.php
                             });
-                         </script>";
+                        </script>";
         } catch (Exception $e) {
             $response = "<script>Swal.fire('Gagal!', 'Pengiriman email gagal: {$mail->ErrorInfo}', 'error');</script>";
         }
