@@ -6,7 +6,7 @@
 
     if ($kode_kelas) {
         // Query untuk mengambil data siswa berdasarkan kode_kelas
-        $query = "SELECT s.nama_siswa, s.jenis_kelamin, s.telepon, k.nama_kelas, s.alamat
+        $query = "SELECT s.id_siswa, s.nama_siswa, s.jenis_kelamin, s.telepon, k.nama_kelas, s.alamat
                 FROM siswa s
                 INNER JOIN kelas k ON s.kelas = k.nama_kelas
                 WHERE k.kode_kelas = ?";
@@ -17,7 +17,6 @@
     } else {
         $result = null; // Kosongkan jika tidak ada kode_kelas
     }
-
 
     $no = 0;
 
@@ -32,7 +31,6 @@
                             <div class="card-header">
                                 <h4 class="card-title">Kelas</h4>
                             </div>
-
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="siswaTable" class="display table-hover" style="width: 100%;">
@@ -40,10 +38,12 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Telepon</th>
                                                 <th>Kelas</th>
-                                                <th>Alamat</th>
+                                                <th>Matematika</th>
+                                                <th>Fisika</th>
+                                                <th>Kimia</th>
+                                                <th>Nilai Rata-Rata</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,10 +53,19 @@
                                                 <tr>
                                                 <td><?php echo ++$no; ?>.</td>
                                                 <td><?php echo $row['nama_siswa']; ?></td>
-                                                <td><?php echo $row['jenis_kelamin']; ?></td>
-                                                <td><?php echo $row['telepon']; ?></td>
                                                 <td><?php echo $row['nama_kelas']; ?></td>
-                                                <td><?php echo $row['alamat']; ?></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="tambah.php?ubah=<?php echo $row['id_siswa']; ?>" type="button" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="proses.php?hapus=<?php echo $row['id_siswa']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </td>
                                                 </tr>
                                                 <?php endwhile;
                                             else: ?>
@@ -69,17 +78,19 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Telepon</th>
                                                 <th>Kelas</th>
-                                                <th>Alamat</th>
+                                                <th>Matematika</th>
+                                                <th>Fisika</th>
+                                                <th>Kimia</th>
+                                                <th>Nilai Rata-Rata</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <a href="Kelas.php" type="button" class="btn btn-danger btn-sm">
+                                <a href="Raport.php" type="button" class="btn btn-danger btn-sm">
                                     <i class="fa fa-reply"></i> Kembali
                                 </a>
                             </div>
