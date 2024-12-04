@@ -1,48 +1,59 @@
 <?php
-require './admin/helper/koneksi.php'; // Koneksi ke database
-session_start(); // Memulai sesi
+require './admin/helper/koneksi.php';
+session_start();
+
 $response = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['otp_code']) && isset($_POST['email'])) {
-    $email = $_POST['email'];
-    $otp_code = $_POST['otp_code']; // Mendapatkan OTP yang digabungkan dari input form
-
-    // Cek apakah OTP valid di database
-    $stmt = $koneksi->prepare("SELECT * FROM password_resets WHERE email = :email AND otp_code = :otp_code AND status = 'pending' AND expires_at > NOW()");
     $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':otp_code', $otp_code);
-    $stmt->execute();
-    $reset = $stmt->fetch();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp_code'], $_POST['email'])) {
+    try {
+        // Ambil data dari POST
+        $email = $_POST['email'];
+        $otp_code = $_POST['otp_code'];
 
-    if ($reset) {
-        // Jika OTP benar, simpan email ke dalam sesi untuk digunakan di halaman berikutnya
-        $_SESSION['email_reset'] = $email;
+        // Validasi email dan OTP
+        if (empty($email) || empty($otp_code) || strlen($otp_code) !== 5) {
+            die("<script>alert('Email atau kode OTP tidak valid.');</script>");
+        }
 
-        // Update status OTP menjadi 'verified'
-        $stmt = $koneksi->prepare("UPDATE password_resets SET status = 'verified' WHERE email = :email AND otp_code = :otp_code");
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':otp_code', $otp_code);
-        $stmt->execute();
+        // Query untuk memeriksa OTP dan status
+        $query = $koneksi->prepare("
+            SELECT otp_code, expires_at, status 
+            FROM password_resets 
+            WHERE email = :email AND status = 'pending'
+        ");
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        // Script SweetAlert yang akan dijalankan setelah verifikasi berhasil
-        $response = "<script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'OTP Berhasil Diverifikasi',
-                            text: 'Anda akan diarahkan ke halaman ubah kata sandi.',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location.href = 'kata_sandibaru.php'; // Redirect ke halaman ubah kata sandi
-                        });
-                     </script>";
-    } else {
-        // OTP salah atau kedaluwarsa
-        $response = "<script>Swal.fire('Gagal', 'OTP salah atau sudah kedaluwarsa.', 'error');</script>";
+        if ($result) {
+            $current_time = date('Y-m-d H:i:s');
+            if ($otp_code === $result['otp_code'] && strtotime($current_time) <= strtotime($result['expires_at'])) {
+                // Update status OTP menjadi 'verifikasi'
+                $updateQuery = $koneksi->prepare("
+                    UPDATE password_resets 
+                    SET status = 'verifikasi' 
+                    WHERE email = :email AND otp_code = :otp_code
+                ");
+                $updateQuery->bindParam(':email', $email);
+                $updateQuery->bindParam(':otp_code', $otp_code);
+                $updateQuery->execute();
+
+                // Redirect ke halaman kata sandi baru
+                header("Location: kata_sandibaru.php?email=$email");
+                exit();
+            } else {
+                die("<script>alert('Kode OTP salah atau sudah kedaluwarsa.');</script>");
+            }
+        } else {
+            die("<script>alert('Email atau OTP tidak ditemukan.');</script>");
+        }
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
     }
-    echo $response;
-    exit; // Hentikan script setelah menampilkan respons
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
