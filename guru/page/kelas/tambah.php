@@ -33,8 +33,7 @@ if(isset($_GET['ubah'])){
 
     $kode_kelas = 'KLS' . str_pad($next_number, 3, '0', STR_PAD_LEFT);
 }
-
- ?>
+?>
 
         <!--Content body start-->
         <div class="content-body">

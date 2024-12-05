@@ -121,15 +121,17 @@ require_once '../../helper/conek.php';
                                                 <?php
                                                 $no = 1;
                                                 while ($row = $resultJadwal->fetch_assoc()) {
-                                                    echo "<tr>";
-                                                    echo "<td>" . $no++ . "</td>";
-                                                    echo "<td>" . $row['tanggal'] . "</td>";
-                                                    echo "<td>" . $row['tempat'] . "</td>";
-                                                    echo "<td>" . $row['nama_kelas'] . "</td>";
-                                                    echo "<td>" . $row['mapel'] . "</td>";
-                                                    echo "<td>" . $row['jam_mulai'] . "</td>";
-                                                    echo "<td>" . $row['nama_guru'] . "</td>";
-                                                    echo "</tr>";
+                                                    ?>
+                                                    <tr>
+                                                    <td><?php echo ++$no; ?>. </td>
+                                                    <td><?php echo $row['tanggal']; ?></td>
+                                                    <td><?php echo $row['tempat']; ?></td>
+                                                    <td><?php echo $row['nama_kelas']; ?></td>
+                                                    <td><?php echo $row['mapel']; ?></td>
+                                                    <td><?php echo $row['jam_mulai']; ?></td>
+                                                    <td><?php echo $row['nama_guru']; ?></td>
+                                                    </tr>
+                                                <?php
                                                 }
                                                 ?>
                                             </tbody>
