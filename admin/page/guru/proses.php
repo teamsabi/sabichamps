@@ -1,28 +1,25 @@
 <?php
 require_once 'fungsi.php'; 
-session_start();
 
     if(isset($_POST['aksi'])){
         if($_POST['aksi'] == "add"){
 
             $berhasil = tambah_data($_POST, $_FILES);
 
-            if($berhasil){
-                $_SESSION['status'] = "Data Berhasil Ditambahkan";
-                header("location: ManajemenAkun-Guru.php");
-            }else{
-                echo $berhasil;
+            if ($berhasil) {
+                header("location: ManajemenAkun-Guru.php?status=success&message=Data berhasil ditambahkan");
+            } else {
+                header("location: ManajemenAkun-Guru.php?status=error&message=$berhasil");
             }
         }else if($_POST['aksi'] == "edit"){
             
             $berhasil = ubah_data($_POST, $_FILES);
 
              
-            if($berhasil){
-                $_SESSION['status'] = "Data Berhasil Diubah";
-                header("location: ManajemenAkun-Guru.php");
-            }else{
-                echo $berhasil;
+            if ($berhasil) {
+                header("location: ManajemenAkun-Guru.php?status=success&message=Data berhasil diubah");
+            } else {
+                header("location: ManajemenAkun-Guru.php?status=error&message=$berhasil");
             }
 
 
@@ -34,10 +31,9 @@ session_start();
         $berhasil = hapus_data($_GET);
 
         if($berhasil){
-            $_SESSION['status'] = "Data Telah Dihapus";
-            header("location: ManajemenAkun-Guru.php");
+            header("location: ManajemenAkun-Guru.php?status=success&message=Data berhasil dihapus");
         }else{
-            echo $berhasil;
+            header("Location: ManajemenAkun-Guru.php?status=error&message=Data gagal dihapus");
         }
     }
  ?>

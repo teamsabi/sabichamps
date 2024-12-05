@@ -8,10 +8,9 @@ session_start();
             $berhasil = tambah_data($_POST, $_FILES);
 
             if($berhasil){
-                $_SESSION['status'] = "Data Berhasil Ditambahkan";
-                header("location: Materi.php");
+                header("location: Materi.php?status=success&message=Data berhasil ditambahkan");
             }else{
-                echo $berhasil;
+                header("location: Materi.php?status=error&message=$berhasil");
             }
         }else if($_POST['aksi'] == "edit"){
             
@@ -19,10 +18,9 @@ session_start();
 
              
             if($berhasil){
-                $_SESSION['status'] = "Data Berhasil Diubah";
-                header("location: Materi.php");
+                header("location: Materi.php?status=success&message=Data berhasil diubah");
             }else{
-                echo $berhasil;
+                header("location: Materi.php?status=error&message=$berhasil");
             }
 
 
@@ -35,9 +33,9 @@ session_start();
 
         if($berhasil){
             $_SESSION['status'] = "Data Telah Dihapus";
-            header("location: Materi.php");
+            header("location: Materi.php?status=success&message=Data berhasil dihapus");
         }else{
-            echo $berhasil;
+            header("location: Materi.php?status=error&message=$berhasil");
         }
     }
  ?>

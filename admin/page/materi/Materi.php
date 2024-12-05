@@ -6,6 +6,10 @@
     $query = 'SELECT * FROM materi;';
     $sql = mysqli_query($conn, $query);
     $no = 1;
+
+    // Cek apakah ada status dan message di URL
+    $status = isset($_GET['status']) ? $_GET['status'] : null;
+    $message = isset($_GET['message']) ? $_GET['message'] : null;
 ?>
 
 <!--**********************************
@@ -13,6 +17,16 @@
 ***********************************-->
 <div class="content-body">
     <div class="container">
+        <?php if ($status && $message): ?>
+            <script>
+                Swal.fire({
+                    icon: '<?php echo $status === "success" ? "success" : "error"; ?>',
+                    title: '<?php echo $status === "success" ? "Berhasil" : "Gagal"; ?>',
+                    text: '<?php echo $message; ?>',
+                    confirmButtonText: 'OK'
+                });
+            </script>
+        <?php endif; ?>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -56,7 +70,9 @@
                                             <a href="kelola.php?ubah=<?= $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="proses.php?hapus=<?= $row['kode_materi']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                            <a href="#" type="button" 
+                                                class="btn btn-danger btn-sm" 
+                                                onclick="confirmDelete('<?= $row['kode_materi']; ?>')">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             </td>
@@ -85,6 +101,24 @@
                 $(document).ready(function () {
                     $('#materiTable').DataTable();
                 });
+
+                function confirmDelete(kodeMateri) {
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data guru akan dihapus secara permanen!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect ke URL hapus
+                            window.location.href = `proses.php?hapus=${kodeMateri}`;
+                        }
+                    });
+                }
             </script>
         </div>
     </div>

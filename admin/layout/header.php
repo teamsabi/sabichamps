@@ -40,7 +40,7 @@
                                 <i class="icon-envelope-open"></i>
                                 <span class="ml-2">Inbox </span>
                             </a>
-                            <a href="/sabiwebsite/logout.php" class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin Logout??')">
+                            <a href="#" class="dropdown-item" onclick="confirmLogout(event)">
                                 <i class="icon-key"></i>
                                 <span class="ml-2">Logout </span>
                             </a>
@@ -72,3 +72,24 @@
         text-align: center;
     }
 </style>
+
+<script>
+    function confirmLogout(event) {
+    event.preventDefault(); // Mencegah aksi default (redirect langsung)
+    Swal.fire({
+        title: 'Apakah Anda yakin ingin Logout?',
+        text: "Anda harus login kembali untuk mengakses halaman ini.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Logout',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect ke halaman logout jika dikonfirmasi
+            window.location.href = '/sabiwebsite/logout.php';
+        }
+    });
+}
+</script>
