@@ -24,57 +24,72 @@ class Auth
     /**
      * Registrasi User baru
      */
-    public function register($username, $email, $password)
-{
-    try {
-        // Hash password sebelum disimpan
-        $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
-
-        // Masukkan user baru ke database dengan role default 'guru'
-        $stmt = $this->db->prepare("INSERT INTO user (username, email, password, role) 
-                                    VALUES (:username, :email, :pass, 'guru')");
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":pass", $hashPasswd);
-        $stmt->execute();
-
-        return true;
-    } catch (PDOException $e) {
-        // Tangani error jika email sudah digunakan (duplicate entry)
-        if ($e->errorInfo[0] == 23000) { // 23000 adalah kode error duplicate entry
-            $this->error = "Email sudah digunakan!";
-        } else {
-            $this->error = "Terjadi kesalahan: " . $e->getMessage();
+    public function register($username, $email, $password){
+        try {
+            // Validasi panjang password
+            if (strlen($password) < 8) {
+                $this->error = "Password harus berisi minimal 8 karakter!";
+                return false;
+            }
+    
+            // Hash password sebelum disimpan
+            $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
+    
+            // Masukkan user baru ke database dengan role default 'guru'
+            $stmt = $this->db->prepare("INSERT INTO user (username, email, password, role) 
+                                        VALUES (:username, :email, :pass, 'guru')");
+            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":email", $email);
+            $stmt->bindParam(":pass", $hashPasswd);
+            $stmt->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            // Tangani error jika email sudah digunakan (duplicate entry)
+            if ($e->errorInfo[0] == 23000) { // 23000 adalah kode error duplicate entry
+                $this->error = "Email sudah digunakan!";
+            } else {
+                $this->error = "Terjadi kesalahan: " . $e->getMessage();
+            }
+            return false;
         }
-        return false;
     }
-}
 
     /**
      * Login User
      */
-    public function login($email, $password)
-{
-    try {
-        $stmt = $this->db->prepare("SELECT * FROM user WHERE email = :email");
-        $stmt->bindParam(":email", $email);
-        $stmt->execute();
-        $data = $stmt->fetch();
-
-        if ($data && password_verify($password, $data['password'])) {
-            // Simpan ID dan username ke dalam sesi
-            $_SESSION['user_session'] = $data['id_user'];
-            $_SESSION['username'] = $data['username']; // Tambahkan ini
-            return true;
-        } else {
-            $this->error = "Email atau Password Salah";
+    public function login($email, $password){
+        try {
+            // Validasi panjang password
+            if (strlen($password) < 8) {
+                $this->error = "Password harus berisi minimal 8 karakter!";
+                return false;
+            }
+    
+            // Periksa apakah email ada dalam database
+            $stmt = $this->db->prepare("SELECT * FROM user WHERE email = :email");
+            $stmt->bindParam(":email", $email);
+            $stmt->execute();
+            $data = $stmt->fetch();
+    
+            // Jika email ditemukan dan password sesuai
+            if ($data && password_verify($password, $data['password'])) {
+                // Simpan data penting ke dalam sesi
+                $_SESSION['user_session'] = $data['id_user'];
+                $_SESSION['username'] = $data['username'];
+                $_SESSION['role'] = $data['role']; // Tambahkan role ke sesi untuk keperluan otorisasi
+                return true;
+            } else {
+                // Jika email tidak ditemukan atau password salah
+                $this->error = "Email atau Password salah.";
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Tangani error dari PDO
+            $this->error = "Terjadi kesalahan: " . $e->getMessage();
             return false;
         }
-    } catch (PDOException $e) {
-        $this->error = "Terjadi kesalahan: " . $e->getMessage();
-        return false;
     }
-}
 
     public function getUserRole()
     {

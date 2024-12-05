@@ -1,35 +1,48 @@
 <?php
-// Mulai sesi PHP dan sertakan file koneksi dan Auth
 session_start();
-require_once './admin/helper/koneksi.php'; // File koneksi database
-require_once './admin/helper/Auth.php'; // File kelas Auth
+require_once './admin/helper/koneksi.php'; 
+require_once './admin/helper/Auth.php'; 
 
-$auth = new Auth($koneksi); // Inisialisasi kelas Auth
-$error = '';
+$auth = new Auth($koneksi); 
+$error = ''; 
+$emailValue = ''; 
+$passwordValue = ''; 
 
-// Proses login ketika form disubmit
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    // Coba login dengan kelas Auth
-    if ($auth->login($email, $password)) {
-        // Ambil data role dari sesi atau database
-        $role = $auth->getUserRole(); // Pastikan metode getUserRole() tersedia dalam kelas Auth
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-        // Arahkan pengguna berdasarkan role
-        if ($role === 'admin') {
-            header("Location: ./admin/page/dashboard/index.php");
-        } elseif ($role === 'guru') {
-            header("Location: ./guru/page/dashboard/index.php");
-        } else {
-            // Default jika role tidak dikenali
-            header("Location: login.php");
-        }
-        exit();
+    $emailValue = $email;
+    $passwordValue = $password;
+
+    if (empty($email) && empty($password)) {
+        $error = "Email dan Password tidak boleh kosong!";
+    } elseif (empty($email)) {
+        $error = "Email tidak boleh kosong!";
+    } elseif (empty($password)) {
+        $error = "Password tidak boleh kosong!";
+    } elseif (strlen($password) < 8) {
+        $error = "Password harus berisi minimal 8 karakter!";
     } else {
-        // Jika gagal, simpan pesan error
-        $error = $auth->getLastError();
+        if ($auth->login($email, $password)) {
+            $role = isset($_SESSION['role']) ? $_SESSION['role'] : $auth->getUserRole();
+
+            switch ($role) {
+                case 'admin':
+                    header("Location: ./admin/page/dashboard/index.php");
+                    break;
+                case 'guru':
+                    header("Location: ./guru/page/dashboard/index.php");
+                    break;
+                default:
+                    header("Location: login.php");
+                    break;
+            }
+            exit();
+        } else {
+            $error = $auth->getLastError();
+        }
     }
 }
 ?>
@@ -132,21 +145,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
 
         <form action="login.php" method="POST">
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Masukkan Email anda" required>
-    </div>
-    <div class="mb-3 position-relative">
-        <label for="password" class="form-label">Kata Sandi</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kata Sandi" required>
-        <span class="show-password" id="togglePassword">Show</span>
-        <div class="form-text form-text-right">
-            <a href="lupa_password.php">Lupa Kata Sandi</a>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-custom" id="submit">Masuk</button>
-    <p class="text-center text-small mt-3">Belum Punya Akun? <a href="register.php">Daftar</a></p>
-</form>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($emailValue) ?>" placeholder="Masukkan Email anda">
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Kata Sandi</label>
+                <input type="password" class="form-control" id="password" name="password"  value="<?= htmlspecialchars($passwordValue) ?>" placeholder="Masukkan Kata Sandi">
+                <span class="show-password" id="togglePassword">Show</span>
+                <div class="form-text form-text-right">
+                    <a href="lupa_password.php">Lupa Kata Sandi?</a>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-custom" id="submit">Masuk</button>
+            <p class="text-center text-small mt-3">Belum Punya Akun? <a href="register.php">Daftar</a></p>
+        </form>
 
     </div>
 

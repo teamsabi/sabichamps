@@ -92,34 +92,54 @@ $auth = new Auth($koneksi); // Inisialisasi kelas Auth
 $error = '';
 $success = '';
 
-// Proses registrasi ketika form disubmit
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// Variabel default untuk menyimpan nilai input
+$usernameValue = isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '';
+$emailValue = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+$passwordValue = isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '';
 
-    // Coba registrasi dengan kelas Auth
-    if ($auth->register($username, $email, $password)) {
-        // Jika berhasil, simpan pesan sukses dan tampilkan SweetAlert
-        $success = "Registrasi berhasil. Silakan login.";
-        echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Registrasi Berhasil!',
-                text: '$success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'login.php';
-                }
-            });
-        </script>";
-        exit();
+// Proses registrasi ketika form disubmit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Validasi input tidak boleh kosong
+    if (empty($username) || empty($email) || empty($password)) {
+        if (empty($username)) {
+            $error = "Username tidak boleh kosong!";
+        } elseif (empty($email)) {
+            $error = "Email tidak boleh kosong!";
+        } elseif (empty($password)) {
+            $error = "Password tidak boleh kosong!";
+        }
+    } elseif (strlen($password) < 8) {
+        $error = "Password harus berisi minimal 8 karakter!";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Format email tidak valid!";
     } else {
-        // Jika gagal, simpan pesan error
-        $error = $auth->getLastError();
+        // Coba registrasi dengan kelas Auth
+        if ($auth->register($username, $email, $password)) {
+            // Jika berhasil, simpan pesan sukses dan tampilkan SweetAlert
+            $success = "Registrasi berhasil. Silakan login.";
+            echo "
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registrasi Berhasil!',
+                    text: '$success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'login.php';
+                    }
+                });
+            </script>";
+            exit();
+        } else {
+            // Jika gagal, simpan pesan error
+            $error = $auth->getLastError();
+        }
     }
 }
 ?>
@@ -145,15 +165,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="register.php" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Masukkan Username anda" required>
+                <input type="text" class="form-control" id="username"  name="username" value="<?= $usernameValue ?>" placeholder="Masukkan Username anda">
             </div>
             <div class="mb-3 position-relative">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Masukkan Email anda" required>
+                <input type="email" class="form-control" id="email" name="email" value="<?= $emailValue ?>" placeholder="Masukkan Email anda">
             </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Kata Sandi</label>
-                <input type="password" class="form-control" id="passwordField" name="password" placeholder="Masukkan Kata Sandi" required>
+                <input type="password" class="form-control" id="password" value="<?= $passwordValue ?>" name="password" placeholder="Masukkan Kata Sandi">
                 <span class="show-password" id="togglePassword">Show</span>
             </div>
             <button type="submit" class="btn btn-custom">Daftar</button>
