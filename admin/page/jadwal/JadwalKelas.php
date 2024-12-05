@@ -5,6 +5,57 @@
     $query = 'SELECT * FROM jadwal;';
     $sql = mysqli_query($conn, $query);
     $no = 1;
+
+    if (isset($_GET['status']) && isset($_GET['aksi'])) {
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Mata pelajaran berhasil ditambahkan!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'JadwalKelas.php';
+                });
+            ";
+        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Mata pelajaran berhasil diperbarui!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'JadwalKelas.php';
+                });
+            ";
+        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Mata pelajaran berhasil dihapus!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'JadwalKelas.php';
+                });
+            ";
+        } elseif ($_GET['status'] == 'gagal') {
+            echo "
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Operasi gagal. Silakan coba lagi.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'JadwalKelas.php';
+                });
+            ";
+        }
+        echo "</script>";
+    }
 ?>
 
         <!--**********************************
@@ -56,7 +107,7 @@
                                                     <a href="kelola.php?ubah=<?php echo $row['id_jadwal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="proses.php?hapus=<?= $row['id_jadwal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                                    <a href="javascript:void(0);" type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['id_jadwal']; ?>)">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                     </td>
@@ -85,6 +136,24 @@
                     $(document).ready(function () {
                         var table = $('#jadwalTable').DataTable();
                     });
+
+                    function confirmDelete(id) {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Data yang dihapus tidak dapat dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Redirect ke URL penghapusan jika dikonfirmasi
+                                window.location.href = `proses.php?hapus=${id}`;
+                            }
+                        });
+                    }
                     </script>
                 </div>
             </div>

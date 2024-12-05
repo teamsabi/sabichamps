@@ -26,8 +26,9 @@ if (isset($_GET['hapus'])) {
     $id_mapel = $_GET['hapus'];
 
     $query = "DELETE FROM mapel WHERE id_mapel = '$id_mapel'";
+    $status = 'hapus';
     if (mysqli_query($conn, $query)) {
-        header("Location: Mapel.php?status=sukses&aksi=hapus");
+        header("Location: Mapel.php?status=sukses&aksi=$status");
     } else {
         header("Location: Mapel.php?status=gagal&aksi=hapus");
     }
