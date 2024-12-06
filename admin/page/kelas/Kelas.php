@@ -11,17 +11,56 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
     $sql = mysqli_query($conn, $query);
     $no = 0;
 
+    // Pesan Status
+    if (isset($_GET['status']) && isset($_GET['aksi'])) {
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data Kelas berhasil ditambahkan!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
+        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data Kelas berhasil diperbarui!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
+        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
+            echo "
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data Kelas berhasil dihapus!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            ";
+        } elseif ($_GET['status'] == 'gagal') {
+            echo "
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Operasi gagal. Silakan coba lagi.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            ";
+        }
+        echo "</script>";
+    }
+
 ?>
 
 
         <!--Content body start-->
         <div class="content-body badge-demo">
             <div class="container">
-                <?php
-                    if (isset($_GET['pesan']) && $_GET['pesan'] == 'hapus_sukses') {
-                        echo "<div class='alert alert-success'>Data berhasil dihapus.</div>";
-                    }
-                ?>
                 <!-- Table Kelas -->
                 <div class="row">
                     <div class="col-12">
@@ -29,7 +68,6 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
                             <div class="card-header">
                                 <h4 class="card-title">Data Kelas</h4>
                             </div>
-
                             <!-- Button tambah kelas -->
                             <div class="row mb-3">
                                 <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 120px;">
@@ -71,9 +109,9 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
                                                 <a href="kelola.php?ubah=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-success btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="proses.php?hapus=<?php echo $result['id_kelas']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data??')">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?php echo $result['id_kelas']; ?>')">
                                                     <i class="fa fa-trash"></i>
-                                                </a>
+                                                </button>
                                                 <a href="data_siswa.php?kode_kelas=<?php echo $result['kode_kelas']; ?>" type="button" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
@@ -103,6 +141,24 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
                         // Inisialisasi DataTable
                         const table = $('#kelasTable').DataTable();
                     });
+
+                    function confirmDelete(id) {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Data ini akan dihapus secara permanen!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Arahkan ke proses.php dengan parameter hapus
+                                window.location.href = `proses.php?hapus=${id}`;
+                            }
+                        });
+                    }
                 </script>
             </div>    
         </div>
