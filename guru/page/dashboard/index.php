@@ -119,7 +119,7 @@ require_once '../../helper/conek.php';
                                             </tfoot>
                                             <tbody>
                                                 <?php
-                                                $no = 1;
+                                                $no = 0;
                                                 while ($row = $resultJadwal->fetch_assoc()) {
                                                     ?>
                                                     <tr>
