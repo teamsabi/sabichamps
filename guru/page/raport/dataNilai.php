@@ -2,6 +2,18 @@
     require_once '../../layout/top.php';
     require_once '../../helper/conek.php';
 
+    // Ambil daftar mata pelajaran
+    $queryMapel = "SELECT id_mapel, nama_mapel FROM mapel";
+    $resultMapel = $conn->query($queryMapel);
+
+    $mapelList = [];
+    if ($resultMapel->num_rows > 0) {
+        while ($rowMapel = $resultMapel->fetch_assoc()) {
+            $mapelList[$rowMapel['id_mapel']] = $rowMapel['nama_mapel'];
+        }
+    }
+
+    // Ambil data siswa
     $kode_kelas = isset($_GET['kode_kelas']) ? $_GET['kode_kelas'] : null;
 
     if ($kode_kelas) {
@@ -33,15 +45,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="siswaTable" class="display table-hover" style="width: 100%;">
+                                    <table id="nilaiTable" class="display table-hover" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
                                                 <th>Kelas</th>
-                                                <th>Matematika</th>
-                                                <th>Fisika</th>
-                                                <th>Kimia</th>
+                                                <?php foreach ($mapelList as $mapel): ?>
+                                                    <th><?php echo $mapel; ?></th>
+                                                <?php endforeach; ?>
                                                 <th>Nilai Rata-Rata</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -67,10 +79,10 @@
                                                     </a>
                                                 </td>
                                                 </tr>
-                                                <?php endwhile;
-                                            else: ?>
+                                                <?php endwhile; ?>
+                                                    <?php else: ?>
                                                 <tr>
-                                                    <td colspan="7" class="text-center">Data tidak ditemukan</td>
+                                                    <td colspan="<?php echo count($mapelList) + 4; ?>" class="text-center">Data tidak ditemukan</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -79,9 +91,9 @@
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
                                                 <th>Kelas</th>
-                                                <th>Matematika</th>
-                                                <th>Fisika</th>
-                                                <th>Kimia</th>
+                                                <?php foreach ($mapelList as $mapel): ?>
+                                                    <th><?php echo $mapel; ?></th>
+                                                <?php endforeach; ?>
                                                 <th>Nilai Rata-Rata</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -99,12 +111,11 @@
 
                     <script>
                     $(document).ready(function () {
-                        var table = $('#siswaTable').DataTable();
+                        var table = $('#nilaiTable').DataTable();
                     });
                     </script>
                 </div>
             </div>
-
         </div>
         <!--Content body end-->
 
