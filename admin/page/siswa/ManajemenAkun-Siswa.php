@@ -75,20 +75,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="guruTable" class="display" style="width: 100%;">
+                                    <table id="guruTable" class="display table-hover" style="width: 100%;">
                                         <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Email</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Telepon</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Kelas</th>
-                                            <th>Orang Tua/Wali</th>
-                                            <th>Alamat</th>
-                                            <th>Aksi</th>
-                                        </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nama Siswa</th>
+                                                <th>Email</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Telepon</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Kelas</th>
+                                                <th>Orang Tua/Wali</th>
+                                                <th>Alamat</th>
+                                                <th>Aksi</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <?php
@@ -123,12 +123,15 @@
                                                     <?php echo $result['alamat']; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="kelola.php?ubah=<?php echo $result['id_siswa']; ?>" type="button" class="btn btn-success btn-sm">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?php echo $result['id_siswa']; ?>')">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <div style="display: flex; gap: 5px;">
+                                                        <a href="kelola.php?ubah=<?php echo $result['id_siswa']; ?>" type="button" class="btn btn-success btn-sm">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+
+                                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?php echo $result['id_siswa']; ?>')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -136,18 +139,18 @@
                                             ?>
                                         </tbody>
                                         <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Email</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Telepon</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Kelas</th>
-                                            <th>Orang Tua/Wali</th>
-                                            <th>Alamat</th>
-                                            <th>Aksi</th>
-                                        </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nama Siswa</th>
+                                                <th>Email</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Telepon</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Kelas</th>
+                                                <th>Orang Tua/Wali</th>
+                                                <th>Alamat</th>
+                                                <th>Aksi</th>
+                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>
