@@ -1,40 +1,41 @@
 <?php
+session_start();
 require_once '../../helper/conek.php';
 
-if(isset($_POST['aksi'])){
-    $id_kelas = $_POST['id_kelas'];
+if (isset($_POST['aksi'])) {
+    $id_kelas = $_POST['id_kelas'] ?? null;
     $kode_kelas = $_POST['kode_kelas'];
     $nama_kelas = $_POST['nama_kelas'];
-    $jumlah_siswa = $_POST['jumlah_siswa'];
 
-    if($_POST['aksi'] == "add"){
-        $query = "INSERT INTO kelas (kode_kelas, nama_kelas, jumlah_siswa) VALUES ('$kode_kelas', '$nama_kelas', '0');";
-    } elseif($_POST['aksi'] == "edit"){
-        $query = "UPDATE kelas SET kode_kelas='$kode_kelas', nama_kelas='$nama_kelas', jumlah_siswa='$jumlah_siswa' WHERE id_kelas='$id_kelas';";
+    if ($_POST['aksi'] == "add") {
+        $query = "INSERT INTO kelas (kode_kelas, nama_kelas) VALUES ('$kode_kelas', '$nama_kelas');";
+        $status = 'tambah';
+    } elseif ($_POST['aksi'] == "edit") {
+        $query = "UPDATE kelas SET kode_kelas='$kode_kelas', nama_kelas='$nama_kelas' WHERE id_kelas='$id_kelas';";
+        $status = 'edit';
     }
 
-    if(mysqli_query($conn, $query)){
-        header("Location: Kelas.php");
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['status'] = 'sukses';
+        $_SESSION['aksi'] = $status;
     } else {
-        echo "Error: " . mysqli_error($conn);
+        $_SESSION['status'] = 'gagal';
+        $_SESSION['aksi'] = $status;
     }
+    header("Location: Kelas.php");
 }
 
 if (isset($_GET['hapus'])) {
     $id_kelas = $_GET['hapus'];
 
-    // Query untuk menghapus data
     $query = "DELETE FROM kelas WHERE id_kelas = '$id_kelas'";
-    $sql = mysqli_query($conn, $query);
-
-    if ($sql) {
-        // Redirect jika berhasil
-        header("Location: Kelas.php?pesan=hapus_sukses");
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['status'] = 'sukses';
+        $_SESSION['aksi'] = 'hapus';
     } else {
-        echo $sql;
+        $_SESSION['status'] = 'gagal';
+        $_SESSION['aksi'] = 'hapus';
     }
-} else {
     header("Location: Kelas.php");
 }
-
 ?>

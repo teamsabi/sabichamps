@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
@@ -8,53 +9,54 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
         LEFT JOIN siswa s ON k.nama_kelas = s.kelas
         GROUP BY k.id_kelas, k.kode_kelas, k.nama_kelas";
 
-    $sql = mysqli_query($conn, $query);
-    $no = 0;
+$sql = mysqli_query($conn, $query);
+$no = 0;
 
-    // Pesan Status
-    if (isset($_GET['status']) && isset($_GET['aksi'])) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script>";
-        if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Data Kelas berhasil ditambahkan!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Data Kelas berhasil diperbarui!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Data Kelas berhasil dihapus!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-            ";
-        } elseif ($_GET['status'] == 'gagal') {
-            echo "
-                Swal.fire({
-                    title: 'Gagal!',
-                    text: 'Operasi gagal. Silakan coba lagi.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            ";
-        }
-        echo "</script>";
+// Tampilkan SweetAlert jika ada session status
+if (isset($_SESSION['status']) && isset($_SESSION['aksi'])) {
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+    echo "<script>";
+    if ($_SESSION['status'] == 'sukses' && $_SESSION['aksi'] == 'tambah') {
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data Kelas berhasil ditambahkan!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        ";
+    } elseif ($_SESSION['status'] == 'sukses' && $_SESSION['aksi'] == 'edit') {
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data Kelas berhasil diperbarui!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        ";
+    } elseif ($_SESSION['status'] == 'sukses' && $_SESSION['aksi'] == 'hapus') {
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data Kelas berhasil dihapus!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        ";
+    } elseif ($_SESSION['status'] == 'gagal') {
+        echo "
+            Swal.fire({
+                title: 'Gagal!',
+                text: 'Operasi gagal. Silakan coba lagi.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        ";
     }
-
+    echo "</script>";
+    unset($_SESSION['status']);
+    unset($_SESSION['aksi']);
+}
 ?>
 
 
