@@ -9,23 +9,24 @@ $jenis_kelamin = '';
 $telepon = '';
 $alamat = '';
 
-if(isset($_GET['ubah'])){
+if (isset($_GET['ubah'])) {
     $kode_guru = $_GET['ubah'];
 
     $query = "SELECT * FROM guru WHERE kode_guru = '$kode_guru';";
     $sql = mysqli_query($conn, $query);
 
-    $result = mysqli_fetch_assoc($sql);
-
-    $nama_guru = $result['nama_guru'];
-    $email = $result['email'];
-    $jenis_kelamin = $result['jenis_kelamin'];
-    $telepon = $result['telepon'];
-    $alamat = $result['alamat'];
+    if ($sql) {
+        $result = mysqli_fetch_assoc($sql);
+        $nama_guru = $result['nama_guru'];
+        $email = $result['email'];
+        $jenis_kelamin = $result['jenis_kelamin'];
+        $telepon = $result['telepon'];
+        $alamat = $result['alamat'];
+        $foto = $result['foto_guru']; // Ambil path foto dari database
+    }
 }
 
 ?>
-
 
 <!--Content body start-->
 <div class="content-body">
@@ -40,16 +41,21 @@ if(isset($_GET['ubah'])){
                     <div class="container">
                         <div class="row justify-content-center mt-5">
                             <div class="col-auto text-center">
-                                <div class="profile-photo">
-                                    <img src="images/profile/profile.png" alt="Foto Profil">
-                                </div>
-                                <div class="mt-3">
-                                    <h4 class="text-primary"><?php echo htmlspecialchars($username); ?></h4>
-                                    <p class="text-muted"><?php echo htmlspecialchars($email); ?></p>
-                                </div>
+                            <div class="photo-content">
+                            <div class="profile-photo-container">
+                                <img src="images/profile/default.png" class="rounded-circle profile-photo" alt="Foto Profil">
+                                <p class="mt-2">
+                                    <a href="#" class="text-primary edit-photo-link">Edit Foto Profil</a>
+                                </p>
+                                <p class="text-muted">Ukuran gambar maksimal 5 MB</p>
+                            </div>
+                            <div class="mt-3">
+                                <h4 class="text-primary"><?php echo htmlspecialchars($username); ?></h4>
+                                <p class="text-muted"><?php echo htmlspecialchars($email); ?></p>
                             </div>
                         </div>
                     </div>
+                </div>
                     <!--Form-->
                     <div class="card-body">
                         <input type="hidden" value="<?php echo $kode_guru; ?>" name="kode_guru">
