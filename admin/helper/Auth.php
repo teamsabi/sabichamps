@@ -24,7 +24,7 @@ class Auth
     /**
      * Registrasi User baru
      */
-    public function register($username, $email, $password){
+    public function register($username, $email, $password, $role = 'guru') {
         try {
             // Validasi panjang password
             if (strlen($password) < 8) {
@@ -35,18 +35,19 @@ class Auth
             // Hash password sebelum disimpan
             $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
     
-            // Masukkan user baru ke database dengan role default 'guru'
+            // Masukkan user baru ke database dengan role yang diinputkan
             $stmt = $this->db->prepare("INSERT INTO user (username, email, password, role) 
-                                        VALUES (:username, :email, :pass, 'guru')");
+                                        VALUES (:username, :email, :pass, :role)");
             $stmt->bindParam(":username", $username);
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":pass", $hashPasswd);
+            $stmt->bindParam(":role", $role);
             $stmt->execute();
     
             return true;
         } catch (PDOException $e) {
-            // Tangani error jika email sudah digunakan (duplicate entry)
-            if ($e->errorInfo[0] == 23000) { // 23000 adalah kode error duplicate entry
+            // Tangani error jika email sudah digunakan
+            if ($e->errorInfo[0] == 23000) {
                 $this->error = "Email sudah digunakan!";
             } else {
                 $this->error = "Terjadi kesalahan: " . $e->getMessage();
@@ -54,6 +55,7 @@ class Auth
             return false;
         }
     }
+    
 
     /**
      * Login User
