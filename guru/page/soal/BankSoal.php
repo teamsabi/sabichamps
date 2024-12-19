@@ -39,6 +39,7 @@ $no = 1;
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
                                         <th>Detail Soal</th>
+                                        <th>Telah Mengerjakan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -59,6 +60,11 @@ $no = 1;
                                                 </a>
                                             </td>
                                             <td>
+                                                <a href=".php?judul_soal=<?= urlencode($row['judul_soal']); ?>" class="btn btn-sm" style="background-color:rgb(26, 117, 236); color: white;">
+                                                    <i class="fa fa-graduation-cap"></i> Hasil Pengerjaan Siswa
+                                                </a>
+                                            </td>
+                                            <td>
                                                 <a href="tambah.php?ubah=<?= $row['id_soal']; ?>" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
@@ -75,6 +81,7 @@ $no = 1;
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
                                         <th>Detail Soal</th>
+                                        <th>Telah Mengerjakan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

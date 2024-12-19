@@ -59,6 +59,11 @@ $no = 1;
                                                 </a>
                                             </td>
                                             <td>
+                                                <a href=".php?judul_soal=<?= urlencode($row['judul_soal']); ?>" class="btn btn-sm" style="background-color:rgb(26, 117, 236); color: white;">
+                                                    <i class="fa fa-graduation-cap"></i> Hasil Pengerjaan Siswa
+                                                </a>
+                                            </td>
+                                            <td>
                                                 <a href="tambah.php?ubah=<?= $row['id_soal']; ?>" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                     <i class="fa fa-edit"></i>
                                                 </a>

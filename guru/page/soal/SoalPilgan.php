@@ -36,7 +36,7 @@ $no = 1;
 
                     <!-- Button Tambah Soal -->
                     <div class="row mb-3">
-                        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 235px;">
+                        <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 260px;">
                             <a href="tambah-SoalPilgan.php?judul_soal=<?php echo urlencode($judul_soal); ?>" class="btn" style="background-color: #229799; color: white;">
                                 <i class="fa fa-plus"></i> Tambah Soal Pilgan
                             </a>
