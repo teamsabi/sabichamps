@@ -86,6 +86,7 @@
                     <a href="BankSoal.php" type="button" class="btn btn-danger btn-sm">
                         <i class="fa fa-reply"></i> Kembali
                     </a>
+                </div>
             </div>
         </div>
     </div>

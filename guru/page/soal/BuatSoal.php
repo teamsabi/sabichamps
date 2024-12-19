@@ -57,6 +57,11 @@ $soal = $result->fetch_assoc();
                             Essay
                         </a>
                     </div>
+                    <div class="card-footer text-right" style="margin-left: 20px;">
+                        <a href="BankSoal.php" type="button" class="btn btn-danger btn-sm">
+                            <i class="fa fa-reply"></i> Kembali
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
