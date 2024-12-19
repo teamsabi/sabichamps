@@ -109,7 +109,7 @@ if (isset($_GET['ubah'])) {
                         }
                         ?>
                         <a href="../dashboard/index.php" type="button" class="btn btn-danger btn-sm">
-                            <i class="fa fa-reply"></i> Batal
+                            <i class="fa fa-reply"></i> Kembali
                         </a>
                     </div>               
                 </div>
