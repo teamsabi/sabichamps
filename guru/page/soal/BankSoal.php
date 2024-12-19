@@ -1,16 +1,17 @@
 <?php
-    require_once '../../layout/top.php';
-    require_once '../../helper/conek.php';
+// -------------------------
+// Halaman BankSoal.php
+// -------------------------
+require_once '../../layout/top.php';
+require_once '../../helper/conek.php';
 
-    // Ambil data dari tabel 'soal'
-    $query = 'SELECT * FROM soal;';
-    $sql = mysqli_query($conn, $query);
-    $no = 1;
+// Ambil data dari tabel 'soal'
+$query = 'SELECT * FROM soal;';
+$sql = mysqli_query($conn, $query);
+$no = 1;
 ?>
 
-<!--**********************************
-    Content body start
-***********************************-->
+<!-- Content body start -->
 <div class="content-body">
     <div class="container">
         <div class="row">
@@ -37,15 +38,14 @@
                                         <th>No</th>
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
-                                        <th>Buat Soal</th>
-                                        <th>Telah Mengerjakan</th>
+                                        <th>Detail Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
                                         <tr>
-                                        <td><?= $no++; ?></td>
+                                            <td><?= $no++; ?></td>
                                             <td><?=($row['judul_soal']); ?></td>
                                             <td>
                                                 <strong>Mata Pelajaran:</strong> <?= ($row['mapel']); ?><br>
@@ -54,22 +54,17 @@
                                                 <strong>Info Soal:</strong> <?= ($row['info_soal']); ?>
                                             </td>
                                             <td>
-                                            <a href="BuatSoal.php?id_soal=<?= $row['id_soal']; ?>" type="button" class="btn btn-warning btn-sm buatSoalBtn" style="color: white;">
-                                                <i class="fa fa-file-text"></i>
-                                            </a>
+                                                <a href="BuatSoal.php?judul_soal=<?= urlencode($row['judul_soal']); ?>" class="btn btn-warning btn-sm" style="color: white;">
+                                                    <i class="fa fa-file-text"></i> Lihat Detail
+                                                </a>
                                             </td>
                                             <td>
-                                            <a href="telahMengerjakan.php?=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm lihatTelahUjianBtn" style=" background-color: #3065D0; color: white;">
-                                                <i class="fa fa-graduation-cap"></i>
-                                            </a>
-                                            </td>
-                                            <td>
-                                            <a href="tambah.php?ubah=<?= $row['id_soal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="proses.php?hapus=<?= $row['id_soal']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a href="tambah.php?ubah=<?= $row['id_soal']; ?>" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="proses.php?hapus=<?= $row['id_soal']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -79,8 +74,7 @@
                                         <th>No</th>
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
-                                        <th>Buat Soal</th>
-                                        <th>Telah Mengerjakan</th>
+                                        <th>Detail Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
