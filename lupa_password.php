@@ -1,6 +1,6 @@
 <?php
-require './admin/helper/koneksi.php'; // Koneksi ke database
-require 'vendor2/autoload.php'; // Pastikan PHPMailer sudah diinstal dan autoload tersedia
+require './admin/helper/koneksi.php'; 
+require 'vendor2/autoload.php'; 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -10,37 +10,34 @@ $response = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     $email = $_POST['email'];
 
-    // Cek apakah email terdaftar di database
+
     $stmt = $koneksi->prepare("SELECT * FROM user WHERE email = :email");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
     $user = $stmt->fetch();
 
     if ($user) {
-        // Generate OTP dan waktu kedaluwarsa
-        $otp_code = rand(10000, 99999);
-        $expires_at = date("Y-m-d H:i:s", strtotime('+15 minutes')); // OTP berlaku selama 15 menit
 
-        // Simpan OTP di tabel password_resets
+        $otp_code = rand(10000, 99999);
+        $expires_at = date("Y-m-d H:i:s", strtotime('+15 minutes')); 
+
         $stmt = $koneksi->prepare("INSERT INTO password_resets (email, otp_code, expires_at, status) VALUES (:email, :otp_code, :expires_at, 'pending')");
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':otp_code', $otp_code);
         $stmt->bindParam(':expires_at', $expires_at);
         $stmt->execute();
 
-        // Konfigurasi PHPMailer
         $mail = new PHPMailer(true);
         try {
-            // Konfigurasi server SMTP
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Ganti dengan SMTP server Anda
+            $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
-            $mail->Username = 'sabiteam23@gmail.com'; // Ganti dengan email Anda
-            $mail->Password = 'rrry yitu mhpl krui'; // Ganti dengan password email Anda
+            $mail->Username = 'sabiteam23@gmail.com';
+            $mail->Password = 'rrry yitu mhpl krui'; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            // Pengaturan email
+
             $mail->setFrom('sabiteam23@gmail.com', 'Team Sabi');
             $mail->addAddress($email);
 
@@ -49,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             $mail->Body = "<p>Hai,</p><p>Gunakan kode OTP berikut untuk mengatur ulang kata sandi Anda:</p><h2>$otp_code</h2><p>Kode ini hanya berlaku selama 15 menit.</p>";
 
             $mail->send();
-            // Tampilkan pesan SweetAlert jika OTP berhasil dikirim
+
             $response = "<script>
                             Swal.fire({
                                 icon: 'success',

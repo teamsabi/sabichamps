@@ -6,16 +6,14 @@ $response = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp_code'], $_POST['email'])) {
     try {
-        // Ambil data dari POST
+
         $email = $_POST['email'];
         $otp_code = $_POST['otp_code'];
 
-        // Validasi email dan OTP
         if (empty($email) || empty($otp_code) || strlen($otp_code) !== 5) {
             die("<script>alert('Email atau kode OTP tidak valid.');</script>");
         }
 
-        // Query untuk memeriksa OTP dan status
         $query = $koneksi->prepare("
             SELECT otp_code, expires_at, status 
             FROM password_resets 
@@ -28,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp_code'], $_POST['e
         if ($result) {
             $current_time = date('Y-m-d H:i:s');
             if ($otp_code === $result['otp_code'] && strtotime($current_time) <= strtotime($result['expires_at'])) {
-                // Update status OTP menjadi 'verifikasi'
                 $updateQuery = $koneksi->prepare("
                     UPDATE password_resets 
                     SET status = 'verifikasi' 
@@ -38,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp_code'], $_POST['e
                 $updateQuery->bindParam(':otp_code', $otp_code);
                 $updateQuery->execute();
 
-                // Redirect ke halaman kata sandi baru
                 header("Location: kata_sandibaru.php?email=$email");
                 exit();
             } else {

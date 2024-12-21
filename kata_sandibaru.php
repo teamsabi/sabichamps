@@ -97,19 +97,16 @@
 
         <p class="text-justify">Kata sandi harus berisi minimal 6 karakter dengan kombinasi huruf dan angka.</p>
 
-        <!-- Tombol Ubah Kata Sandi -->
         <button class="btn btn-primary" onclick="ubahKataSandi()">Ubah Kata Sandi</button>
     </div>
 
     <script>
-        // Fungsi untuk toggle visibility password
         function togglePassword(id) {
             const passwordInput = document.getElementById(id);
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
         }
 
-        // Fungsi untuk validasi dan mengirim permintaan ubah kata sandi
         function ubahKataSandi() {
             const newPassword = document.getElementById('newPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;

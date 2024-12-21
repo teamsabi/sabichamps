@@ -2,15 +2,12 @@
 require_once '../../layout/top.php';
 require_once '../../helper/conek.php';
 
-// Ambil parameter judul_soal dari URL
+
 $judul_soal = isset($_GET['judul_soal']) ? mysqli_real_escape_string($conn, $_GET['judul_soal']) : '';
 
-// Inisialisasi variabel untuk data soal
 $result = null;
 
-// Mengecek apakah judul_soal valid
 if ($judul_soal) {
-    // Query untuk mengambil soal berdasarkan judul_soal
     $query = "SELECT id_pilgan, judul_soal, pertanyaan, opsi_a, opsi_b, opsi_c, opsi_d, opsi_e, kunci_jawaban, tanggal_buat 
               FROM pilgan WHERE judul_soal = ? ORDER BY tanggal_buat DESC";
     $stmt = $conn->prepare($query);

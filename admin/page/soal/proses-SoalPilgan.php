@@ -23,7 +23,7 @@ if(isset($_POST['aksi'])){
     }
 
     if(mysqli_query($conn, $query)){
-        header("Location: SoalPilgan.php");
+        header("Location: soalpilgan.php");
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -38,12 +38,12 @@ if (isset($_GET['hapus'])) {
 
     if ($sql) {
         // Redirect jika berhasil
-        header("Location: SoalPilgan.php?pesan=hapus_sukses");
+        header("Location: soalpilgan.php");
     } else {
         echo $sql;
     }
 } else {
-    header("Location: SoalPilgan.php");
+    header("Location: soalpilgan.php");
 }
 
 ?> 
