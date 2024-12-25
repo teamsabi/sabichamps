@@ -22,7 +22,7 @@ JOIN
 JOIN 
     user u ON j.id_user = u.id_user;
 ';
-    $sql = mysqli_query($conn, $query); // Jalankan query
+    $sql = mysqli_query($conn, $query);
     $no = 1;
 
     // Cek jika ada parameter 'status' dan 'aksi' di URL
@@ -106,11 +106,11 @@ JOIN
                                         <th>Hari</th>
                                         <th>Tanggal</th>
                                         <th>Tempat</th>
-                                        <th>Kode Kelas</th>
-                                        <th>Kode Mapel</th>
+                                        <th>Nama Kelas</th>
+                                        <th>Nama Mapel</th>
                                         <th>Jam Mulai</th>
                                         <th>Jam Selesai</th>
-                                        <th>Id User</th>
+                                        <th>Nama Guru</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -143,11 +143,11 @@ JOIN
                                         <th>Hari</th>
                                         <th>Tanggal</th>
                                         <th>Tempat</th>
-                                        <th>Kode Kelas</th>
-                                        <th>Kode Mapel</th>
+                                        <th>Nama Kelas</th>
+                                        <th>Nama Mapel</th>
                                         <th>Jam Mulai</th>
                                         <th>Jam Selesai</th>
-                                        <th>Id User</th>
+                                        <th>Nama Guru</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -175,7 +175,6 @@ JOIN
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Redirect ke URL penghapusan jika dikonfirmasi
                             window.location.href = `proses.php?hapus=${id}`;
                         }
                     });
