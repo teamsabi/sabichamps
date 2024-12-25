@@ -1,17 +1,16 @@
 <?php
 session_start();
-require_once '../../helper/conek.php';
+require_once '../../helper/config.php';
 
 if (isset($_POST['aksi'])) {
-    $id_kelas = $_POST['id_kelas'] ?? null;
-    $kode_kelas = $_POST['kode_kelas'];
+    $kode_kelas = $_POST['kode_kelas'] ?? null;
     $nama_kelas = $_POST['nama_kelas'];
 
     if ($_POST['aksi'] == "add") {
         $query = "INSERT INTO kelas (kode_kelas, nama_kelas) VALUES ('$kode_kelas', '$nama_kelas');";
         $status = 'tambah';
     } elseif ($_POST['aksi'] == "edit") {
-        $query = "UPDATE kelas SET kode_kelas='$kode_kelas', nama_kelas='$nama_kelas' WHERE id_kelas='$id_kelas';";
+        $query = "UPDATE kelas SET kode_kelas='$kode_kelas', nama_kelas='$nama_kelas' WHERE kode_kelas='$kode_kelas';";
         $status = 'edit';
     }
 
@@ -26,9 +25,9 @@ if (isset($_POST['aksi'])) {
 }
 
 if (isset($_GET['hapus'])) {
-    $id_kelas = $_GET['hapus'];
+    $kode_kelas = $_GET['hapus'];
 
-    $query = "DELETE FROM kelas WHERE id_kelas = '$id_kelas'";
+    $query = "DELETE FROM kelas WHERE kode_kelas = '$kode_kelas'";
     if (mysqli_query($conn, $query)) {
         $_SESSION['status'] = 'sukses';
         $_SESSION['aksi'] = 'hapus';

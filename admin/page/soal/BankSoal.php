@@ -39,6 +39,7 @@ $no = 1;
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
                                         <th>Detail Soal</th>
+                                        <th>Hasil Pengerjaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -80,6 +81,7 @@ $no = 1;
                                         <th>Judul Soal</th>
                                         <th>Keterangan</th>
                                         <th>Detail Soal</th>
+                                        <th>Hasil Pengerjaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

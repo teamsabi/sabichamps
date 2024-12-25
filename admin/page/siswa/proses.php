@@ -1,22 +1,19 @@
 <?php
 require_once '../../helper/config.php';
 
-// Mendapatkan aksi dari form
 $aksi = $_POST['aksi'] ?? null;
 
 if ($aksi === "edit") {
-    // Edit Data Siswa
     $id_user = $_POST['id_user'];
     $nama_siswa = $_POST['nama_siswa'];
     $email = $_POST['email_siswa'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $telepon = $_POST['telepon_siswa'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
-    $kelas = $_POST['kelas'];  // Input kelas baru
+    $kelas = $_POST['kelas'];
     $ortu = $_POST['ortu_wali'];
     $alamat = $_POST['alamat_siswa'];
 
-    // Update data di tabel user
     $query_user = "UPDATE user SET 
               nama_lengkap  = '$nama_siswa', 
               email = '$email', 
@@ -27,7 +24,6 @@ if ($aksi === "edit") {
               alamat = '$alamat'
               WHERE id_user = '$id_user'";
 
-    // Ambil kode_kelas berdasarkan nama_kelas yang dipilih
     $kelas_query = "SELECT kode_kelas FROM kelas WHERE nama_kelas = '$kelas'";
     $result_kelas = mysqli_query($conn, $kelas_query);
 
@@ -60,7 +56,6 @@ if ($aksi === "edit") {
         header("Location: ManajemenAkun-Siswa.php?status=gagal&aksi=edit&error=Kelas tidak ditemukan");
     }
 } elseif ($aksi === "add") {
-    // Tambah Data Siswa
     $nama_siswa = $_POST['nama_siswa'];
     $email = $_POST['email_siswa'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
@@ -104,16 +99,13 @@ if ($aksi === "edit") {
         header("Location: ManajemenAkun-Siswa.php?status=gagal&aksi=tambah&error=" . $e->getMessage());
     }
 } elseif ($aksi === "delete") {
-    // Hapus Data Siswa
     $id_user = $_POST['id_user'];
 
     $conn->begin_transaction();
     try {
-        // Hapus data dari tabel kelas_user
         $query_kelas_user = "DELETE FROM kelas_user WHERE id_user = '$id_user'";
         mysqli_query($conn, $query_kelas_user);
 
-        // Hapus data dari tabel user
         $query_user = "DELETE FROM user WHERE id_user = '$id_user'";
         mysqli_query($conn, $query_user);
 

@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'], $_POS
         $new_password = $_POST['new_password'];
         $confirm_password = $_POST['confirm_password'];
 
-        // Validasi input
         if (empty($new_password) || empty($confirm_password)) {
             die("<script>alert('Kata sandi tidak boleh kosong.');</script>");
         }
@@ -20,13 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'], $_POS
             die("<script>alert('Kata sandi harus minimal 6 karakter.');</script>");
         }
 
-        // Update kata sandi di database tanpa hashing
         $updateQuery = $koneksi->prepare("UPDATE user SET password = :password WHERE id_user = :id_user");
-        $updateQuery->bindParam(':password', $new_password);  // Menyimpan kata sandi dalam bentuk teks biasa
+        $updateQuery->bindParam(':password', $new_password);
         $updateQuery->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $updateQuery->execute();
 
-        // Redirect atau beri pesan sukses
         echo "<script>alert('Kata sandi berhasil diubah.'); window.location.href = 'login.php';</script>";
         exit();
     } catch (PDOException $e) {
@@ -34,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'], $_POS
     }
 }
 
-// Mengambil id_user dari URL
 $id_user = isset($_GET['id_user']) ? $_GET['id_user'] : null;
 ?>
 

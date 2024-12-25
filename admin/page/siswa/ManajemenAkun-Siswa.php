@@ -16,7 +16,25 @@ $no = 0;
 if (isset($_GET['status']) && isset($_GET['aksi'])) {
     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
     echo "<script>";
-    if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
+    if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data siswa berhasil diperbarui!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        ";
+    } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data siswa berhasil ditambahkan!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        ";
+    } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
         echo "
             Swal.fire({
                 title: 'Berhasil!',
@@ -37,6 +55,7 @@ if (isset($_GET['status']) && isset($_GET['aksi'])) {
     }
     echo "</script>";
 }
+
 ?>
 
 <!-- Content Body Start -->
