@@ -1,9 +1,17 @@
 <?php
     require_once '../../layout/top.php';
-    require_once '../../helper/conek.php';
+    require_once '../../helper/config.php';
 
     // Ambil data dari tabel 'mapel'
-    $query = 'SELECT * FROM mapel;';
+    $query = 'SELECT 
+        mapel.kode_mapel, 
+        mapel.nama_mapel, 
+        mapel.kode_kelas, 
+        kelas.nama_kelas
+    FROM 
+        mapel
+    JOIN 
+        kelas ON mapel.kode_kelas = kelas.kode_kelas;';
     $sql = mysqli_query($conn, $query);
     $no = 1;
 
@@ -88,6 +96,7 @@
                                         <th>No</th>
                                         <th>Kode Mata Pelajaran</th>
                                         <th>Nama Mata Pelajaran</th>
+                                        <th>Nama Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -97,11 +106,12 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= ($row['kode_mapel']); ?></td>
                                             <td><?= ($row['nama_mapel']); ?></td>
+                                            <td><?= ($row['nama_kelas']); ?></td>
                                             <td>
-                                            <a href="kelola.php?ubah=<?= $row['id_mapel']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                            <a href="kelola.php?ubah=<?= $row['kode_mapel']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="javascript:void(0);" type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['id_mapel']; ?>)">
+                                            <a href="javascript:void(0);" type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?= $row['kode_mapel']; ?>')">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             </td>
@@ -113,6 +123,7 @@
                                         <th>No</th>
                                         <th>Kode Mata Pelajaran</th>
                                         <th>Nama Mata Pelajaran</th>
+                                        <th>Nama Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -126,26 +137,28 @@
             <script>
                 $(document).ready(function () {
                     $('#mapelTable').DataTable();
+                    
+                    // Fungsi konfirmasi hapus
+                    window.confirmDelete = function(id) {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Data yang dihapus tidak dapat dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Redirect ke URL penghapusan jika dikonfirmasi
+                                window.location.href = `proses.php?hapus=${id}`;
+                            }
+                        });
+                    };
                 });
-
-                function confirmDelete(id) {
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Data yang dihapus tidak dapat dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Redirect ke URL penghapusan jika dikonfirmasi
-                            window.location.href = `proses.php?hapus=${id}`;
-                        }
-                    });
-                }
             </script>
+
         </div>
     </div>
 </div>
