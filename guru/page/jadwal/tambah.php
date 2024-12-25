@@ -15,7 +15,6 @@ $kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
 $gurukelas = mysqli_query($conn, "SELECT nama_lengkap FROM user WHERE role = 'guru'");
 $nama_mapel = mysqli_query($conn, "SELECT nama_mapel FROM mapel");
 
-// Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
     $id_jadwal = $_GET['ubah'];
 
