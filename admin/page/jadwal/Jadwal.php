@@ -1,9 +1,9 @@
 <?php
-    require_once '../../layout/top.php';
-    require_once '../../helper/config.php';
+require_once '../../layout/top.php';
+require_once '../../helper/config.php';
 
-    // Query untuk mengambil data dari tabel 'jadwal'
-    $query = 'SELECT 
+// Query untuk mengambil data dari tabel 'jadwal'
+$query = 'SELECT 
     j.id_jadwal,
     k.nama_kelas,
     m.nama_mapel,
@@ -13,69 +13,55 @@
     j.tempat,
     j.jam_mulai,
     j.jam_selesai
-FROM 
-    jadwal j
-JOIN 
-    kelas k ON j.kode_kelas = k.kode_kelas
-JOIN 
-    mapel m ON j.kode_mapel = m.kode_mapel
-JOIN 
-    user u ON j.id_user = u.id_user;
-';
-    $sql = mysqli_query($conn, $query);
-    $no = 1;
+    FROM jadwal j
+    JOIN kelas k ON j.kode_kelas = k.kode_kelas
+    JOIN mapel m ON j.kode_mapel = m.kode_mapel
+    JOIN user u ON j.id_user = u.id_user';
+$result = mysqli_query($conn, $query);
 
-    // Cek jika ada parameter 'status' dan 'aksi' di URL
-    if (isset($_GET['status']) && isset($_GET['aksi'])) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script>";
-        if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil ditambahkan!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil diperbarui!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil dihapus!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'gagal') {
-            echo "
-                Swal.fire({
-                    title: 'Gagal!',
-                    text: 'Operasi gagal. Silakan coba lagi.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
+if (isset($_GET['status']) && isset($_GET['aksi'])) {
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+    echo "<script>";
+    
+    // Menampilkan pesan berdasarkan status
+    if ($_GET['status'] == 'sukses') {
+        $message = '';
+        switch ($_GET['aksi']) {
+            case 'tambah':
+                $message = 'Jadwal belajar berhasil ditambahkan!';
+                break;
+            case 'edit':
+                $message = 'Jadwal belajar berhasil diperbarui!';
+                break;
+            case 'hapus':
+                $message = 'Jadwal belajar berhasil dihapus!';
+                break;
         }
-        echo "</script>";
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '$message',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location = 'Jadwal.php';
+            });
+        ";
+    } elseif ($_GET['status'] == 'gagal') {
+        $errorMessage = isset($_GET['error']) ? $_GET['error'] : 'Operasi gagal. Silakan coba lagi.';
+        echo "
+            Swal.fire({
+                title: 'Gagal!',
+                text: '$errorMessage',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location = 'Jadwal.php';
+            });
+        ";
     }
+    echo "</script>";
+}
 ?>
 
 <!-- Content body start -->
@@ -115,7 +101,9 @@ JOIN
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                    <?php 
+                                    $no = 1;
+                                    while ($row = mysqli_fetch_assoc($result)) { ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= htmlspecialchars($row['hari']); ?></td>

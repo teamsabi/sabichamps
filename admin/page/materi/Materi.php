@@ -1,20 +1,32 @@
 <?php
-    require_once '../../layout/top.php';
-    require_once '../../helper/conek.php';
+require_once '../../layout/top.php';
+require_once '../../helper/config.php';
 
-    // Ambil data dari tabel 'jadwal'
-    $query = 'SELECT * FROM materi;';
-    $sql = mysqli_query($conn, $query);
-    $no = 1;
+// Ambil data dari tabel 'materi' dengan penambahan kolom file_materi dan tanggal_upload
+$query = 'SELECT 
+        materi.id_materi, 
+        materi.judul_materi, 
+        materi.file_materi,  -- Tambahkan kolom file_materi
+        materi.tanggal_upload,  -- Tambahkan kolom tanggal_upload
+        mapel.nama_mapel, 
+        user.nama_lengkap
+    FROM 
+        materi
+    JOIN 
+        mapel ON materi.kode_mapel = mapel.kode_mapel
+    JOIN 
+        materi_siswa ON materi.id_materi = materi_siswa.id_materi
+    JOIN 
+        user ON materi_siswa.id_user = user.id_user';
+$sql = mysqli_query($conn, $query);
+$no = 1;
 
-    // Cek apakah ada status dan message di URL
-    $status = isset($_GET['status']) ? $_GET['status'] : null;
-    $message = isset($_GET['message']) ? $_GET['message'] : null;
+// Cek apakah ada status dan message di URL
+$status = isset($_GET['status']) ? $_GET['status'] : null;
+$message = isset($_GET['message']) ? $_GET['message'] : null;
 ?>
 
-<!--**********************************
-    Content body start
-***********************************-->
+<!-- Content body start -->
 <div class="content-body">
     <div class="container">
         <?php if ($status && $message): ?>
@@ -51,9 +63,9 @@
                                         <th>No</th>
                                         <th>Judul Materi</th>
                                         <th>Mata Pelajaran</th>
-                                        <th>Nama Kelas</th>
                                         <th>File Materi</th>
                                         <th>Nama Guru</th>
+                                        <th>Tanggal Upload</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -62,19 +74,17 @@
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= ($row['judul_materi']); ?></td>
-                                            <td><?= ($row['mapel']); ?></td>
-                                            <td><?= ($row['kelas']); ?></td>
-                                            <td><?= ($row['file_materi']); ?></td>
-                                            <td><?= ($row['nama_guru']); ?></td>
+                                            <td><?= ($row['nama_mapel']); ?></td>
+                                            <td><?= isset($row['file_materi']) ? $row['file_materi'] : ''; ?></td>
+                                            <td><?= ($row['nama_lengkap']); ?></td>
+                                            <td><?= isset($row['tanggal_upload']) ? $row['tanggal_upload'] : ''; ?></td>
                                             <td>
-                                            <a href="kelola.php?ubah=<?= $row['kode_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="#" type="button" 
-                                                class="btn btn-danger btn-sm" 
-                                                onclick="confirmDelete('<?= $row['kode_materi']; ?>')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a href="kelola.php?ubah=<?= $row['id_materi']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="#" type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('<?= $row['id_materi']; ?>')">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -84,9 +94,9 @@
                                         <th>No</th>
                                         <th>Judul Materi</th>
                                         <th>Mata Pelajaran</th>
-                                        <th>Nama Kelas</th>
                                         <th>File Materi</th>
                                         <th>Nama Guru</th>
+                                        <th>Tanggal Upload</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

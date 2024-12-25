@@ -27,14 +27,17 @@ session_start();
         }
     }
 
-    if(isset($_GET['hapus'])){   
+    if (isset($_GET['hapus'])) {
+        $id_materi = $_GET['hapus'];
+        $result = hapus_data($id_materi);
         
-        $berhasil = hapus_data($_GET);
-
-        if($berhasil){
-            header("location: Materi.php?status=success&message=Data Materi berhasil dihapus");
-        }else{
-            header("location: Materi.php?status=error&message=$berhasil");
+        if ($result === true) {
+            // Redirect ke halaman dengan status berhasil
+            header("Location: materi.php?status=success&message=Data berhasil dihapus.");
+        } else {
+            // Redirect ke halaman dengan status gagal
+            header("Location: materi.php?status=error&message=$result");
         }
     }
+    
  ?>
