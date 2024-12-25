@@ -1,67 +1,70 @@
 <?php
-    require_once '../../layout/top.php';
-    require_once '../../helper/conek.php';
+require_once '../../layout/top.php';
+require_once '../../helper/config.php';
 
-    // Ambil data dari tabel 'jadwal'
-    $query = 'SELECT * FROM jadwal;';
-    $sql = mysqli_query($conn, $query);
-    $no = 1;
+// Query untuk mengambil data dari tabel 'jadwal'
+$query = 'SELECT 
+    j.id_jadwal,
+    k.nama_kelas,
+    m.nama_mapel,
+    u.nama_lengkap,
+    j.hari,
+    j.tanggal,
+    j.tempat,
+    j.jam_mulai,
+    j.jam_selesai
+    FROM jadwal j
+    JOIN kelas k ON j.kode_kelas = k.kode_kelas
+    JOIN mapel m ON j.kode_mapel = m.kode_mapel
+    JOIN user u ON j.id_user = u.id_user';
+$result = mysqli_query($conn, $query);
 
-    if (isset($_GET['status']) && isset($_GET['aksi'])) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script>";
-        if ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'tambah') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil ditambahkan!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'edit') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil diperbarui!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'sukses' && $_GET['aksi'] == 'hapus') {
-            echo "
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Jadwal belajar berhasil dihapus!',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
-        } elseif ($_GET['status'] == 'gagal') {
-            echo "
-                Swal.fire({
-                    title: 'Gagal!',
-                    text: 'Operasi gagal. Silakan coba lagi.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'Jadwal.php';
-                });
-            ";
+if (isset($_GET['status']) && isset($_GET['aksi'])) {
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+    echo "<script>";
+    
+    // Menampilkan pesan berdasarkan status
+    if ($_GET['status'] == 'sukses') {
+        $message = '';
+        switch ($_GET['aksi']) {
+            case 'tambah':
+                $message = 'Jadwal belajar berhasil ditambahkan!';
+                break;
+            case 'edit':
+                $message = 'Jadwal belajar berhasil diperbarui!';
+                break;
+            case 'hapus':
+                $message = 'Jadwal belajar berhasil dihapus!';
+                break;
         }
-        echo "</script>";
+        echo "
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '$message',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location = 'Jadwal.php';
+            });
+        ";
+    } elseif ($_GET['status'] == 'gagal') {
+        $errorMessage = isset($_GET['error']) ? $_GET['error'] : 'Operasi gagal. Silakan coba lagi.';
+        echo "
+            Swal.fire({
+                title: 'Gagal!',
+                text: '$errorMessage',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location = 'Jadwal.php';
+            });
+        ";
     }
+    echo "</script>";
+}
 ?>
 
-<!--**********************************
-    Content body start
-***********************************-->
+<!-- Content body start -->
 <div class="content-body">
     <div class="container">
         <div class="row">
@@ -90,7 +93,7 @@
                                         <th>Tanggal</th>
                                         <th>Tempat</th>
                                         <th>Nama Kelas</th>
-                                        <th>Mata Pelajaran</th>
+                                        <th>Nama Mapel</th>
                                         <th>Jam Mulai</th>
                                         <th>Jam Selesai</th>
                                         <th>Nama Guru</th>
@@ -98,24 +101,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                                    <?php 
+                                    $no = 1;
+                                    while ($row = mysqli_fetch_assoc($result)) { ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= ($row['hari']); ?></td>
-                                            <td><?= ($row['tanggal']); ?></td>
-                                            <td><?= ($row['tempat']); ?></td>
-                                            <td><?= ($row['nama_kelas']); ?></td>
-                                            <td><?= ($row['mapel']); ?></td>
-                                            <td><?= ($row['jam_mulai']); ?></td>
-                                            <td><?= ($row['jam_selesai']); ?></td>
-                                            <td><?= ($row['nama_guru']); ?></td>
+                                            <td><?= htmlspecialchars($row['hari']); ?></td>
+                                            <td><?= htmlspecialchars($row['tanggal']); ?></td>
+                                            <td><?= htmlspecialchars($row['tempat']); ?></td>
+                                            <td><?= htmlspecialchars($row['nama_kelas']); ?></td>
+                                            <td><?= htmlspecialchars($row['nama_mapel']); ?></td>
+                                            <td><?= htmlspecialchars($row['jam_mulai']); ?></td>
+                                            <td><?= htmlspecialchars($row['jam_selesai']); ?></td>
+                                            <td><?= htmlspecialchars($row['nama_lengkap']); ?></td>
                                             <td>
-                                            <a href="tambah.php?ubah=<?php echo $row['id_jadwal']; ?>" type="button" class="btn btn-sm" style="background-color: #229799; color: white;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="javascript:void(0);" type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['id_jadwal']; ?>)">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a href="tambah.php?ubah=<?= $row['id_jadwal']; ?>" class="btn btn-sm" style="background-color: #229799; color: white;">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['id_jadwal']; ?>)">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -127,7 +132,7 @@
                                         <th>Tanggal</th>
                                         <th>Tempat</th>
                                         <th>Nama Kelas</th>
-                                        <th>Mata Pelajaran</th>
+                                        <th>Nama Mapel</th>
                                         <th>Jam Mulai</th>
                                         <th>Jam Selesai</th>
                                         <th>Nama Guru</th>
@@ -158,11 +163,10 @@
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Redirect ke URL penghapusan jika dikonfirmasi
                             window.location.href = `proses.php?hapus=${id}`;
-                            }
-                        });
-                    }
+                        }
+                    });
+                }
             </script>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 require_once '../../layout/top.php';
-require_once '../../helper/conek.php';
+require_once '../../helper/config.php';
 
 $id_jadwal = '';
 $hari = '';
@@ -10,17 +10,32 @@ $nama_kelas = '';
 $mapel = '';    
 $jam_mulai = '';
 $jam_selesai = '';
-$nama_guru = '';
+$nama_lengkap = '';
 $kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
-$gurukelas = mysqli_query($conn, "SELECT nama_guru FROM guru");
+$gurukelas = mysqli_query($conn, "SELECT nama_lengkap FROM user WHERE role = 'guru'");
 $nama_mapel = mysqli_query($conn, "SELECT nama_mapel FROM mapel");
 
 // Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
     $id_jadwal = $_GET['ubah'];
 
-    // Query untuk mengambil data berdasarkan ID jadwal
-    $query = "SELECT * FROM jadwal WHERE id_jadwal = '$id_jadwal'";
+    $query = "
+        SELECT 
+            jadwal.*, 
+            kelas.nama_kelas, 
+            mapel.nama_mapel, 
+            user.nama_lengkap 
+        FROM 
+            jadwal
+        JOIN 
+            kelas ON jadwal.kode_kelas = kelas.kode_kelas
+        JOIN 
+            mapel ON jadwal.kode_mapel = mapel.kode_mapel
+        JOIN 
+            user ON jadwal.id_user = user.id_user
+        WHERE 
+            jadwal.id_jadwal = '$id_jadwal'
+    ";
     $sql = mysqli_query($conn, $query);
     
     // Cek apakah data ditemukan
@@ -32,17 +47,27 @@ if (isset($_GET['ubah'])) {
         $tanggal = $result['tanggal'];
         $tempat = $result['tempat'];
         $nama_kelas = $result['nama_kelas'];
-        $mapel = $result['mapel'];
+        $mapel = $result['nama_mapel'];
         $jam_mulai = $result['jam_mulai'];
         $jam_selesai = $result['jam_selesai'];
-        $nama_guru = $result['nama_guru'];
+        $nama_guru = $result['nama_lengkap']; // Nama guru diambil dari tabel user
     } else {
         echo "Data tidak ditemukan!";
         exit;
     }
 }
-?>
 
+if (isset($_GET['error']) && $_GET['error'] == 'jam') {
+    echo "<script>
+        Swal.fire({
+            title: 'Gagal!',
+            text: 'Jam mulai dan jam selesai tidak boleh sama!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    </script>";
+}
+?>
 
 <!--Content body start-->
 <div class="content-body">
@@ -60,14 +85,14 @@ if (isset($_GET['ubah'])) {
                                 <label for="hari" class="col-sm-3 col-form-label">Hari</label>
                                 <div class="col-sm-9">
                                     <select id="hari" name="hari" class="form-control">
-                                        <option selected disabled>Pilih Hari</option>
-                                        <option value="Senin">Senin</option>
-                                        <option value="Selasa">Selasa</option>
-                                        <option value="Rabu">Rabu</option>
-                                        <option value="Kamis">Kamis</option>
-                                        <option value="Jumat">Jumat</option>
-                                        <option value="Sabtu">Sabtu</option>
-                                        <option value="Minggu">Minggu</option>
+                                        <option value="" disabled>Pilih Hari</option>
+                                        <option value="Senin" <?php echo ($hari == 'Senin') ? 'selected' : ''; ?>>Senin</option>
+                                        <option value="Selasa" <?php echo ($hari == 'Selasa') ? 'selected' : ''; ?>>Selasa</option>
+                                        <option value="Rabu" <?php echo ($hari == 'Rabu') ? 'selected' : ''; ?>>Rabu</option>
+                                        <option value="Kamis" <?php echo ($hari == 'Kamis') ? 'selected' : ''; ?>>Kamis</option>
+                                        <option value="Jumat" <?php echo ($hari == 'Jumat') ? 'selected' : ''; ?>>Jumat</option>
+                                        <option value="Sabtu" <?php echo ($hari == 'Sabtu') ? 'selected' : ''; ?>>Sabtu</option>
+                                        <option value="Minggu" <?php echo ($hari == 'Minggu') ? 'selected' : ''; ?>>Minggu</option>
                                     </select>
                                 </div>
                             </div>
@@ -90,11 +115,10 @@ if (isset($_GET['ubah'])) {
                                         <option value="">--Pilih Kelas--</option>
                                         <?php
                                         while ($r = mysqli_fetch_array($kelasjadwal)) :
+                                            $selected = ($r['nama_kelas'] == $nama_kelas) ? 'selected' : '';
                                         ?>
-                                        <option value="<?= $r['nama_kelas'] ?>"><?= $r['nama_kelas'] ?></option>
-                                        <?php
-                                        endwhile;
-                                        ?>
+                                        <option value="<?= $r['nama_kelas'] ?>" <?= $selected ?>><?= $r['nama_kelas'] ?></option>
+                                        <?php endwhile; ?>
                                     </select>
                                 </div>
                             </div>
@@ -105,11 +129,10 @@ if (isset($_GET['ubah'])) {
                                         <option value="">--Pilih Mata Pelajaran--</option>
                                         <?php
                                         while ($r = mysqli_fetch_array($nama_mapel)) :
+                                            $selected = ($r['nama_mapel'] == $mapel) ? 'selected' : '';
                                         ?>
-                                        <option value="<?= $r['nama_mapel'] ?>"><?= $r['nama_mapel'] ?></option>
-                                        <?php
-                                        endwhile;
-                                        ?>
+                                        <option value="<?= $r['nama_mapel'] ?>" <?= $selected ?>><?= $r['nama_mapel'] ?></option>
+                                        <?php endwhile; ?>
                                     </select>
                                 </div>
                             </div>
@@ -132,11 +155,10 @@ if (isset($_GET['ubah'])) {
                                         <option value="">--Pilih Guru Pengajar--</option>
                                         <?php
                                         while ($r = mysqli_fetch_array($gurukelas)) :
+                                            $selected = ($r['nama_lengkap'] == $nama_guru) ? 'selected' : '';
                                         ?>
-                                        <option value="<?= $r['nama_guru'] ?>"><?= $r['nama_guru'] ?></option>
-                                        <?php
-                                        endwhile;
-                                        ?>
+                                        <option value="<?= $r['nama_lengkap'] ?>" <?= $selected ?>><?= $r['nama_lengkap'] ?></option>
+                                        <?php endwhile; ?>
                                     </select>
                                 </div>
                             </div>
