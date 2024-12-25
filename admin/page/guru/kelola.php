@@ -1,23 +1,23 @@
 <?php
 require_once '../../layout/top.php';
-require_once '../../helper/conek.php';
+require_once '../../helper/config.php';
 
-$kode_guru = '';
-$nama_guru = '';
+$id_user = '';
+$nama_lengkap = '';
 $email = '';
 $jenis_kelamin = '';
 $telepon = '';
 $alamat = '';
 
 if(isset($_GET['ubah'])){
-        $kode_guru = $_GET['ubah'];
+        $id_user = $_GET['ubah'];
 
-        $query = "SELECT * FROM guru WHERE kode_guru = '$kode_guru';";
+        $query = "SELECT * FROM user WHERE id_user= '$id_user';";
         $sql = mysqli_query($conn, $query);
 
         $result = mysqli_fetch_assoc($sql);
 
-        $nama_guru = $result['nama_guru'];
+        $nama_lengkap = $result['nama_lengkap'];
         $email = $result['email'];
         $jenis_kelamin = $result['jenis_kelamin'];
         $telepon = $result['telepon'];
@@ -37,11 +37,11 @@ if(isset($_GET['ubah'])){
                                                                 <h4 class="card-title">Tambah Data Guru</h4>
                                                         </div>
                                                         <div class="card-body">
-                                                                <input type="hidden" value="<?php echo $kode_guru; ?>" name="kode_guru">
+                                                                <input type="hidden" value="<?php echo $id_user; ?>" name="id_user">
                                                                 <div class="form-group row">
                                                                         <label for="namaguru" class="col-sm-3 col-form-label">Nama Guru</label>
                                                                         <div class="col-sm-9">
-                                                                                <input required ="text" name = "nama_guru" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru" value="<?php echo $nama_guru; ?>">
+                                                                                <input required ="text" name = "nama_guru" class="form-control" id="namaguru" placeholder="Masukkan Nama Guru" value="<?php echo $nama_lengkap; ?>">
                                                                         </div>
                                                                 </div>
                                                                 <div class="form-group row">

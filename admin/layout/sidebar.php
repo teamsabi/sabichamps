@@ -9,7 +9,7 @@
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-users-mm"></i><span class="nav-text">Manajemen Akun</span></a>
                 <ul aria-expanded="false">
-                    <li><a href="../akun/userlogin.php">User Login</a></li>
+                    <li><a href="../akun/userlogin.php">User</a></li>
                     <li><a href="../guru/ManajemenAkun-Guru.php">Guru</a></li>
                     <li><a href="../siswa/ManajemenAkun-Siswa.php">Siswa</a></li>
                 </ul>
@@ -18,7 +18,7 @@
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-app-store"></i><span class="nav-text">Manajemen Konten</span></a>
                 <ul aria-expanded="false">
-                    <li><a href="../jadwal/JadwalKelas.php">Jadwal</a></li>
+                    <li><a href="../jadwal/Jadwal.php">Jadwal</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Pembelajaran</a>
                         <ul aria-expanded="false">
                             <li><a href="../mapel/Mapel.php">Mata Pelajaran</a></li>

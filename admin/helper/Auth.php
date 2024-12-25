@@ -32,15 +32,12 @@ class Auth
                 return false;
             }
     
-            // Hash password sebelum disimpan
-            $hashPasswd = password_hash($password, PASSWORD_DEFAULT);
-    
             // Masukkan user baru ke database dengan role yang diinputkan
             $stmt = $this->db->prepare("INSERT INTO user (username, email, password, role) 
                                         VALUES (:username, :email, :pass, :role)");
             $stmt->bindParam(":username", $username);
             $stmt->bindParam(":email", $email);
-            $stmt->bindParam(":pass", $hashPasswd);
+            $stmt->bindParam(":pass", $password); // Simpan password langsung
             $stmt->bindParam(":role", $role);
             $stmt->execute();
     
@@ -56,11 +53,12 @@ class Auth
         }
     }
     
+    
 
     /**
      * Login User
      */
-    public function login($email, $password){
+    public function login($email, $password) {
         try {
             // Validasi panjang password
             if (strlen($password) < 8) {
@@ -75,7 +73,7 @@ class Auth
             $data = $stmt->fetch();
     
             // Jika email ditemukan dan password sesuai
-            if ($data && password_verify($password, $data['password'])) {
+            if ($data && $password === $data['password']) { // Langsung bandingkan password
                 // Simpan data penting ke dalam sesi
                 $_SESSION['user_session'] = $data['id_user'];
                 $_SESSION['username'] = $data['username'];
@@ -92,6 +90,7 @@ class Auth
             return false;
         }
     }
+    
 
     public function getUserRole()
     {

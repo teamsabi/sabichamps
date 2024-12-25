@@ -1,6 +1,6 @@
 <?php
 require_once '../../layout/top.php';
-require_once '../../helper/conek.php';
+require_once '../../helper/config.php';
 
 $id_user = '';
 $username = '';

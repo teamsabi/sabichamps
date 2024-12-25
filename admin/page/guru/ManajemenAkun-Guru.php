@@ -1,8 +1,9 @@
 <?php
     require_once '../../layout/top.php';
-    require_once '../../helper/conek.php';
+    require_once '../../helper/config.php';
 
-    $query = 'SELECT * FROM guru;';
+    $query = 'SELECT * FROM user WHERE role = "guru"';
+
     $sql = mysqli_query($conn, $query);
     $no = 0;
 
@@ -30,15 +31,6 @@
                             <div class="card-header">
                                 <h4 class="card-title">Data Guru</h4>
                             </div>
-
-                            <!-- Button Tambah Akun -->
-                            <div class="row mb-3">
-                                <div class="col-lg-8 col-12" style="margin-top: -30px; margin-left: 110px;">
-                                    <a href="kelola.php" class="btn btn-success">
-                                        <i class="fa fa-plus"></i> Tambah Data Guru
-                                    </a>
-                                </div>
-                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="guruTable" class="display table-hover" style="width: 100%;">
@@ -51,7 +43,6 @@
                                                 <th>Foto Profil</th>
                                                 <th>Telepon</th>
                                                 <th>Alamat</th>
-                                                <th>Tanggal Buat</th>
                                                 <th style="width: 200">Aksi</th>
                                             </tr>
                                         </thead>
@@ -64,7 +55,7 @@
                                                     <?php echo ++$no; ?>.
                                                 </td>
                                                 <td>
-                                                    <?php echo $result['nama_guru']; ?>
+                                                    <?php echo $result['nama_lengkap']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $result['email']; ?>
@@ -82,15 +73,12 @@
                                                     <?php echo $result['alamat']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $result['created_at']; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="kelola.php?ubah=<?php echo $result['kode_guru']; ?>" type="button" class="btn btn-success btn-sm">
+                                                    <a href="kelola.php?ubah=<?php echo $result['id_user']; ?>" type="button" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <a href="#" type="button" 
                                                         class="btn btn-danger btn-sm" 
-                                                        onclick="confirmDelete('<?php echo $result['kode_guru']; ?>')">
+                                                        onclick="confirmDelete('<?php echo $result['id_user']; ?>')">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -108,7 +96,6 @@
                                                 <th>Foto Profil</th>
                                                 <th>Telepon</th>
                                                 <th>Alamat</th>
-                                                <th>Tanggal Buat</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </tfoot>

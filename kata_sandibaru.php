@@ -1,3 +1,43 @@
+<?php
+require './admin/helper/koneksi.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'], $_POST['confirm_password'], $_POST['id_user'])) {
+    try {
+        $id_user = $_POST['id_user'];
+        $new_password = $_POST['new_password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        // Validasi input
+        if (empty($new_password) || empty($confirm_password)) {
+            die("<script>alert('Kata sandi tidak boleh kosong.');</script>");
+        }
+
+        if ($new_password !== $confirm_password) {
+            die("<script>alert('Kata sandi dan konfirmasi kata sandi tidak cocok.');</script>");
+        }
+
+        if (strlen($new_password) < 6) {
+            die("<script>alert('Kata sandi harus minimal 6 karakter.');</script>");
+        }
+
+        // Update kata sandi di database tanpa hashing
+        $updateQuery = $koneksi->prepare("UPDATE user SET password = :password WHERE id_user = :id_user");
+        $updateQuery->bindParam(':password', $new_password);  // Menyimpan kata sandi dalam bentuk teks biasa
+        $updateQuery->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $updateQuery->execute();
+
+        // Redirect atau beri pesan sukses
+        echo "<script>alert('Kata sandi berhasil diubah.'); window.location.href = 'login.php';</script>";
+        exit();
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
+    }
+}
+
+// Mengambil id_user dari URL
+$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -73,31 +113,36 @@
         <h2>Kata Sandi Baru</h2>
         <p>Masukkan kata sandi baru Anda</p>
 
-        <!-- Input Kata Sandi Baru -->
-        <div class="mb-4">
-            <label for="newPassword">Kata Sandi Baru</label>
-            <div class="password-field">
-                <input type="password" class="form-control" id="newPassword" placeholder="Kata Sandi Baru" required>
-                <span class="toggle-password" onclick="togglePassword('newPassword')">
-                    <img src="https://img.icons8.com/ios-filled/24/000000/visible.png" alt="Toggle Password">
-                </span>
+        <!-- Form untuk mengubah kata sandi -->
+        <form method="POST" action="">
+            <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($id_user); ?>">
+            
+            <!-- Input Kata Sandi Baru -->
+            <div class="mb-4">
+                <label for="newPassword">Kata Sandi Baru</label>
+                <div class="password-field">
+                    <input type="password" class="form-control" id="newPassword" name="new_password" placeholder="Kata Sandi Baru" required>
+                    <span class="toggle-password" onclick="togglePassword('newPassword')">
+                        <img src="https://img.icons8.com/ios-filled/24/000000/visible.png" alt="Toggle Password">
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <!-- Input Konfirmasi Kata Sandi -->
-        <div class="mb-4">
-            <label for="confirmPassword">Konfirmasi Kata Sandi</label>
-            <div class="password-field">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi Kata Sandi" required>
-                <span class="toggle-password" onclick="togglePassword('confirmPassword')">
-                    <img src="https://img.icons8.com/ios-filled/24/000000/visible.png" alt="Toggle Password">
-                </span>
+            <!-- Input Konfirmasi Kata Sandi -->
+            <div class="mb-4">
+                <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                <div class="password-field">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Konfirmasi Kata Sandi" required>
+                    <span class="toggle-password" onclick="togglePassword('confirmPassword')">
+                        <img src="https://img.icons8.com/ios-filled/24/000000/visible.png" alt="Toggle Password">
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <p class="text-justify">Kata sandi harus berisi minimal 6 karakter dengan kombinasi huruf dan angka.</p>
+            <p class="text-justify">Kata sandi harus berisi minimal 6 karakter dengan kombinasi huruf dan angka.</p>
 
-        <button class="btn btn-primary" onclick="ubahKataSandi()">Ubah Kata Sandi</button>
+            <button type="submit" class="btn btn-primary">Ubah Kata Sandi</button>
+        </form>
     </div>
 
     <script>
@@ -105,76 +150,6 @@
             const passwordInput = document.getElementById(id);
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-        }
-
-        function ubahKataSandi() {
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Validasi: Pastikan kedua password cocok, tidak kosong, dan memenuhi syarat
-            if (newPassword === '' || confirmPassword === '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kata sandi tidak boleh kosong!',
-                });
-                return;
-            }
-
-            if (newPassword.length < 6 || !/\d/.test(newPassword) || !/[a-zA-Z]/.test(newPassword)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kata sandi harus minimal 6 karakter dengan huruf dan angka.',
-                });
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Kata sandi tidak cocok!',
-                });
-                return;
-            }
-
-            // Kirim permintaan ke backend
-            fetch('reset_password.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `password=${encodeURIComponent(newPassword)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        text: 'Kata sandi berhasil diubah.',
-                        showConfirmButton: false,
-                        timer: 2000
-                    }).then(() => {
-                        window.location.href = 'login.php'; // Arahkan ke halaman login
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal',
-                        text: data.message || 'Gagal mengubah kata sandi, silakan coba lagi.',
-                    });
-                }
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Terjadi kesalahan dalam mengubah kata sandi.',
-                });
-                console.error('Error:', error);
-            });
         }
     </script>
 </body>
