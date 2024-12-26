@@ -3,7 +3,7 @@
     <div class="quixnav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Main Menu</li>
-            <li><a href="../dashboard/index.php"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+            <li><a href="../dashboard/index.php"><i class="fa fa-home"></i><span class="nav-text">Dashboard</span></a>
             </li> 
             <li class="nav-label">Konten</li>
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
