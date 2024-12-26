@@ -13,6 +13,7 @@ if (!isset($_SESSION['user_session'])) {
     exit;
 }
 
+$id_user = $_SESSION['user_session'];
 $_SESSION['id_user'] = $id_user;
 
 // Dapatkan username dari sesi
