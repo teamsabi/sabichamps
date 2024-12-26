@@ -2,7 +2,8 @@
 require_once '../../layout/top.php';
 require_once '../../helper/config.php';
 
-    // Ambil data jadwal dari database
+    $today = date('Y-m-d');
+
     $queryJadwal = "SELECT 
         j.id_jadwal,
         k.nama_kelas,
@@ -20,10 +21,11 @@ require_once '../../helper/config.php';
     JOIN 
         mapel m ON j.kode_mapel = m.kode_mapel
     JOIN 
-        user u ON j.id_user = u.id_user;"; 
-        $resultJadwal = $conn->query($queryJadwal);
+        user u ON j.id_user = u.id_user
+    WHERE 
+        j.tanggal = '$today'";
+    $resultJadwal = $conn->query($queryJadwal);
 
-    // Query untuk menghitung jumlah data
     $queryGuru = "SELECT COUNT(*) AS jumlah_guru FROM user WHERE role = 'guru'";
     $querySiswa = "SELECT COUNT(*) AS jumlah_siswa FROM user WHERE role = 'siswa'";
     $queryKelas = "SELECT COUNT(*) AS jumlah_kelas FROM kelas";
