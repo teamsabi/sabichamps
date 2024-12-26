@@ -64,7 +64,7 @@
                                                     <?php echo $result['jenis_kelamin']; ?>
                                                 </td>
                                                 <td>
-                                                    <img src="../../images/foto_guru/<?php echo $result['foto_guru']; ?>" style="width: 70px;">
+                                                    <img src="../../../assets2/img/foto_guru/<?php echo $result['foto_guru']; ?>" style="width: 70px;">
                                                 </td>
                                                 <td>
                                                     <?php echo $result['telepon']; ?>

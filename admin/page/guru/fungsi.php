@@ -11,7 +11,7 @@
         $telepon = $data['telepon_guru'];
         $alamat = $data['alamat_guru'];
 
-        $dir = "../../images/foto_guru/";
+        $dir = "../../../assets2/img/foto_guru/";
         $tmpfile = $files['foto_guru']['tmp_name'];
 
         move_uploaded_file($tmpfile, $dir.$foto);
@@ -47,7 +47,7 @@
                 $ekstensi = $split[count($split)-1];
                 $foto = $nama_guru . '.' . $ekstensi;  // Gunakan nama guru sebagai nama foto
     
-                move_uploaded_file($files['foto_guru']['tmp_name'], '../../images/foto_guru/'.$foto);
+                move_uploaded_file($files['foto_guru']['tmp_name'], '../../../assets2/img/foto_guru/'.$foto);
             }
     
             // Query untuk insert data baru
@@ -69,8 +69,8 @@
                 $foto = $nama_guru . '.' . $ekstensi;
     
                 // Hapus foto lama dan unggah foto baru
-                unlink("../../images/foto_guru/".$result['foto_guru']);
-                move_uploaded_file($files['foto_guru']['tmp_name'], '../../images/foto_guru/'.$foto);
+                unlink("../../../assets2/img/foto_guru/".$result['foto_guru']);
+                move_uploaded_file($files['foto_guru']['tmp_name'], '../../../assets2/img/foto_guru/'.$foto);
             }
     
             // Query untuk memperbarui data pengguna
@@ -98,7 +98,7 @@
         $result = mysqli_fetch_assoc($sqlshow);
     
         // Menghapus foto pengguna jika ada
-        unlink("../../images/foto_guru/".$result['foto_guru']);
+        unlink("../../../assets2/img/foto_guru/".$result['foto_guru']);
     
         // Menghapus data terkait di tabel kelas_user
         $query_delete_kelas_user = "DELETE FROM kelas_user WHERE id_user = '$id_user';";

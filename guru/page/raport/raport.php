@@ -83,7 +83,6 @@ $query = "SELECT k.id_kelas, k.kode_kelas, k.nama_kelas,
                 </div>
                 <script>
                     $(document).ready(function () {
-                        // Inisialisasi DataTable
                         const table = $('#raportTable').DataTable();
                     });
                 </script>

@@ -5,17 +5,16 @@ require_once '../../helper/config.php';
 $id_jadwal = '';
 $hari = '';
 $tanggal = '';
-$tempat = '';
+$tempat= '';
 $nama_kelas = '';
 $mapel = '';    
 $jam_mulai = '';
 $jam_selesai = '';
-$nama_guru = '';
+$nama_lengkap = '';
 $kelasjadwal = mysqli_query($conn, "SELECT nama_kelas FROM kelas");
 $gurukelas = mysqli_query($conn, "SELECT nama_lengkap FROM user WHERE role = 'guru'");
 $nama_mapel = mysqli_query($conn, "SELECT nama_mapel FROM mapel");
 
-// Mengecek apakah ada parameter 'ubah' di URL
 if (isset($_GET['ubah'])) {
     $id_jadwal = $_GET['ubah'];
 
@@ -125,6 +124,12 @@ if (isset($_GET['error']) && $_GET['error'] == 'jam') {
                                 <div class="col-sm-9">
                                     <select class="form-control" name="mapel" id="nama_mapel" required>
                                         <option value="">--Pilih Mata Pelajaran--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($nama_mapel)) :
+                                            $selected = ($r['nama_mapel'] == $mapel) ? 'selected' : '';
+                                        ?>
+                                        <option value="<?= $r['nama_mapel'] ?>" <?= $selected ?>><?= $r['nama_mapel'] ?></option>
+                                        <?php endwhile; ?>
                                     </select>
                                 </div>
                             </div>
@@ -143,10 +148,13 @@ if (isset($_GET['error']) && $_GET['error'] == 'jam') {
                             <div class="form-group row">
                                 <label for="gurukelas" class="col-sm-3 col-form-label">Nama Guru</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="gurukelas" id="nama_guru" required>
-                                        <option value="">--Pilih Nama Guru--</option>
-                                        <?php while ($r = mysqli_fetch_array($gurukelas)) : ?>
-                                            <option value="<?= $r['nama_lengkap'] ?>" <?= ($r['nama_lengkap'] == $nama_guru) ? 'selected' : '' ?>><?= $r['nama_lengkap'] ?></option>
+                                    <select class="form-control" name="nama_guru" id="gurukelas" required>
+                                        <option value="">--Pilih Guru Pengajar--</option>
+                                        <?php
+                                        while ($r = mysqli_fetch_array($gurukelas)) :
+                                            $selected = ($r['nama_lengkap'] == $nama_guru) ? 'selected' : '';
+                                        ?>
+                                        <option value="<?= $r['nama_lengkap'] ?>" <?= $selected ?>><?= $r['nama_lengkap'] ?></option>
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
@@ -173,34 +181,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'jam') {
     </div>
 </div>
 <!--Content body end-->
-<script>
-    document.getElementById('kelassiswa').addEventListener('change', function () {
-        const kelas = this.value;
 
-        // Periksa apakah kelas dipilih
-        if (kelas) {
-            fetch(`get_mapel.php?kelas=${kelas}`)
-                .then(response => response.json())
-                .then(data => {
-                    const mapelDropdown = document.getElementById('nama_mapel');
-                    mapelDropdown.innerHTML = '<option value="">--Pilih Mata Pelajaran--</option>';
-
-                    // Periksa apakah data array valid dan sesuai format
-                    if (Array.isArray(data) && data.length > 0) {
-                        data.forEach(mapel => {
-                            const option = document.createElement('option');
-                            option.value = mapel.kode_mapel; // Set kode_mapel sebagai value
-                            option.textContent = mapel.nama_mapel; // Set nama_mapel sebagai text
-                            mapelDropdown.appendChild(option);
-                        });
-                    } else {
-                        console.error('Data tidak sesuai atau tidak ada mata pelajaran untuk kelas ini');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    });
-</script>
 <?php
 require_once '../../layout/footer.php';
 ?>

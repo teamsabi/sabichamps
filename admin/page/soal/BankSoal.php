@@ -3,7 +3,7 @@
 // Halaman BankSoal.php
 // -------------------------
 require_once '../../layout/top.php';
-require_once '../../helper/conek.php';
+require_once '../../helper/config.php';
 
 // Ambil data dari tabel 'soal'
 $query = 'SELECT * FROM soal;';

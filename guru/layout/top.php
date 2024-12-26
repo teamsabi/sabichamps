@@ -7,6 +7,14 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+// Cek apakah session 'id_user' sudah ada
+if (!isset($_SESSION['user_session'])) {
+    header('Location: login.php'); // Jika tidak ada session, redirect ke halaman login
+    exit;
+}
+
+$_SESSION['id_user'] = $id_user;
+
 // Dapatkan username dari sesi
 $username = $_SESSION['username'];
 ?>
@@ -41,13 +49,13 @@ $username = $_SESSION['username'];
 <body>
 
     <!--Preloader start-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
             <div class="sk-child sk-bounce2"></div>
             <div class="sk-child sk-bounce3"></div>
         </div>
-    </div>
+    </div> -->
     <!--Preloader end-->
 
 
