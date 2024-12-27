@@ -10,7 +10,7 @@ function tambah_data($post, $files) {
 
     $file_materi = $files['file_materi']['name'];
     $tmp_file = $files['file_materi']['tmp_name'];
-    $path = "../../file/";
+    $path = "../../../file_materi/";
     $file_upload = $path . basename($file_materi);
 
     if ($file_materi) {
@@ -49,7 +49,7 @@ function ubah_data($post, $files) {
 
     $file_materi = isset($files['file_materi']['name']) ? $files['file_materi']['name'] : '';
     $tmp_file = $files['file_materi']['tmp_name'];
-    $path = "../../file/";
+    $path = "../../../file_materi/";
     $file_upload = $path . basename($file_materi);
 
     $query = "SELECT file_materi FROM materi WHERE id_materi = '$id_materi'";
@@ -102,7 +102,7 @@ function hapus_data($id_materi) {
     
     if ($row) {
         $file_materi = $row['file_materi'];
-        $path = "../../file/";
+        $path = "../../../file_materi/";
         $file_path = $path . $file_materi;
         
         if (file_exists($file_path)) {
