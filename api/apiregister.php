@@ -1,100 +1,77 @@
 <?php
 header('Content-Type: application/json');
-session_start();
+error_reporting(0);
+ob_start(); // Memastikan hanya JSON yang dikembalikan
 
-// Koneksi database
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'sabi';
+// Koneksi ke database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sab_baru";
 
-// Buat koneksi
-$koneksi = mysqli_connect($host, $user, $pass, $db);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Cek koneksi
-if (!$koneksi) {
-    die(json_encode(['status' => 'error', 'message' => 'Koneksi database gagal: ' . mysqli_connect_error()]));
+// Cek koneksi database
+if ($conn->connect_error) {
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "Koneksi database gagal: " . $conn->connect_error]);
+    exit;
 }
 
-// Inisialisasi response
-$response = [];
+// Ambil data input dari request POST
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+$kode_kelas = $_POST['kode_kelas'] ?? '';
 
-// Pastikan request method adalah POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form-data
-    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-        $username = trim($_POST['username']);
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
-        
-        // Validasi input
-        if (empty($username) || empty($email) || empty($password)) {
-            $response = [
-                'status' => 'error',
-                'message' => "Username, Email, dan Password tidak boleh kosong!"
-            ];
-        } elseif (strlen($password) < 8) {
-            $response = [
-                'status' => 'error',
-                'message' => "Password harus berisi minimal 8 karakter!"
-            ];
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $response = [
-                'status' => 'error',
-                'message' => "Format email tidak valid!"
-            ];
-        } else {
-            // Cek apakah email sudah terdaftar
-            $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
-            $result = mysqli_query($koneksi, $query);
+// Validasi input
+if (empty($email) || empty($password) || empty($kode_kelas)) {
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Harap isi semua kolom."]);
+    exit;
+}
 
-            if (mysqli_num_rows($result) > 0) {
-                $response = [
-                    'status' => 'error',
-                    'message' => 'Email sudah terdaftar!'
-                ];
-            } else {
-                // Enkripsi password
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Validasi kode_kelas di database
+$sql_check_kelas = "SELECT kode_kelas FROM kelas WHERE kode_kelas = ?";
+$stmt_check = $conn->prepare($sql_check_kelas);
+$stmt_check->bind_param("s", $kode_kelas);
+$stmt_check->execute();
+$stmt_check->store_result();
 
-                // Query untuk insert data registrasi
-                $insertQuery = "INSERT INTO user (username, email, password, role) 
-                                VALUES ('$username', '$email', '$hashedPassword', 'siswa')";
-                
-                if (mysqli_query($koneksi, $insertQuery)) {
-                    $response = [
-                        'status' => 'success',
-                        'message' => 'Registrasi berhasil!',
-                        'user_data' => [
-                            'username' => $username,
-                            'email' => $email,
-                            'role' => 'siswa'
-                        ]
-                    ];
-                } else {
-                    $response = [
-                        'status' => 'error',
-                        'message' => 'Terjadi kesalahan saat registrasi, coba lagi!'
-                    ];
-                }
-            }
-        }
+if ($stmt_check->num_rows == 0) {
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Kode kelas tidak valid."]);
+    $stmt_check->close();
+    $conn->close();
+    exit;
+}
+
+// Masukkan pengguna baru
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$sql = "INSERT INTO user (email, password, role) VALUES (?, ?, 'siswa')";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $email, $hashed_password);
+
+if ($stmt->execute()) {
+    $user_id = $stmt->insert_id;
+
+    // Masukkan data ke tabel kelas_user
+    $sql_kelas_user = "INSERT INTO kelas_user (id_user, kode_kelas) VALUES (?, ?)";
+    $stmt_kelas_user = $conn->prepare($sql_kelas_user);
+    $stmt_kelas_user->bind_param("is", $user_id, $kode_kelas);
+
+    if ($stmt_kelas_user->execute()) {
+        echo json_encode(["status" => "success", "message" => "Registrasi berhasil."]);
     } else {
-        $response = [
-            'status' => 'error',
-            'message' => 'Username, Email, dan Password harus disertakan'
-        ];
+        http_response_code(500);
+        echo json_encode(["status" => "error", "message" => "Gagal menghubungkan kelas dengan pengguna."]);
     }
+    $stmt_kelas_user->close();
 } else {
-    $response = [
-        'status' => 'error',
-        'message' => 'Metode HTTP tidak valid, hanya POST yang diperbolehkan.'
-    ];
+    http_response_code(500);
+    echo json_encode(["status" => "error", "message" => "Gagal mendaftarkan pengguna."]);
 }
 
-// Menutup koneksi
-mysqli_close($koneksi);
-
-// Mengirimkan respons JSON ke client
-echo json_encode($response);
-?>
+$stmt->close();
+$conn->close();
+ob_end_clean();
+exit;

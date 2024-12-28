@@ -1,113 +1,91 @@
 <?php
 header('Content-Type: application/json');
-session_start();
 
-// Koneksi database
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'sabi';
+// Koneksi ke database
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "sab_baru";
 
-// Buat koneksi
-$koneksi = mysqli_connect($host, $user, $pass, $db);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Cek koneksi
-if (!$koneksi) {
-    die(json_encode(['status' => 'error', 'message' => 'Koneksi database gagal: ' . mysqli_connect_error()]));
+// Cek koneksi database
+if ($conn->connect_error) {
+    echo json_encode(["status" => "error", "message" => "Koneksi gagal: " . $conn->connect_error]);
+    exit;
 }
 
-// Inisialisasi variabel untuk error dan input
-$response = []; // Pastikan response didefinisikan
-$emailValue = '';
-$passwordValue = '';
+// Ambil data input dari request POST
+$email = trim($_POST['email'] ?? '');
+$password = $_POST['password'] ?? '';
 
-// Pastikan request method adalah POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data email dan password dari form-data
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
+// Validasi input
+if (empty($email) || empty($password)) {
+    echo json_encode(["status" => "error", "message" => "Harap isi semua kolom yang dibutuhkan."]);
+    exit;
+}
 
-        $emailValue = $email;
-        $passwordValue = $password;
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(["status" => "error", "message" => "Format email tidak valid."]);
+    exit;
+}
 
-        // Validasi input
-        if (empty($email) && empty($password)) {
-            $response = [
-                'status' => 'error',
-                'message' => "Email dan Password tidak boleh kosong!"
-            ];
-        } elseif (empty($email)) {
-            $response = [
-                'status' => 'error',
-                'message' => "Email tidak boleh kosong!"
-            ];
-        } elseif (empty($password)) {
-            $response = [
-                'status' => 'error',
-                'message' => "Password tidak boleh kosong!"
-            ];
-        } else {
-            // Query untuk mencari user berdasarkan email
-            $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
-            $result = mysqli_query($koneksi, $query);
+// Cek user berdasarkan email
+$sql_check_user = "SELECT id_user, password FROM user WHERE email = ?";
+$stmt_check = $conn->prepare($sql_check_user);
+if (!$stmt_check) {
+    echo json_encode(["status" => "error", "message" => "Terjadi kesalahan pada query."]);
+    exit;
+}
+$stmt_check->bind_param("s", $email);
+$stmt_check->execute();
+$stmt_check->store_result();
 
-            if ($result && mysqli_num_rows($result) > 0) {
-                $user = mysqli_fetch_assoc($result);
+if ($stmt_check->num_rows == 0) {
+    echo json_encode(["status" => "error", "message" => "Email tidak ditemukan."]);
+    $stmt_check->close();
+    $conn->close();
+    exit;
+}
 
-                // Verifikasi password tanpa hashing
-                if ($password === $user['password']) {
-                    // Pastikan hanya siswa yang bisa login
-                    if ($user['role'] === 'siswa') {
-                        // Simpan informasi user ke session
-                        $_SESSION['user_id'] = $user['id'];
-                        $_SESSION['email'] = $user['email'];
-                        $_SESSION['role'] = $user['role'];
+// Ambil hashed password dari database
+$stmt_check->bind_result($user_id, $hashed_password);
+$stmt_check->fetch();
 
-                        // Respons login berhasil
-                        $response = [
-                            'status' => 'success',
-                            'message' => 'Login berhasil',
-                            'user_data' => $user  // Menampilkan semua data user
-                        ];
-                    } else {
-                        // Jika role bukan siswa
-                        $response = [
-                            'status' => 'error',
-                            'message' => 'Hanya siswa yang dapat login'
-                        ];
-                    }
-                } else {
-                    // Jika password tidak valid
-                    $response = [
-                        'status' => 'error',
-                        'message' => 'Email atau password salah'
-                    ];
-                }
-            } else {
-                // Jika email tidak ditemukan
-                $response = [
-                    'status' => 'error',
-                    'message' => 'Email tidak terdaftar'
-                ];
-            }
-        }
-    } else {
-        $response = [
-            'status' => 'error',
-            'message' => 'Email dan password harus disertakan'
-        ];
+// Verifikasi password
+if (password_verify($password, $hashed_password)) {
+    // Ambil kelas pengguna berdasarkan `id_user`
+    $sql_classes = "SELECT k.kode_kelas, k.nama_kelas 
+                    FROM kelas_user ku 
+                    INNER JOIN kelas k ON ku.kode_kelas = k.kode_kelas 
+                    WHERE ku.id_user = ?";
+    $stmt_classes = $conn->prepare($sql_classes);
+    if (!$stmt_classes) {
+        echo json_encode(["status" => "error", "message" => "Terjadi kesalahan pada query kelas."]);
+        exit;
     }
+    $stmt_classes->bind_param("i", $user_id);
+    $stmt_classes->execute();
+    $result_classes = $stmt_classes->get_result();
+
+    $classes = [];
+    while ($row = $result_classes->fetch_assoc()) {
+        $classes[] = $row;
+    }
+
+    echo json_encode([
+        "status" => "success",
+        "server_response" => "login berhasil",
+        "user_id" => $user_id,
+        "classes" => $classes
+    ]);
+    $stmt_classes->close();
 } else {
-    $response = [
-        'status' => 'error',
-        'message' => 'Metode HTTP tidak valid, hanya POST yang diperbolehkan.'
-    ];
+    echo json_encode([
+        "status" => "error",
+        "server_response" => "Password salah."
+    ]);
 }
 
-// Menutup koneksi
-mysqli_close($koneksi);
-
-// Mengirimkan respons JSON ke client
-echo json_encode($response);
-?>
+$stmt_check->close();
+$conn->close();

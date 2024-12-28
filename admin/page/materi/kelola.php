@@ -5,6 +5,7 @@ require_once '../../helper/config.php';
 $id_materi = '';
 $judul_materi = '';
 $nama_mapel = '';
+$kode_mapel = ''; // Tambahkan inisialisasi variabel dengan nilai default
 $nama_lengkap = '';
 
 // Mengecek apakah ada parameter 'ubah' di URL
@@ -17,6 +18,7 @@ if (isset($_GET['ubah'])) {
             materi.id_materi, 
             materi.judul_materi, 
             mapel.nama_mapel, 
+            mapel.kode_mapel, 
             user.nama_lengkap
         FROM 
             materi
@@ -39,6 +41,7 @@ if (isset($_GET['ubah'])) {
         $id_materi = $result['id_materi'];
         $judul_materi = $result['judul_materi'];
         $nama_mapel = $result['nama_mapel'];
+        $kode_mapel = $result['kode_mapel']; // Ambil kode_mapel
         $nama_lengkap = $result['nama_lengkap'];
     } else {
         echo "Data tidak ditemukan!";
@@ -46,6 +49,7 @@ if (isset($_GET['ubah'])) {
     }
 }
 ?>
+
 
 <!--Content body start-->
 <div class="content-body">
@@ -69,24 +73,28 @@ if (isset($_GET['ubah'])) {
                             </div>
 
                             <!-- Dropdown untuk Mata Pelajaran -->
-                            <div class="form-group row">
-                                <label for="mapel" class="col-sm-3 col-form-label">Mata Pelajaran</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="mapel" id="mapel" required>
-                                        <option value="">--Pilih Mata Pelajaran--</option>
-                                        <?php
-                                        // Query untuk mengambil daftar mata pelajaran
-                                        $mapel_query = "SELECT kode_mapel, nama_mapel FROM mapel";
-                                        $mapel_result = mysqli_query($conn, $mapel_query);
-                                        while ($r = mysqli_fetch_array($mapel_result)) :
-                                        ?>
-                                        <option value="<?= $r['kode_mapel'] ?>" <?= ($r['nama_mapel'] == $nama_mapel) ? 'selected' : ''; ?>><?= $r['nama_mapel'] ?></option>
-                                        <?php
-                                        endwhile;
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
+                            <!-- Dropdown untuk Mata Pelajaran -->
+<div class="form-group row">
+    <label for="mapel" class="col-sm-3 col-form-label">Mata Pelajaran</label>
+    <div class="col-sm-9">
+        <select class="form-control" name="mapel" id="mapel" required>
+            <option value="">--Pilih Mata Pelajaran--</option>
+            <?php
+            // Query untuk mengambil daftar mata pelajaran
+            $mapel_query = "SELECT kode_mapel, nama_mapel FROM mapel";
+            $mapel_result = mysqli_query($conn, $mapel_query);
+            while ($r = mysqli_fetch_array($mapel_result)) :
+            ?>
+            <option value="<?= $r['kode_mapel'] ?>" <?= ($r['kode_mapel'] == $kode_mapel) ? 'selected' : ''; ?>>
+                <?= $r['nama_mapel'] . ' (' . $r['kode_mapel'] . ')'; ?>
+            </option>
+            <?php
+            endwhile;
+            ?>
+        </select>
+    </div>
+</div>
+
 
                             <!-- Input untuk File Materi -->
                             <div class="form-group row">
@@ -108,7 +116,9 @@ if (isset($_GET['ubah'])) {
                                         $guru_result = mysqli_query($conn, $guru_query);
                                         while ($r = mysqli_fetch_array($guru_result)) :
                                         ?>
-                                        <option value="<?= $r['id_user'] ?>" <?= ($r['nama_lengkap'] == $nama_lengkap) ? 'selected' : ''; ?>><?= $r['nama_lengkap'] ?></option>
+                                        <option value="<?= $r['id_user'] ?>" <?= ($r['nama_lengkap'] == $nama_lengkap) ? 'selected' : ''; ?>>
+                                            <?= $r['nama_lengkap'] ?>
+                                        </option>
                                         <?php
                                         endwhile;
                                         ?>
